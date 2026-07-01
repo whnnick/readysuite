@@ -72,7 +72,8 @@ main :where(h1, h2, h3, p, a, button, span) {
 .timeline-cursor,
 .digital-grid,
 .crossfit-scene,
-.pose-skeleton {
+.pose-skeleton,
+.crossfit-real-frame {
   will-change: transform, opacity;
 }
 
@@ -196,10 +197,16 @@ main :where(h1, h2, h3, p, a, button, span) {
 }
 
 .crossfit-scene {
-  opacity: 0;
+  opacity: 0.24;
   background:
     radial-gradient(circle at 50% 34%, rgba(53, 229, 153, 0.22), transparent 28%),
     linear-gradient(180deg, #121a2d, #06101d 58%, #02050c);
+  mix-blend-mode: screen;
+}
+
+.crossfit-real-frame {
+  filter: grayscale(0.28) contrast(1.22) saturate(0.68) hue-rotate(116deg) brightness(0.58);
+  transform: scale(1.03);
 }
 
 .crossfit-scene-0 {
@@ -490,7 +497,7 @@ main :where(h1, h2, h3, p, a, button, span) {
 
 @keyframes shot-cycle-a {
   0%, 28% {
-    opacity: 1;
+    opacity: 0.32;
     transform: scale(1.04);
   }
   34%, 100% {
@@ -505,7 +512,7 @@ main :where(h1, h2, h3, p, a, button, span) {
     transform: scale(1.08);
   }
   36%, 62% {
-    opacity: 1;
+    opacity: 0.3;
     transform: scale(1.04);
   }
   68%, 100% {
@@ -520,7 +527,7 @@ main :where(h1, h2, h3, p, a, button, span) {
     transform: scale(1.08);
   }
   70%, 96% {
-    opacity: 1;
+    opacity: 0.3;
     transform: scale(1.04);
   }
   100% {
@@ -604,12 +611,13 @@ main :where(h1, h2, h3, p, a, button, span) {
   .crossfit-scene,
   .pose-skeleton,
   .digital-grid,
+  .crossfit-real-frame,
   .type-output::after {
     animation: none !important;
   }
 
   .crossfit-scene:first-of-type {
-    opacity: 1;
+    opacity: 0.32;
   }
 
   .motion-card {

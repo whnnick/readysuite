@@ -891,6 +891,14 @@ function CrossfitPreview({ t }: { t: (typeof copy)[Lang]["mock"] }) {
         </div>
 
         <div className="relative mx-auto aspect-[9/16] w-full max-w-[300px] overflow-hidden rounded-lg border border-white/12 bg-[#050914]">
+          <Image
+            alt="CrossFit WHOOP Video anonymized digital athlete preview"
+            className="crossfit-real-frame object-cover"
+            fill
+            priority
+            sizes="(min-width: 1024px) 300px, 80vw"
+            src="/crossfit-digital-athlete.jpg"
+          />
           <div className="crossfit-scene crossfit-scene-0 absolute inset-0" />
           <div className="crossfit-scene crossfit-scene-1 absolute inset-0" />
           <div className="crossfit-scene crossfit-scene-2 absolute inset-0" />

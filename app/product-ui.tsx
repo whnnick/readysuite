@@ -384,6 +384,15 @@ const productLinks = {
 const featureIcons = [MonitorUp, Activity, RefreshCcw, WifiOff] as const;
 const readyTypeIcons = [Mic, WandSparkles, Languages, Clipboard] as const;
 const crossfitIcons = [Video, Film, Terminal, Activity] as const;
+const crossfitPipeline = [
+  { label: "Motion Capture", body: "pose map" },
+  { label: "Digital Athlete", body: "privacy-safe render" },
+  { label: "WHOOP HUD", body: "data overlay" },
+] as const;
+
+function externalLinkProps(href: string) {
+  return href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {};
+}
 
 function Button({
   children,
@@ -402,6 +411,7 @@ function Button({
           : "inline-flex min-h-12 max-w-full items-center justify-center gap-2 rounded-lg border border-white/16 bg-white/[.06] px-4 py-3 text-center text-sm font-black leading-5 text-white transition hover:bg-white/[.11] sm:px-5"
       }
       href={href}
+      {...externalLinkProps(href)}
     >
       {children}
     </a>
@@ -482,6 +492,7 @@ function Header({
           <a
             className="hidden items-center gap-2 rounded-lg border border-white/15 bg-white/[.06] px-4 py-3 text-sm font-bold lg:flex"
             href={activeProduct ? productLinks[activeProduct].repo : links.readyCheckGitHub}
+            {...externalLinkProps(activeProduct ? productLinks[activeProduct].repo : links.readyCheckGitHub)}
           >
             <Github size={16} />
             {t.nav.github}
@@ -526,8 +537,8 @@ function Shell({
             <a href="/downloads">{copy[lang].nav.downloads}</a>
             <a href="/support">{copy[lang].nav.support}</a>
             <a href="/privacy">{lang === "zh" ? "隐私" : "Privacy"}</a>
-            <a href={links.readyCheckReleases}>Releases</a>
-            <a href={links.readyCheckIssues}>Issues</a>
+            <a href={links.readyCheckReleases} {...externalLinkProps(links.readyCheckReleases)}>Releases</a>
+            <a href={links.readyCheckIssues} {...externalLinkProps(links.readyCheckIssues)}>Issues</a>
           </div>
         </div>
       </footer>
@@ -863,16 +874,16 @@ function CrossfitPreview({ t }: { t: (typeof copy)[Lang]["mock"] }) {
 
       <div className="grid gap-4 p-4 md:grid-cols-[0.72fr_1fr] md:p-5">
         <div className="rounded-lg border border-white/10 bg-[#09101f] p-4">
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-green">Assets</p>
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-green">Privacy-safe pipeline</p>
           <div className="mt-4 grid gap-3">
-            {["WOD_clip_01.mov", "whoop-hud.json", "caption.zh.srt"].map((item, index) => (
-              <div key={item} className={`asset-row asset-row-${index} flex items-center gap-3 rounded-md border border-white/10 bg-white/[.045] p-3`}>
-                <span className="grid h-8 w-8 place-items-center rounded-md bg-green/10 text-green">
-                  {index === 0 ? <Video size={16} /> : index === 1 ? <Activity size={16} /> : <Clipboard size={16} />}
+            {crossfitPipeline.map((step, index) => (
+              <div key={step.label} className={`asset-row asset-row-${index} flex items-center gap-3 rounded-md border border-white/10 bg-white/[.045] p-3`}>
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-md border border-green/20 bg-green/10 text-green">
+                  {index === 0 ? <Activity size={17} /> : index === 1 ? <MonitorUp size={17} /> : <Video size={17} />}
                 </span>
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-black text-white">{item}</p>
-                  <p className="mt-1 text-xs text-muted">{index === 0 ? "Training footage" : index === 1 ? "HUD preset" : "Auto captions"}</p>
+                  <p className="truncate text-sm font-black text-white">{step.label}</p>
+                  <p className="mt-1 text-xs text-muted">{step.body}</p>
                 </div>
               </div>
             ))}
@@ -880,14 +891,24 @@ function CrossfitPreview({ t }: { t: (typeof copy)[Lang]["mock"] }) {
         </div>
 
         <div className="relative mx-auto aspect-[9/16] w-full max-w-[300px] overflow-hidden rounded-lg border border-white/12 bg-[#050914]">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(53,229,153,.34),transparent_28%),linear-gradient(180deg,#152033,#07101d_58%,#02050c)]" />
-          <div className="absolute inset-x-8 top-24 h-48 rounded-full border border-white/10 bg-white/[.035]" />
-          <div className="rep-figure absolute left-1/2 top-[34%] h-40 w-28 -translate-x-1/2 rounded-full border border-green/30 bg-green/10 shadow-[0_0_45px_rgba(53,229,153,.22)]" />
+          <div className="crossfit-scene crossfit-scene-0 absolute inset-0" />
+          <div className="crossfit-scene crossfit-scene-1 absolute inset-0" />
+          <div className="crossfit-scene crossfit-scene-2 absolute inset-0" />
+          <div className="digital-grid absolute inset-0 opacity-60" />
+          <div className="pose-skeleton absolute inset-x-[30%] top-[24%] h-64">
+            <span className="pose-head" />
+            <span className="pose-spine" />
+            <span className="pose-arm pose-arm-left" />
+            <span className="pose-arm pose-arm-right" />
+            <span className="pose-leg pose-leg-left" />
+            <span className="pose-leg pose-leg-right" />
+          </div>
+          <div className="rep-figure absolute left-1/2 top-[32%] h-52 w-32 -translate-x-1/2 rounded-full border border-green/35 bg-green/10 shadow-[0_0_55px_rgba(53,229,153,.28)] mix-blend-screen" />
           <div className="hud-scan absolute inset-x-0 top-0 h-28 bg-green/10" />
           <div className="absolute left-4 right-4 top-4 rounded-lg border border-white/12 bg-[#07101d]/80 p-3 backdrop-blur">
             <div className="flex items-center justify-between gap-3">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-green">WHOOP HUD</p>
-              <p className="text-xs font-black text-white/70">00:18</p>
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-green">DIGITAL ATHLETE</p>
+              <p className="text-xs font-black text-white/70">LIVE HUD</p>
             </div>
             <div className="mt-3 grid grid-cols-3 gap-2 text-center">
               <HudMetric label="HR" value="156" active />

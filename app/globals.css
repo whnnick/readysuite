@@ -69,7 +69,10 @@ main :where(h1, h2, h3, p, a, button, span) {
 .rep-figure,
 .export-progress,
 .timeline-progress,
-.timeline-cursor {
+.timeline-cursor,
+.digital-grid,
+.crossfit-scene,
+.pose-skeleton {
   will-change: transform, opacity;
 }
 
@@ -181,6 +184,107 @@ main :where(h1, h2, h3, p, a, button, span) {
 
 .metric-pulse {
   animation: metric-pulse 1.8s ease-in-out infinite;
+}
+
+.digital-grid {
+  background-image:
+    linear-gradient(rgba(53, 229, 153, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(72, 208, 245, 0.14) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mix-blend-mode: screen;
+  animation: grid-drift 4.8s linear infinite;
+}
+
+.crossfit-scene {
+  opacity: 0;
+  background:
+    radial-gradient(circle at 50% 34%, rgba(53, 229, 153, 0.22), transparent 28%),
+    linear-gradient(180deg, #121a2d, #06101d 58%, #02050c);
+}
+
+.crossfit-scene-0 {
+  animation: shot-cycle-a 12s ease-in-out infinite;
+}
+
+.crossfit-scene-1 {
+  background:
+    radial-gradient(circle at 50% 24%, rgba(72, 208, 245, 0.2), transparent 26%),
+    radial-gradient(circle at 38% 68%, rgba(53, 229, 153, 0.2), transparent 30%),
+    linear-gradient(180deg, #111827, #07101d 62%, #02050c);
+  animation: shot-cycle-b 12s ease-in-out infinite;
+}
+
+.crossfit-scene-2 {
+  background:
+    radial-gradient(circle at 60% 18%, rgba(146, 87, 250, 0.18), transparent 26%),
+    radial-gradient(circle at 44% 62%, rgba(53, 229, 153, 0.22), transparent 32%),
+    linear-gradient(180deg, #111827, #07101d 62%, #02050c);
+  animation: shot-cycle-c 12s ease-in-out infinite;
+}
+
+.pose-skeleton {
+  mix-blend-mode: screen;
+  opacity: 0.86;
+  animation: rep-motion 2.2s ease-in-out infinite;
+}
+
+.pose-skeleton span {
+  position: absolute;
+  display: block;
+  background: rgba(53, 229, 153, 0.88);
+  box-shadow: 0 0 18px rgba(53, 229, 153, 0.62);
+}
+
+.pose-head {
+  left: 50%;
+  top: 0;
+  height: 34px;
+  width: 34px;
+  border-radius: 999px;
+  transform: translateX(-50%);
+}
+
+.pose-spine {
+  left: 50%;
+  top: 38px;
+  height: 98px;
+  width: 4px;
+  border-radius: 999px;
+  transform: translateX(-50%);
+}
+
+.pose-arm,
+.pose-leg {
+  left: 50%;
+  width: 4px;
+  border-radius: 999px;
+  transform-origin: top;
+}
+
+.pose-arm {
+  top: 62px;
+  height: 78px;
+}
+
+.pose-arm-left {
+  transform: rotate(52deg);
+}
+
+.pose-arm-right {
+  transform: rotate(-52deg);
+}
+
+.pose-leg {
+  top: 132px;
+  height: 88px;
+}
+
+.pose-leg-left {
+  transform: rotate(28deg);
+}
+
+.pose-leg-right {
+  transform: rotate(-28deg);
 }
 
 .asset-row {
@@ -384,6 +488,56 @@ main :where(h1, h2, h3, p, a, button, span) {
   }
 }
 
+@keyframes shot-cycle-a {
+  0%, 28% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+  34%, 100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes shot-cycle-b {
+  0%, 30% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+  36%, 62% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+  68%, 100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes shot-cycle-c {
+  0%, 64% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+  70%, 96% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes grid-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 24px 48px;
+  }
+}
+
 @keyframes asset-activate {
   0%, 100% {
     border-color: rgba(255, 255, 255, 0.1);
@@ -447,8 +601,15 @@ main :where(h1, h2, h3, p, a, button, span) {
   .export-progress,
   .timeline-progress,
   .timeline-cursor,
+  .crossfit-scene,
+  .pose-skeleton,
+  .digital-grid,
   .type-output::after {
     animation: none !important;
+  }
+
+  .crossfit-scene:first-of-type {
+    opacity: 1;
   }
 
   .motion-card {

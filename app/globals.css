@@ -64,7 +64,12 @@ main :where(h1, h2, h3, p, a, button, span) {
 .hud-scan,
 .scan-line,
 .metric-pulse,
-.mode-card {
+.mode-card,
+.asset-row,
+.rep-figure,
+.export-progress,
+.timeline-progress,
+.timeline-cursor {
   will-change: transform, opacity;
 }
 
@@ -176,6 +181,49 @@ main :where(h1, h2, h3, p, a, button, span) {
 
 .metric-pulse {
   animation: metric-pulse 1.8s ease-in-out infinite;
+}
+
+.asset-row {
+  animation: asset-activate 6.6s ease-in-out infinite;
+}
+
+.asset-row-1 {
+  animation-delay: .8s;
+}
+
+.asset-row-2 {
+  animation-delay: 1.6s;
+}
+
+.rep-figure {
+  animation: rep-motion 2.2s ease-in-out infinite;
+}
+
+.export-progress {
+  transform-origin: left;
+  animation: export-fill 5.8s ease-in-out infinite;
+}
+
+.timeline-track {
+  position: relative;
+}
+
+.timeline-progress {
+  width: 100%;
+  transform-origin: left;
+  animation: timeline-fill 6.4s ease-in-out infinite;
+}
+
+.timeline-cursor {
+  position: absolute;
+  top: -5px;
+  left: 8px;
+  height: 22px;
+  width: 3px;
+  border-radius: 999px;
+  background: #48d0f5;
+  box-shadow: 0 0 18px rgba(72, 208, 245, 0.8);
+  animation: timeline-cursor 6.4s ease-in-out infinite;
 }
 
 @keyframes product-cycle-type {
@@ -336,6 +384,53 @@ main :where(h1, h2, h3, p, a, button, span) {
   }
 }
 
+@keyframes asset-activate {
+  0%, 100% {
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(0);
+  }
+  30%, 46% {
+    border-color: rgba(53, 229, 153, 0.42);
+    transform: translateX(6px);
+  }
+}
+
+@keyframes rep-motion {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0) scaleX(1);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px) scaleX(1.08);
+  }
+}
+
+@keyframes export-fill {
+  0% {
+    transform: scaleX(0.18);
+  }
+  68%, 100% {
+    transform: scaleX(0.92);
+  }
+}
+
+@keyframes timeline-fill {
+  0% {
+    transform: scaleX(0.12);
+  }
+  70%, 100% {
+    transform: scaleX(0.86);
+  }
+}
+
+@keyframes timeline-cursor {
+  0% {
+    left: 8px;
+  }
+  70%, 100% {
+    left: 86%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .motion-card,
   .motion-dot,
@@ -347,6 +442,11 @@ main :where(h1, h2, h3, p, a, button, span) {
   .scan-line,
   .metric-pulse,
   .mode-card,
+  .asset-row,
+  .rep-figure,
+  .export-progress,
+  .timeline-progress,
+  .timeline-cursor,
   .type-output::after {
     animation: none !important;
   }

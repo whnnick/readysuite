@@ -120,8 +120,8 @@ const copy = {
     },
     crossfit: {
       eyebrow: "开源视频制作工作流",
-      title: "用于竖屏 4K 健身视频的 WHOOP 风格制作套件。",
-      body: "CrossFit WHOOP Video 是一个开源视频制作工作流，包含 HyperFrames 模板、Codex/OpenClaw 自动化资产和 WHOOP 风格 HUD 预设。",
+      title: "把运动数据做进竖屏 4K 视频。",
+      body: "CrossFit WHOOP Video 是一个开源视频制作工作流，用 HyperFrames 模板、自动化资产和 WHOOP 风格 HUD，把训练片段包装成适合 Shorts、Reels 和 TikTok 的发布素材。",
       primary: "打开仓库",
       secondary: "阅读文档",
       sections: {
@@ -277,8 +277,8 @@ const copy = {
     },
     crossfit: {
       eyebrow: "open video-production workflow",
-      title: "A WHOOP-style production kit for vertical 4K fitness videos.",
-      body: "CrossFit WHOOP Video is an open video-production workflow with HyperFrames templates, Codex/OpenClaw automation assets, and WHOOP-style HUD presets.",
+      title: "Turn workout data into vertical 4K video.",
+      body: "CrossFit WHOOP Video is an open production workflow that combines HyperFrames templates, automation assets, and WHOOP-style HUD presets for Shorts, Reels, and TikTok-ready training edits.",
       primary: "Open repository",
       secondary: "Read docs",
       sections: {
@@ -691,6 +691,7 @@ export function ProductPage({ product }: { product: ProductKey }) {
   const productLink = productLinks[product];
   const isReadyCheck = product === "readycheck";
   const isReadyType = product === "readytype";
+  const isCrossfit = product === "crossfit";
   const icons = isReadyCheck ? featureIcons : isReadyType ? readyTypeIcons : crossfitIcons;
   const readyTypeCost =
     lang === "zh"
@@ -712,7 +713,13 @@ export function ProductPage({ product }: { product: ProductKey }) {
           <span className="inline-flex rounded-md border border-cyan/25 bg-cyan/10 px-4 py-2 text-sm font-bold text-cyan">
             {t.eyebrow}
           </span>
-          <h1 className="mt-8 max-w-4xl break-all text-3xl font-black leading-tight tracking-tight text-white [text-wrap:balance] sm:break-words sm:text-5xl md:text-6xl">{t.title}</h1>
+          <h1
+            className={`mt-8 max-w-4xl break-all font-black leading-tight tracking-tight text-white [text-wrap:balance] sm:break-words ${
+              isCrossfit ? "text-3xl sm:text-4xl md:text-5xl" : "text-3xl sm:text-5xl md:text-6xl"
+            }`}
+          >
+            {t.title}
+          </h1>
           <p className="mt-7 max-w-2xl break-words text-lg leading-8 text-white/70">{t.body}</p>
           {isReadyType ? (
             <div className="mt-7 max-w-2xl rounded-lg border border-green/25 bg-green/10 p-5 shadow-panel">
@@ -843,23 +850,70 @@ function ReadyTypePreview() {
 
 function CrossfitPreview({ t }: { t: (typeof copy)[Lang]["mock"] }) {
   return (
-    <div className="motion-shell relative mx-auto aspect-[9/16] w-full max-w-[330px] overflow-hidden rounded-lg border border-white/12 bg-[#050914] shadow-panel">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_22%,rgba(53,229,153,.24),transparent_30%),linear-gradient(180deg,#111827,#050914_62%,#02050c)]" />
-      <div className="hud-scan absolute inset-x-0 top-0 h-28 bg-green/10" />
-      <div className="absolute left-5 right-5 top-5 rounded-lg border border-white/12 bg-white/[.07] p-4 backdrop-blur">
-        <p className="text-xs font-black uppercase tracking-[0.2em] text-green">WHOOP HUD</p>
-        <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-          <HudMetric label="HR" value="156" active />
-          <HudMetric label="Strain" value="12.4" />
-          <HudMetric label="Zone" value="4" />
+    <div className="motion-shell crossfit-workbench relative mx-auto w-full max-w-[620px] overflow-hidden rounded-lg border border-white/12 bg-[#050914] shadow-panel">
+      <div className="flex items-center gap-2 border-b border-white/10 bg-white/[.045] px-5 py-4">
+        <span className="h-3 w-3 rounded-full bg-[#ff6258]" />
+        <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
+        <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+        <span className="ml-4 text-sm font-semibold text-white/76">CrossFit WHOOP Video</span>
+        <span className="pulse-chip ml-auto rounded-md border border-green/25 bg-green/10 px-3 py-1 text-xs font-bold text-green">
+          4K 9:16
+        </span>
+      </div>
+
+      <div className="grid gap-4 p-4 md:grid-cols-[0.72fr_1fr] md:p-5">
+        <div className="rounded-lg border border-white/10 bg-[#09101f] p-4">
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-green">Assets</p>
+          <div className="mt-4 grid gap-3">
+            {["WOD_clip_01.mov", "whoop-hud.json", "caption.zh.srt"].map((item, index) => (
+              <div key={item} className={`asset-row asset-row-${index} flex items-center gap-3 rounded-md border border-white/10 bg-white/[.045] p-3`}>
+                <span className="grid h-8 w-8 place-items-center rounded-md bg-green/10 text-green">
+                  {index === 0 ? <Video size={16} /> : index === 1 ? <Activity size={16} /> : <Clipboard size={16} />}
+                </span>
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-black text-white">{item}</p>
+                  <p className="mt-1 text-xs text-muted">{index === 0 ? "Training footage" : index === 1 ? "HUD preset" : "Auto captions"}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="relative mx-auto aspect-[9/16] w-full max-w-[300px] overflow-hidden rounded-lg border border-white/12 bg-[#050914]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(53,229,153,.34),transparent_28%),linear-gradient(180deg,#152033,#07101d_58%,#02050c)]" />
+          <div className="absolute inset-x-8 top-24 h-48 rounded-full border border-white/10 bg-white/[.035]" />
+          <div className="rep-figure absolute left-1/2 top-[34%] h-40 w-28 -translate-x-1/2 rounded-full border border-green/30 bg-green/10 shadow-[0_0_45px_rgba(53,229,153,.22)]" />
+          <div className="hud-scan absolute inset-x-0 top-0 h-28 bg-green/10" />
+          <div className="absolute left-4 right-4 top-4 rounded-lg border border-white/12 bg-[#07101d]/80 p-3 backdrop-blur">
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-green">WHOOP HUD</p>
+              <p className="text-xs font-black text-white/70">00:18</p>
+            </div>
+            <div className="mt-3 grid grid-cols-3 gap-2 text-center">
+              <HudMetric label="HR" value="156" active />
+              <HudMetric label="Strain" value="12.4" />
+              <HudMetric label="Zone" value="4" />
+            </div>
+          </div>
+          <div className="absolute bottom-4 left-4 right-4 rounded-lg border border-white/12 bg-[#07101d]/86 p-3">
+            <p className="text-xs font-black tracking-[0.18em] text-green">EXPORT</p>
+            <p className="mt-1 text-sm font-black text-white">{t.vertical}</p>
+            <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/10">
+              <div className="export-progress h-full rounded-full bg-green" />
+            </div>
+          </div>
         </div>
       </div>
-      <div className="absolute bottom-5 left-5 right-5 rounded-lg border border-white/12 bg-[#07101d]/86 p-4">
+
+      <div className="border-t border-white/10 bg-[#09101f] p-4">
         <div className="flex items-center gap-3">
-          <Film className="text-green" size={22} />
-          <div>
-            <p className="text-sm font-black text-white">{t.vertical}</p>
-            <p className="mt-1 text-xs text-muted">{t.workflow}</p>
+          <Film className="shrink-0 text-green" size={20} />
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-sm font-black text-white">{t.workflow}</p>
+            <div className="timeline-track mt-3 h-3 overflow-hidden rounded-full bg-white/10">
+              <div className="timeline-progress h-full rounded-full bg-cyan" />
+              <span className="timeline-cursor" />
+            </div>
           </div>
         </div>
       </div>

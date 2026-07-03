@@ -75,7 +75,6 @@ main :where(h1, h2, h3, p, a, button, span) {
 .pose-skeleton,
 .crossfit-real-frame,
 .readycheck-backlight,
-.readycheck-focus,
 .readycheck-widget-shot,
 .readycheck-menu-card,
 .readycheck-spinner,
@@ -216,6 +215,7 @@ main :where(h1, h2, h3, p, a, button, span) {
 
 .readycheck-menu-mini {
   transform-origin: bottom left;
+  padding: 12px;
 }
 
 .readycheck-menu-mini .text-sm {
@@ -228,23 +228,13 @@ main :where(h1, h2, h3, p, a, button, span) {
 }
 
 .readycheck-mini-shot {
-  aspect-ratio: 1.18;
+  aspect-ratio: 1.7;
 }
 
 .readycheck-mini-shot img {
   height: 100%;
   object-fit: cover;
   object-position: 50% 22%;
-}
-
-.readycheck-focus {
-  left: 8%;
-  top: 26%;
-  width: 58%;
-  height: 34%;
-  background: linear-gradient(135deg, rgba(72, 208, 245, 0.1), rgba(53, 229, 153, 0.04));
-  box-shadow: 0 0 36px rgba(72, 208, 245, 0.14);
-  animation: readycheck-focus 5.8s ease-in-out infinite;
 }
 
 .scan-line {
@@ -536,21 +526,6 @@ main :where(h1, h2, h3, p, a, button, span) {
   }
 }
 
-@keyframes readycheck-focus {
-  0%, 100% {
-    opacity: 0.42;
-    transform: translate3d(0, 0, 0);
-  }
-  38% {
-    opacity: 0.68;
-    transform: translate3d(18%, 9%, 0);
-  }
-  70% {
-    opacity: 0.54;
-    transform: translate3d(5%, 42%, 0);
-  }
-}
-
 @keyframes readycheck-menu-float {
   0%, 100% {
     opacity: 0.92;
@@ -728,7 +703,6 @@ main :where(h1, h2, h3, p, a, button, span) {
   .pose-skeleton,
   .digital-grid,
   .crossfit-real-frame,
-  .readycheck-focus,
   .readycheck-widget-shot,
   .readycheck-menu-card,
   .readycheck-spinner span,
@@ -754,37 +728,7 @@ main :where(h1, h2, h3, p, a, button, span) {
 }
 
 @media (max-width: 640px) {
-  .readycheck-shell {
-    padding-bottom: 132px;
-  }
-
-  .readycheck-widget-shot {
-    bottom: 14px;
-    left: 14px;
-    right: auto;
-    width: 46%;
-    min-width: 150px;
-  }
-
-  .readycheck-focus {
-    width: 64%;
-    height: 28%;
-  }
-
-  .readycheck-menu-large {
-    display: none;
-  }
-
-  .readycheck-mini-widget {
-    left: auto;
-    right: 14px;
-    width: 42%;
-    min-width: 132px;
-  }
-
-  .readycheck-menu-mini {
-    bottom: 14px;
-    left: 14px;
-    width: 176px;
+  .readycheck-menu-card {
+    animation: none;
   }
 }

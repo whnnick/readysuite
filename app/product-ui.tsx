@@ -802,29 +802,31 @@ export function ProductPage({ product }: { product: ProductKey }) {
 
 function ReadyCheckScreenshot() {
   return (
-    <div className="motion-shell readycheck-shell relative mx-auto w-full max-w-[660px] overflow-hidden rounded-lg border border-white/12 bg-[#07101e] p-3 shadow-panel">
+    <div className="motion-shell readycheck-shell relative mx-auto w-full max-w-[700px] overflow-hidden rounded-lg border border-white/12 bg-[#07101e] p-3 shadow-panel">
       <div className="readycheck-backlight pointer-events-none absolute inset-0" />
-      <div className="scan-line pointer-events-none absolute left-3 right-3 top-3 z-20 h-16 rounded-md" />
-      <div className="readycheck-focus pointer-events-none absolute z-20 rounded-md border border-cyan/35" />
-      <ReadyCheckMenuCard className="readycheck-menu-large absolute left-5 top-5 z-30 w-[280px]" />
-      <Image
-        alt="ReadyCheck macOS app quota window"
-        className="readycheck-main-shot relative z-10 block w-full rounded-md border border-white/10"
-        height={1110}
-        priority
-        sizes="(min-width: 1024px) 660px, calc(100vw - 48px)"
-        src="/readycheck-main-real.jpg"
-        width={1488}
-      />
-      <div className="readycheck-widget-shot absolute bottom-5 right-5 z-30 w-[38%] min-w-[172px] max-w-[260px] rounded-lg border border-white/14 bg-[#09101f] p-1.5 shadow-[0_24px_70px_rgba(0,0,0,.48)]">
+      <div className="relative z-10 overflow-hidden rounded-md border border-white/10">
         <Image
-          alt="ReadyCheck desktop widget"
-          className="block w-full rounded-md"
-          height={650}
-          sizes="260px"
-          src="/readycheck-widget-real.jpg"
-          width={700}
+          alt="ReadyCheck macOS app quota window"
+          className="readycheck-main-shot block w-full"
+          height={1110}
+          priority
+          sizes="(min-width: 1024px) 700px, calc(100vw - 48px)"
+          src="/readycheck-main-real.jpg"
+          width={1488}
         />
+      </div>
+      <div className="relative z-10 mt-3 grid gap-3 sm:grid-cols-[1fr_0.82fr]">
+        <ReadyCheckMenuCard />
+        <div className="readycheck-widget-shot rounded-lg border border-white/14 bg-[#09101f] p-1.5 shadow-[0_18px_54px_rgba(0,0,0,.34)]">
+          <Image
+            alt="ReadyCheck desktop widget"
+            className="block w-full rounded-md"
+            height={650}
+            sizes="260px"
+            src="/readycheck-widget-real.jpg"
+            width={700}
+          />
+        </div>
       </div>
     </div>
   );
@@ -1033,13 +1035,12 @@ function ReadyCheckMini() {
   return (
     <div className="relative h-full overflow-hidden rounded-lg border border-white/10 bg-[#09101f] p-4">
       <div className="readycheck-backlight pointer-events-none absolute inset-0" />
-      <div className="flex items-center gap-2">
+      <div className="relative z-10 flex items-center gap-2">
         <MonitorUp className="text-cyan" size={20} />
         <p className="font-black text-white">ReadyCheck</p>
         <span className="ml-auto rounded-md border border-green/25 bg-green/10 px-3 py-1 text-xs font-black text-green">LIVE</span>
       </div>
       <div className="readycheck-mini-shot relative mt-6 overflow-hidden rounded-lg border border-white/10 bg-[#050914]">
-        <div className="scan-line pointer-events-none absolute inset-x-2 top-2 z-20 h-14 rounded-md" />
         <Image
           alt="ReadyCheck product screenshot"
           className="readycheck-main-shot block w-full"
@@ -1049,16 +1050,18 @@ function ReadyCheckMini() {
           width={1488}
         />
       </div>
-      <ReadyCheckMenuCard className="readycheck-menu-mini absolute bottom-5 left-5 z-30 w-[210px]" />
-      <div className="readycheck-mini-widget readycheck-widget-shot absolute bottom-5 right-5 w-[44%] min-w-[148px] rounded-lg border border-white/14 bg-[#09101f] p-1 shadow-[0_20px_54px_rgba(0,0,0,.5)]">
-        <Image
-          alt="ReadyCheck pinned desktop widget"
-          className="block w-full rounded-md"
-          height={650}
-          sizes="180px"
-          src="/readycheck-widget-real.jpg"
-          width={700}
-        />
+      <div className="relative z-10 mt-3 grid grid-cols-[1fr_0.76fr] gap-3">
+        <ReadyCheckMenuCard className="readycheck-menu-mini" />
+        <div className="readycheck-mini-widget readycheck-widget-shot rounded-lg border border-white/14 bg-[#09101f] p-1 shadow-[0_18px_42px_rgba(0,0,0,.34)]">
+          <Image
+            alt="ReadyCheck pinned desktop widget"
+            className="block w-full rounded-md"
+            height={650}
+            sizes="180px"
+            src="/readycheck-widget-real.jpg"
+            width={700}
+          />
+        </div>
       </div>
     </div>
   );

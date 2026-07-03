@@ -73,7 +73,13 @@ main :where(h1, h2, h3, p, a, button, span) {
 .digital-grid,
 .crossfit-scene,
 .pose-skeleton,
-.crossfit-real-frame {
+.crossfit-real-frame,
+.readycheck-backlight,
+.readycheck-focus,
+.readycheck-widget-shot,
+.readycheck-menu-card,
+.readycheck-spinner,
+.readycheck-menu-fill {
   will-change: transform, opacity;
 }
 
@@ -170,6 +176,75 @@ main :where(h1, h2, h3, p, a, button, span) {
 
 .floating-widget {
   animation: widget-float 4.8s ease-in-out infinite;
+}
+
+.readycheck-shell {
+  isolation: isolate;
+}
+
+.readycheck-backlight {
+  background:
+    linear-gradient(120deg, rgba(72, 208, 245, 0.18), transparent 38%),
+    linear-gradient(320deg, rgba(53, 229, 153, 0.14), transparent 42%);
+  opacity: 0.68;
+}
+
+.readycheck-main-shot {
+  filter: contrast(1.05) saturate(0.95) brightness(0.88);
+}
+
+.readycheck-widget-shot {
+  animation: widget-float 4.8s ease-in-out infinite;
+}
+
+.readycheck-menu-card {
+  animation: readycheck-menu-float 5.2s ease-in-out infinite;
+}
+
+.readycheck-spinner span {
+  animation: readycheck-spin 1.4s linear infinite;
+}
+
+.readycheck-menu-fill {
+  transform-origin: left;
+  animation: readycheck-menu-fill 4.8s ease-in-out infinite;
+}
+
+.readycheck-menu-card .bg-green.readycheck-menu-fill {
+  animation-delay: 0.3s;
+}
+
+.readycheck-menu-mini {
+  transform-origin: bottom left;
+}
+
+.readycheck-menu-mini .text-sm {
+  font-size: 12px;
+}
+
+.readycheck-menu-mini .text-xs,
+.readycheck-menu-mini .text-\[11px\] {
+  font-size: 10px;
+}
+
+.readycheck-mini-shot {
+  aspect-ratio: 1.18;
+}
+
+.readycheck-mini-shot img {
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 22%;
+}
+
+.readycheck-focus {
+  left: 8%;
+  top: 26%;
+  width: 58%;
+  height: 34%;
+  background: linear-gradient(135deg, rgba(72, 208, 245, 0.1), rgba(53, 229, 153, 0.04));
+  box-shadow: 0 0 36px rgba(72, 208, 245, 0.14);
+  animation: readycheck-focus 5.8s ease-in-out infinite;
 }
 
 .scan-line {
@@ -461,6 +536,47 @@ main :where(h1, h2, h3, p, a, button, span) {
   }
 }
 
+@keyframes readycheck-focus {
+  0%, 100% {
+    opacity: 0.42;
+    transform: translate3d(0, 0, 0);
+  }
+  38% {
+    opacity: 0.68;
+    transform: translate3d(18%, 9%, 0);
+  }
+  70% {
+    opacity: 0.54;
+    transform: translate3d(5%, 42%, 0);
+  }
+}
+
+@keyframes readycheck-menu-float {
+  0%, 100% {
+    opacity: 0.92;
+    transform: translateY(0) rotate(-0.4deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-6px) rotate(0.2deg);
+  }
+}
+
+@keyframes readycheck-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes readycheck-menu-fill {
+  0%, 100% {
+    transform: scaleX(0.7);
+  }
+  52% {
+    transform: scaleX(1);
+  }
+}
+
 @keyframes scan-down {
   0% {
     opacity: 0;
@@ -612,6 +728,11 @@ main :where(h1, h2, h3, p, a, button, span) {
   .pose-skeleton,
   .digital-grid,
   .crossfit-real-frame,
+  .readycheck-focus,
+  .readycheck-widget-shot,
+  .readycheck-menu-card,
+  .readycheck-spinner span,
+  .readycheck-menu-fill,
   .type-output::after {
     animation: none !important;
   }
@@ -629,5 +750,41 @@ main :where(h1, h2, h3, p, a, button, span) {
 
   .motion-card:not(:first-child) {
     margin-top: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .readycheck-shell {
+    padding-bottom: 132px;
+  }
+
+  .readycheck-widget-shot {
+    bottom: 14px;
+    left: 14px;
+    right: auto;
+    width: 46%;
+    min-width: 150px;
+  }
+
+  .readycheck-focus {
+    width: 64%;
+    height: 28%;
+  }
+
+  .readycheck-menu-large {
+    display: none;
+  }
+
+  .readycheck-mini-widget {
+    left: auto;
+    right: 14px;
+    width: 42%;
+    min-width: 132px;
+  }
+
+  .readycheck-menu-mini {
+    bottom: 14px;
+    left: 14px;
+    width: 176px;
   }
 }

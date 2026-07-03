@@ -802,17 +802,68 @@ export function ProductPage({ product }: { product: ProductKey }) {
 
 function ReadyCheckScreenshot() {
   return (
-    <div className="motion-shell readycheck-shell relative mx-auto w-full max-w-[640px] overflow-hidden rounded-lg border border-white/12 bg-[#09101f] p-3 shadow-panel">
-      <div className="scan-line pointer-events-none absolute left-3 right-3 top-3 z-10 h-16 rounded-md" />
+    <div className="motion-shell readycheck-shell relative mx-auto w-full max-w-[660px] overflow-hidden rounded-lg border border-white/12 bg-[#07101e] p-3 shadow-panel">
+      <div className="readycheck-backlight pointer-events-none absolute inset-0" />
+      <div className="scan-line pointer-events-none absolute left-3 right-3 top-3 z-20 h-16 rounded-md" />
+      <div className="readycheck-focus pointer-events-none absolute z-20 rounded-md border border-cyan/35" />
+      <ReadyCheckMenuCard className="readycheck-menu-large absolute left-5 top-5 z-30 w-[280px]" />
       <Image
-        alt="ReadyCheck macOS app preview"
-        className="block w-full rounded-md"
-        height={450}
+        alt="ReadyCheck macOS app quota window"
+        className="readycheck-main-shot relative z-10 block w-full rounded-md border border-white/10"
+        height={1110}
         priority
-        sizes="(min-width: 1024px) 640px, calc(100vw - 48px)"
-        src="/readycheck-preview.jpg"
-        width={800}
+        sizes="(min-width: 1024px) 660px, calc(100vw - 48px)"
+        src="/readycheck-main-real.jpg"
+        width={1488}
       />
+      <div className="readycheck-widget-shot absolute bottom-5 right-5 z-30 w-[38%] min-w-[172px] max-w-[260px] rounded-lg border border-white/14 bg-[#09101f] p-1.5 shadow-[0_24px_70px_rgba(0,0,0,.48)]">
+        <Image
+          alt="ReadyCheck desktop widget"
+          className="block w-full rounded-md"
+          height={650}
+          sizes="260px"
+          src="/readycheck-widget-real.jpg"
+          width={700}
+        />
+      </div>
+    </div>
+  );
+}
+
+function ReadyCheckMenuCard({ className = "" }: { className?: string }) {
+  return (
+    <div className={`readycheck-menu-card rounded-lg border border-white/14 bg-[#111827]/92 p-4 shadow-[0_24px_70px_rgba(0,0,0,.48)] backdrop-blur ${className}`}>
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <p className="text-sm font-black text-white">菜单栏速览</p>
+          <p className="mt-1 text-xs font-bold text-white/55">ReadyCheck</p>
+        </div>
+        <div className="readycheck-spinner grid h-9 w-9 place-items-center rounded-md bg-[linear-gradient(135deg,#48d0f5,#35e599)]">
+          <span className="h-4 w-4 rounded-full border-[3px] border-white border-t-white/40" />
+        </div>
+      </div>
+      <div className="mt-4 grid gap-3">
+        <MenuMetric label="5 小时窗口" value="88%" tone="cyan" />
+        <MenuMetric label="7 天窗口" value="78%" tone="green" />
+      </div>
+      <div className="mt-4 flex items-center justify-between gap-3 text-[11px] font-black text-white/60">
+        <span>自动刷新</span>
+        <span className="text-green">不消耗模型额度</span>
+      </div>
+    </div>
+  );
+}
+
+function MenuMetric({ label, value, tone }: { label: string; value: string; tone: "cyan" | "green" }) {
+  return (
+    <div>
+      <div className="flex items-center justify-between text-xs font-black text-white/82">
+        <span>{label}</span>
+        <span>{value}</span>
+      </div>
+      <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-white/12">
+        <div className={`readycheck-menu-fill h-full rounded-full ${tone === "cyan" ? "bg-cyan" : "bg-green"}`} />
+      </div>
     </div>
   );
 }
@@ -980,25 +1031,34 @@ function ReadyTypeMini() {
 
 function ReadyCheckMini() {
   return (
-    <div className="h-full rounded-lg border border-white/10 bg-[#09101f] p-5">
+    <div className="relative h-full overflow-hidden rounded-lg border border-white/10 bg-[#09101f] p-4">
+      <div className="readycheck-backlight pointer-events-none absolute inset-0" />
       <div className="flex items-center gap-2">
         <MonitorUp className="text-cyan" size={20} />
         <p className="font-black text-white">ReadyCheck</p>
         <span className="ml-auto rounded-md border border-green/25 bg-green/10 px-3 py-1 text-xs font-black text-green">LIVE</span>
       </div>
-      <div className="mt-7 rounded-lg border border-white/10 bg-[#050914] p-5">
-        <p className="text-sm font-black text-white/64">5 小时窗口</p>
-        <div className="mt-3 h-3 overflow-hidden rounded-full bg-white/10">
-          <div className="quota-fill quota-fill-a h-full rounded-full bg-cyan" />
-        </div>
-        <p className="mt-5 text-sm font-black text-white/64">7 天窗口</p>
-        <div className="mt-3 h-3 overflow-hidden rounded-full bg-white/10">
-          <div className="quota-fill quota-fill-b h-full rounded-full bg-green" />
-        </div>
+      <div className="readycheck-mini-shot relative mt-6 overflow-hidden rounded-lg border border-white/10 bg-[#050914]">
+        <div className="scan-line pointer-events-none absolute inset-x-2 top-2 z-20 h-14 rounded-md" />
+        <Image
+          alt="ReadyCheck product screenshot"
+          className="readycheck-main-shot block w-full"
+          height={1110}
+          sizes="360px"
+          src="/readycheck-main-real.jpg"
+          width={1488}
+        />
       </div>
-      <div className="floating-widget mt-5 rounded-lg border border-white/10 bg-white/[.06] p-4">
-        <p className="text-xs font-bold text-muted">桌面 widget</p>
-        <p className="mt-2 text-3xl font-black text-white">74%</p>
+      <ReadyCheckMenuCard className="readycheck-menu-mini absolute bottom-5 left-5 z-30 w-[210px]" />
+      <div className="readycheck-mini-widget readycheck-widget-shot absolute bottom-5 right-5 w-[44%] min-w-[148px] rounded-lg border border-white/14 bg-[#09101f] p-1 shadow-[0_20px_54px_rgba(0,0,0,.5)]">
+        <Image
+          alt="ReadyCheck pinned desktop widget"
+          className="block w-full rounded-md"
+          height={650}
+          sizes="180px"
+          src="/readycheck-widget-real.jpg"
+          width={700}
+        />
       </div>
     </div>
   );

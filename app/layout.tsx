@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   title: "ReadySuite — AI 原生工作流工具箱",
   description:
     "ReadySuite 为开发者和创作者提供轻量工具，当前包含 ReadyCheck、ReadyType 与开源视频制作工作流。",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/apple-icon.svg",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

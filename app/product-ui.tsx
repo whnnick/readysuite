@@ -804,15 +804,15 @@ function ReadyCheckScreenshot() {
   return (
     <div className="motion-shell readycheck-shell relative mx-auto w-full max-w-[700px] overflow-hidden rounded-lg border border-white/12 bg-[#07101e] p-3 shadow-panel">
       <div className="readycheck-backlight pointer-events-none absolute inset-0" />
-      <div className="relative z-10 overflow-hidden rounded-md border border-white/10">
+      <div className="readycheck-main-frame relative z-10 overflow-hidden rounded-md border border-white/10">
         <Image
           alt="ReadyCheck macOS app quota window"
           className="readycheck-main-shot block w-full"
           height={1110}
           priority
           sizes="(min-width: 1024px) 700px, calc(100vw - 48px)"
-          src="/readycheck-main-real.jpg"
-          width={1488}
+          src="/readycheck-main-cropped.jpg"
+          width={1456}
         />
       </div>
       <div className="relative z-10 mt-3 grid gap-3 sm:grid-cols-[1fr_0.82fr]">
@@ -1040,14 +1040,14 @@ function ReadyCheckMini() {
         <p className="font-black text-white">ReadyCheck</p>
         <span className="ml-auto rounded-md border border-green/25 bg-green/10 px-3 py-1 text-xs font-black text-green">LIVE</span>
       </div>
-      <div className="readycheck-mini-shot relative mt-6 overflow-hidden rounded-lg border border-white/10 bg-[#050914]">
+      <div className="readycheck-main-frame readycheck-mini-shot relative mt-6 overflow-hidden rounded-lg border border-white/10 bg-[#050914]">
         <Image
           alt="ReadyCheck product screenshot"
           className="readycheck-main-shot block w-full"
           height={1110}
           sizes="360px"
-          src="/readycheck-main-real.jpg"
-          width={1488}
+          src="/readycheck-main-cropped.jpg"
+          width={1456}
         />
       </div>
       <div className="relative z-10 mt-3 grid grid-cols-[1fr_0.76fr] gap-3">

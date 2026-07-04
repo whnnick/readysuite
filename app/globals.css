@@ -188,8 +188,14 @@ main :where(h1, h2, h3, p, a, button, span) {
   opacity: 0.68;
 }
 
+.readycheck-main-frame {
+  background: #050914;
+}
+
 .readycheck-main-shot {
   filter: contrast(1.05) saturate(0.95) brightness(0.88);
+  transform: scale(1.014);
+  transform-origin: center;
 }
 
 .readycheck-widget-shot {

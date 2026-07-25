@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.1 - 2026-07-26
+
+- Added privacy-safe campaign attribution for product, download, release, support, documentation, and language events.
+- Added canonical URLs, product-specific social metadata, `robots.txt`, and a complete sitemap.
+- Added a ReadyType week-one launch kit with channel-ready copy, tracked URLs, video scripts, and a metrics template.
+- Prioritized the ReadyType landing page LCP image for faster first-viewport rendering.
+
 ## 1.2.0 - 2026-07-25
 
 - Refined the redesign into a neutral, light Apple-inspired product system without abrupt dark sections.

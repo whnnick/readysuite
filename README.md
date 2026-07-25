@@ -34,3 +34,10 @@ vercel --prod
 Product downloads intentionally point to each project's latest GitHub release or repository.
 
 The production site is available at [readysuite.vercel.app](https://readysuite.vercel.app/).
+
+## Promotion operations
+
+The [launch kit](docs/launch/README.md) contains campaign links, channel-ready
+copy, privacy checks, and a weekly metrics template. Vercel Analytics tracks
+product opens, downloads, releases, support, documentation, and language
+changes without collecting form content or account data.

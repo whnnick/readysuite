@@ -34,3 +34,9 @@ vercel --prod
 产品下载链接指向各项目最新的 GitHub Release 或仓库。
 
 生产环境地址：[readysuite.vercel.app](https://readysuite.vercel.app/)
+
+## 推广执行
+
+[推广执行包](docs/launch/README.md)包含渠道跟踪链接、可直接发布的文案、隐私检查和
+每周指标模板。Vercel Analytics 仅记录产品入口、下载、发布、支持、文档和语言切换
+事件，不采集表单内容或账号数据。

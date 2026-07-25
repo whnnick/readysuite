@@ -1,5 +1,6 @@
 "use client";
 
+import { track } from "@vercel/analytics";
 import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
@@ -27,6 +28,7 @@ import {
 type Lang = "zh" | "en";
 type ProductKey = "readytype" | "readycheck" | "crossfit";
 type ResourceKey = "downloads" | "support" | "privacy";
+type CampaignContext = Partial<Record<"campaign" | "medium" | "source", string>>;
 
 const links = {
   profile: "https://github.com/whnnick",
@@ -382,6 +384,111 @@ function externalLinkProps(href: string) {
   return href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {};
 }
 
+const campaignStorageKey = "readysuite-campaign";
+
+function sanitizeCampaignValue(value: string | null) {
+  return value?.trim().slice(0, 80) || undefined;
+}
+
+function getCampaignContext(): CampaignContext {
+  const params = new URLSearchParams(window.location.search);
+  const current = {
+    campaign: sanitizeCampaignValue(params.get("utm_campaign")),
+    medium: sanitizeCampaignValue(params.get("utm_medium")),
+    source: sanitizeCampaignValue(params.get("utm_source")),
+  };
+
+  if (Object.values(current).some(Boolean)) {
+    try {
+      sessionStorage.setItem(campaignStorageKey, JSON.stringify(current));
+    } catch {
+      // Attribution remains available for the current page when storage is disabled.
+    }
+    return current;
+  }
+
+  try {
+    return JSON.parse(sessionStorage.getItem(campaignStorageKey) || "{}");
+  } catch {
+    return {};
+  }
+}
+
+function eventProperties(properties: Record<string, string>) {
+  const campaign = getCampaignContext();
+  return Object.fromEntries(
+    Object.entries({ ...properties, ...campaign }).filter(([, value]) => Boolean(value)),
+  );
+}
+
+function productFromPath(path: string): ProductKey | "readysuite" {
+  if (path.includes("readytype")) return "readytype";
+  if (path.includes("readycheck")) return "readycheck";
+  if (path.includes("crossfit-whoop-video")) return "crossfit";
+  return "readysuite";
+}
+
+function clickPlacement(anchor: HTMLAnchorElement) {
+  if (anchor.closest(".site-header")) return "header";
+  if (anchor.closest(".site-footer")) return "footer";
+  if (anchor.closest(".hero-actions")) return "hero";
+  if (anchor.closest(".release-section")) return "release";
+  if (anchor.closest(".resource-list")) return "resource_list";
+  if (anchor.closest(".home-product-band")) return "product_band";
+  return "body";
+}
+
+function PromotionAnalytics() {
+  useEffect(() => {
+    getCampaignContext();
+
+    const handleClick = (event: MouseEvent) => {
+      if (!(event.target instanceof Element)) return;
+
+      const anchor = event.target.closest<HTMLAnchorElement>("a[href]");
+      if (!anchor) return;
+
+      const href = anchor.getAttribute("href");
+      if (!href) return;
+
+      const destination = new URL(href, window.location.href);
+      const baseProperties = {
+        page: window.location.pathname,
+        placement: clickPlacement(anchor),
+        product: productFromPath(`${destination.pathname}${destination.hash}`),
+      };
+
+      if (destination.origin === window.location.origin) {
+        if (Object.values(routes).includes(destination.pathname)) {
+          track("product_open", eventProperties(baseProperties));
+        } else if (destination.pathname === "/downloads") {
+          track("downloads_open", eventProperties(baseProperties));
+        } else if (destination.hash === "#products") {
+          track("products_explore", eventProperties(baseProperties));
+        }
+        return;
+      }
+
+      if (destination.pathname.endsWith("/releases/latest")) {
+        track("download_click", eventProperties(baseProperties));
+      } else if (destination.pathname.endsWith("/releases")) {
+        track("releases_click", eventProperties(baseProperties));
+      } else if (destination.pathname.endsWith("/issues")) {
+        track("support_click", eventProperties(baseProperties));
+      } else if (destination.hash === "#readme") {
+        track("docs_click", eventProperties(baseProperties));
+      } else {
+        track("github_click", eventProperties(baseProperties));
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, []);
+
+  return null;
+}
+
 function MotionObserver() {
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
@@ -423,12 +530,25 @@ function LanguageToggle({
   lang: Lang;
   onChange: (lang: Lang) => void;
 }) {
+  const changeLanguage = (nextLang: Lang) => {
+    if (nextLang !== lang) {
+      track(
+        "language_change",
+        eventProperties({
+          language: nextLang === "zh" ? "zh-CN" : "en",
+          page: window.location.pathname,
+        }),
+      );
+    }
+    onChange(nextLang);
+  };
+
   return (
     <div className="language-toggle" aria-label="Language">
       <button
         aria-pressed={lang === "zh"}
         className={lang === "zh" ? "is-active" : ""}
-        onClick={() => onChange("zh")}
+        onClick={() => changeLanguage("zh")}
         type="button"
       >
         中文
@@ -436,7 +556,7 @@ function LanguageToggle({
       <button
         aria-pressed={lang === "en"}
         className={lang === "en" ? "is-active" : ""}
-        onClick={() => onChange("en")}
+        onClick={() => changeLanguage("en")}
         type="button"
       >
         EN
@@ -575,6 +695,7 @@ function Shell({
 
   return (
     <main className="site-shell">
+      <PromotionAnalytics />
       <MotionObserver />
       <Header activeProduct={activeProduct} lang={lang} setLang={setLang} />
       {children}
@@ -597,6 +718,7 @@ function ReadyTypeVisual({
           alt="ReadyType app window"
           className="app-window-image"
           height={680}
+          loading={priority ? "eager" : "lazy"}
           priority={priority}
           sizes={compact ? "(max-width: 768px) 90vw, 620px" : "(max-width: 900px) 92vw, 760px"}
           src="/readytype-window-light.png"

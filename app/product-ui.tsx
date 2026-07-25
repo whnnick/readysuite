@@ -63,16 +63,15 @@ const copy = {
     home: {
       eyebrow: "ReadySuite",
       title: "让 AI 工具，更顺手。",
-      body: "从语音输入、用量管理到运动内容制作，ReadySuite 把实用工具放进每天的工作流。",
+      body: "从语音输入、用量管理到运动内容制作，每个工具只解决一个具体问题。",
       primary: "探索产品",
       secondary: "查看下载",
       leadLabel: "首选工具 · ReadyType 1.5.0",
       leadTitle: "开口说，直接得到可用文字。",
-      leadBody: "双击 Option 开始说话，ReadyType 会把口述内容直接输入、整理成文、翻译成英文，或改写成清楚的 AI 任务说明。",
       productsLabel: "ReadySuite 产品",
       productsTitle: "每个产品，专注一个具体问题。",
-      openSourceTitle: "公开源码，独立发布。",
-      openSourceBody: "产品版本、下载文件、更新记录和问题反馈均通过对应的 GitHub 项目维护。",
+      openSourceTitle: "开源、透明，并持续更新。",
+      openSourceBody: "版本、下载、更新记录和反馈入口均由对应的 GitHub 项目维护。",
       openSourceAction: "访问 GitHub",
     },
     products: {
@@ -83,6 +82,9 @@ const copy = {
         eyebrow: "语音输入",
         title: "开口说，直接得到可用文字。",
         body: "双击 Option 开始说话，再次双击完成输出。直接转文字、整理成文、翻译成英文或写给 AI，无需离开当前输入框。",
+        homeTitle: "双击 Option，说出想法。",
+        homeBody: "将语音自动整理成清晰文字，并根据场景选择输出方式。DeepSeek V4 Flash，日常使用一天不到 1 毛钱。",
+        homeAction: "了解 ReadyType",
         primary: "下载 ReadyType",
         secondary: "查看源码",
         highlights: ["四种输出方式", "自动选择", "高精度语音包"],
@@ -114,6 +116,9 @@ const copy = {
         eyebrow: "Codex 用量",
         title: "随时看清 Codex 剩余额度。",
         body: "在主窗口、菜单栏、桌面 Widget 或 Mac 刘海下方查看 Codex 额度状态。刷新只读取用量数据，不发送模型推理请求。",
+        homeTitle: "随时看清 Codex 剩余额度。",
+        homeBody: "主窗口、菜单栏、桌面 Widget 和 Mac 刘海状态保持同步，剩余用量始终可见。",
+        homeAction: "了解 ReadyCheck",
         primary: "下载 ReadyCheck",
         secondary: "查看源码",
         highlights: ["macOS 与 Windows", "菜单栏与 Widget", "本地消耗看板"],
@@ -145,6 +150,9 @@ const copy = {
         eyebrow: "运动短片工作流",
         title: "把训练素材做成电影感数据短片。",
         body: "用可复用的 9:16 4K 模板、Codex Skill 和 WHOOP 风格动态 HUD，把训练素材制作成适合 Shorts、Reels 与 TikTok 的运动短片。",
+        homeTitle: "快速制作 4K 竖屏训练视频。",
+        homeBody: "用 HyperFrames、Codex 和 OpenClaw 复用完整制作流程，把训练片段转成带 WHOOP HUD 的运动短片。",
+        homeAction: "了解制作流程",
         primary: "打开项目",
         secondary: "阅读文档",
         highlights: ["9:16 4K", "10 套 HUD", "Codex / OpenClaw"],
@@ -206,15 +214,14 @@ const copy = {
     home: {
       eyebrow: "ReadySuite",
       title: "Make AI tools feel effortless.",
-      body: "From voice input and usage visibility to sports content production, ReadySuite puts practical tools into everyday workflows.",
+      body: "From voice input and usage visibility to sports content production, each tool solves one concrete problem.",
       primary: "Explore products",
       secondary: "View downloads",
       leadLabel: "Featured · ReadyType 1.5.0",
       leadTitle: "Speak naturally. Get usable text.",
-      leadBody: "Double-press Option to speak. ReadyType can dictate directly, polish your words, translate into English, or turn them into a clear task for AI.",
       productsLabel: "ReadySuite products",
       productsTitle: "One product for each concrete problem.",
-      openSourceTitle: "Open source. Independently released.",
+      openSourceTitle: "Open, transparent, and continuously updated.",
       openSourceBody: "Versions, downloads, changelogs, and feedback are maintained in each product's GitHub repository.",
       openSourceAction: "Visit GitHub",
     },
@@ -226,6 +233,9 @@ const copy = {
         eyebrow: "Voice input",
         title: "Speak naturally. Get usable text.",
         body: "Double-press Option to start and finish. Dictate, polish writing, translate into English, or create an AI-ready task without leaving the current text field.",
+        homeTitle: "Double-press Option. Speak your mind.",
+        homeBody: "Turn speech into clear text with the right output for each context. Light daily use with DeepSeek V4 Flash typically costs under RMB 0.10.",
+        homeAction: "Explore ReadyType",
         primary: "Download ReadyType",
         secondary: "View source",
         highlights: ["Four output modes", "Automatic selection", "High-accuracy model"],
@@ -257,6 +267,9 @@ const copy = {
         eyebrow: "Codex usage",
         title: "Keep Codex quota in sight.",
         body: "View Codex usage in the main window, menu bar, desktop widget, or below a supported Mac notch. Refreshing reads usage data without sending inference requests.",
+        homeTitle: "Keep Codex quota in sight.",
+        homeBody: "The main window, menu bar, desktop widget, and supported Mac notch stay synchronized.",
+        homeAction: "Explore ReadyCheck",
         primary: "Download ReadyCheck",
         secondary: "View source",
         highlights: ["macOS and Windows", "Menu bar and widget", "Local usage dashboard"],
@@ -288,6 +301,9 @@ const copy = {
         eyebrow: "Sports video workflow",
         title: "Turn training footage into data-rich films.",
         body: "Use reusable 9:16 4K templates, a Codex Skill, and animated WHOOP-style HUDs to produce training edits for Shorts, Reels, and TikTok.",
+        homeTitle: "Produce vertical 4K training videos faster.",
+        homeBody: "Reuse a complete HyperFrames, Codex, and OpenClaw workflow to turn training footage into WHOOP-style sports edits.",
+        homeAction: "Explore the workflow",
         primary: "Open project",
         secondary: "Read docs",
         highlights: ["9:16 4K", "10 HUD presets", "Codex / OpenClaw"],
@@ -390,7 +406,7 @@ function MotionObserver() {
           }
         });
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+      { rootMargin: "0px 0px -4% 0px", threshold: 0.01 },
     );
 
     elements.forEach((element) => observer.observe(element));
@@ -553,6 +569,10 @@ function Shell({
   lang: Lang;
   setLang: (lang: Lang) => void;
 }) {
+  useEffect(() => {
+    document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+  }, [lang]);
+
   return (
     <main className="site-shell">
       <MotionObserver />
@@ -572,26 +592,47 @@ function ReadyTypeVisual({
 }) {
   return (
     <div className={`product-visual readytype-visual ${compact ? "is-compact" : ""}`}>
-      <div className="app-window-frame">
+      <div className="app-window-frame app-window-light">
         <Image
           alt="ReadyType app window"
           className="app-window-image"
-          height={712}
+          height={680}
           priority={priority}
           sizes={compact ? "(max-width: 768px) 90vw, 620px" : "(max-width: 900px) 92vw, 760px"}
-          src="/readytype-window.jpg"
+          src="/readytype-window-light.png"
           width={900}
         />
       </div>
-      <div className="readytype-hud">
+      <div
+        aria-label="ReadyType voice input changes from listening to processing and completion"
+        className="readytype-hud-sequence"
+        role="img"
+      >
         <Image
-          alt="ReadyType recording HUD"
-          height={148}
-          sizes={compact ? "(max-width: 768px) 84vw, 520px" : "(max-width: 900px) 88vw, 680px"}
-          src="/readytype-hud-recording.png"
-          width={1180}
+          alt=""
+          className="readytype-hud-state is-listening"
+          height={96}
+          priority={priority}
+          sizes={compact ? "(max-width: 768px) 72vw, 360px" : "(max-width: 900px) 76vw, 430px"}
+          src="/readytype-hud-recording-latest.png"
+          width={500}
         />
-        <span className="hud-live-dot" />
+        <Image
+          alt=""
+          className="readytype-hud-state is-processing"
+          height={96}
+          sizes={compact ? "(max-width: 768px) 72vw, 360px" : "(max-width: 900px) 76vw, 430px"}
+          src="/readytype-hud-processing-latest.png"
+          width={500}
+        />
+        <Image
+          alt=""
+          className="readytype-hud-state is-complete"
+          height={96}
+          sizes={compact ? "(max-width: 768px) 72vw, 360px" : "(max-width: 900px) 76vw, 430px"}
+          src="/readytype-hud-pasted-latest.png"
+          width={500}
+        />
       </div>
     </div>
   );
@@ -606,40 +647,42 @@ function ReadyCheckVisual({
 }) {
   return (
     <div className={`product-visual readycheck-visual ${compact ? "is-compact" : ""}`}>
-      <div className="app-window-frame app-window-dark">
-        <video
-          aria-label="ReadyCheck product demonstration"
-          autoPlay
-          className="readycheck-demo-video"
-          data-motion-video
-          loop
-          muted
-          playsInline
-          poster="/readycheck-preview.jpg"
-          preload="metadata"
-        >
-          <source src="/readycheck-preview.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div className="readycheck-detail-row">
-        <div className="readycheck-main-shot">
+      <div
+        aria-label="ReadyCheck main controls, menu-bar status, and synchronized quota preview"
+        className="readycheck-stage"
+        role="img"
+      >
+        <div className="app-window-frame app-window-dark readycheck-window">
           <Image
-            alt="ReadyCheck main window"
-            height={1086}
+            alt=""
+            height={314}
             priority={priority}
-            sizes="(max-width: 768px) 58vw, 460px"
-            src="/readycheck-main-cropped.jpg"
-            width={1456}
+            sizes={compact ? "(max-width: 768px) 90vw, 580px" : "(max-width: 900px) 92vw, 760px"}
+            src="/readycheck-main-latest.png"
+            width={740}
           />
         </div>
-        <div className="readycheck-widget-shot">
-          <Image
-            alt="ReadyCheck desktop widget"
-            height={650}
-            sizes="(max-width: 768px) 30vw, 220px"
-            src="/readycheck-widget-real.jpg"
-            width={700}
-          />
+        <div className="readycheck-status-layer">
+          <div className="readycheck-menu-pill">
+            <span />
+            <strong>ReadyCheck</strong>
+            <b>72%</b>
+            <small>7d</small>
+          </div>
+          <div className="readycheck-quota-card">
+            <div className="readycheck-quota-heading">
+              <span>7 DAY QUOTA</span>
+              <strong>72%</strong>
+            </div>
+            <div className="readycheck-track">
+              <i />
+            </div>
+            <div className="readycheck-sync">
+              <RefreshCcw size={13} />
+              <span>AUTO REFRESH · 1 MIN</span>
+              <b>SYNCED</b>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -746,20 +789,8 @@ export function HomePage() {
               <p>{t.home.leadLabel}</p>
               <h2>{t.home.leadTitle}</h2>
             </div>
-            <Image
-              alt="ReadyType app icon"
-              height={76}
-              priority
-              src="/readytype-icon.png"
-              width={76}
-            />
           </div>
           <ReadyTypeVisual compact priority />
-          <p className="home-lead-body">{t.home.leadBody}</p>
-          <a className="text-link" href="/readytype">
-            {t.products.readytype.primary}
-            <ArrowRight size={16} />
-          </a>
         </div>
       </section>
 
@@ -815,8 +846,8 @@ function HomeProductBand({
           <span>{t.version}</span>
           <span>{t.platform}</span>
         </div>
-        <h2>{t.title}</h2>
-        <p>{t.body}</p>
+        <h2>{t.homeTitle}</h2>
+        <p>{t.homeBody}</p>
         <div className="highlight-list">
           {t.highlights.map((highlight) => (
             <span key={highlight}>
@@ -826,7 +857,7 @@ function HomeProductBand({
           ))}
         </div>
         <a className="text-link" href={routes[product]}>
-          {t.primary}
+          {t.homeAction}
           <ArrowRight size={16} />
         </a>
       </div>

@@ -3,6 +3,7 @@
 .vercel/
 node_modules/
 output/
+.playwright-cli/
 public/readycheck-preview.gif
 npm-debug.log*
 yarn-debug.log*

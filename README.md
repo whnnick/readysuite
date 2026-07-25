@@ -1,5 +1,7 @@
 # ReadySuite Site
 
+[简体中文](README.zh-CN.md)
+
 The official bilingual website for ReadySuite products:
 
 - ReadyType 1.5.0: a Chinese-first macOS voice input app.
@@ -30,3 +32,5 @@ vercel --prod
 ```
 
 Product downloads intentionally point to each project's latest GitHub release or repository.
+
+The production site is available at [readysuite.vercel.app](https://readysuite.vercel.app/).

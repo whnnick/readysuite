@@ -1,397 +1,432 @@
 "use client";
 
 import Image from "next/image";
+import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Activity,
   ArrowDownToLine,
   ArrowRight,
-  Clipboard,
+  Check,
+  ChevronDown,
   Film,
   Github,
+  Gauge,
+  Keyboard,
   Languages,
   LockKeyhole,
-  Mic,
-  MonitorUp,
+  Monitor,
+  PanelTop,
   RefreshCcw,
   ShieldCheck,
-  Terminal,
-  Video,
-  WifiOff,
+  Sparkles,
   WandSparkles,
 } from "lucide-react";
 
 type Lang = "zh" | "en";
-type ProductKey = "readycheck" | "readytype" | "crossfit";
+type ProductKey = "readytype" | "readycheck" | "crossfit";
 type ResourceKey = "downloads" | "support" | "privacy";
 
 const links = {
-  readyCheckDownload: "https://github.com/whnnick/readycheck/releases/latest",
-  readyCheckGitHub: "https://github.com/whnnick/readycheck",
-  readyCheckReleases: "https://github.com/whnnick/readycheck/releases",
-  readyCheckIssues: "https://github.com/whnnick/readycheck/issues",
-  readyTypeDownload: "https://github.com/whnnick/readytype/releases/latest",
-  readyTypeGitHub: "https://github.com/whnnick/readytype",
-  readyTypeReleases: "https://github.com/whnnick/readytype/releases",
-  readyTypeIssues: "https://github.com/whnnick/readytype/issues",
-  crossfitGitHub: "https://github.com/whnnick/crossfit-whoop-video",
+  profile: "https://github.com/whnnick",
+  readytype: "https://github.com/whnnick/readytype",
+  readytypeDownload: "https://github.com/whnnick/readytype/releases/latest",
+  readytypeReleases: "https://github.com/whnnick/readytype/releases",
+  readytypeIssues: "https://github.com/whnnick/readytype/issues",
+  readycheck: "https://github.com/whnnick/readycheck",
+  readycheckDownload: "https://github.com/whnnick/readycheck/releases/latest",
+  readycheckReleases: "https://github.com/whnnick/readycheck/releases",
+  readycheckIssues: "https://github.com/whnnick/readycheck/issues",
+  crossfit: "https://github.com/whnnick/crossfit-whoop-video",
   crossfitDocs: "https://github.com/whnnick/crossfit-whoop-video#readme",
   crossfitIssues: "https://github.com/whnnick/crossfit-whoop-video/issues",
+} as const;
+
+const routes: Record<ProductKey, string> = {
+  readytype: "/readytype",
+  readycheck: "/readycheck",
+  crossfit: "/crossfit-whoop-video",
 };
 
 const copy = {
   zh: {
     nav: {
-      software: "软件",
-      readycheck: "ReadyCheck",
-      readytype: "ReadyType",
-      crossfit: "CrossFit WHOOP Video",
+      products: "产品",
       downloads: "下载",
       support: "支持",
       github: "GitHub",
+      readytype: "ReadyType",
+      readycheck: "ReadyCheck",
+      crossfit: "CrossFit WHOOP Video",
     },
     home: {
       eyebrow: "ReadySuite",
-      title: "AI 原生工作流工具箱。",
-      body: "ReadySuite 面向 AI 原生工作流，提供可下载、可验证、可持续迭代的轻量工具。优先解决高频输入、额度可视化和自动化内容制作中的真实效率问题。",
-      primary: "查看 ReadyType",
-      secondary: "查看 ReadyCheck",
-      note: "每个产品独立成页、独立发布，下载、源码和版本记录保持透明。",
-      panelTitle: "产品",
-      panelBody: "从当前发布的工具开始。",
-      products: [
-        ["ReadyType", "中文优先的 macOS 语音输入工具", "下载 1.0"],
-        ["ReadyCheck", "macOS Codex 额度监控工具", "下载预览版"],
-        ["CrossFit WHOOP Video", "竖屏 4K 视频制作工作流", "查看仓库"],
-      ],
+      title: "让 AI 工具，更顺手。",
+      body: "从语音输入、用量管理到运动内容制作，ReadySuite 把实用工具放进每天的工作流。",
+      primary: "探索产品",
+      secondary: "查看下载",
+      leadLabel: "首选工具 · ReadyType 1.5.0",
+      leadTitle: "开口说，直接得到可用文字。",
+      leadBody: "双击 Option 开始说话，ReadyType 会把口述内容直接输入、整理成文、翻译成英文，或改写成清楚的 AI 任务说明。",
+      productsLabel: "ReadySuite 产品",
+      productsTitle: "每个产品，专注一个具体问题。",
+      openSourceTitle: "公开源码，独立发布。",
+      openSourceBody: "产品版本、下载文件、更新记录和问题反馈均通过对应的 GitHub 项目维护。",
+      openSourceAction: "访问 GitHub",
     },
-    readycheck: {
-      eyebrow: "macOS 预览版",
-      title: "让 Codex 额度状态常驻可见。",
-      body: "ReadyCheck 是一款 macOS 菜单栏和桌面小组件应用，用于查看 Codex 订阅额度窗口。桌面 widget 可常驻置顶，让剩余额度和刷新状态保持可见，减少反复输入命令或切换页面查看配额的打断；检查过程不发送模型推理请求。",
-      primary: "下载最新 DMG",
-      secondary: "查看源码",
-      sections: {
-        features: "核心能力",
-        notes: "发布说明",
-        download: "下载 ReadyCheck",
+    products: {
+      readytype: {
+        name: "ReadyType",
+        version: "1.5.0",
+        platform: "macOS 14+",
+        eyebrow: "语音输入",
+        title: "开口说，直接得到可用文字。",
+        body: "双击 Option 开始说话，再次双击完成输出。直接转文字、整理成文、翻译成英文或写给 AI，无需离开当前输入框。",
+        primary: "下载 ReadyType",
+        secondary: "查看源码",
+        highlights: ["四种输出方式", "自动选择", "高精度语音包"],
+        sectionLabel: "不只是转写",
+        sectionTitle: "从自然表达，到可以直接发送的文字。",
+        features: [
+          ["双击 Option", "在任意输入框中开始和结束语音输入，按 Esc 随时取消。"],
+          ["四种输出", "直接转文字、整理成文、翻译成英文，以及整理成适合发给 AI 的任务说明。"],
+          ["自动选择", "短句优先速度，高精度语音包准备好时自动提升识别准确率。"],
+          ["成本可控", "AI 输出默认调用 DeepSeek V4 Flash，日常轻量使用通常一天不到 1 毛钱。"],
+        ],
+        spotlight: "调用 DeepSeek V4 Flash",
+        spotlightValue: "日常使用，一天不到 1 毛钱",
+        spotlightBody: "直接转文字不调用 DeepSeek；整理、翻译和写给 AI 才会使用你配置的密钥。",
+        notesTitle: "ReadyType 1.5.0",
+        notes: [
+          "支持 macOS 14 及以上版本。",
+          "DeepSeek 密钥安全存储在 macOS 钥匙串。",
+          "公开源码构建默认不发送匿名统计。",
+          "通过 GitHub Releases 获取最新 DMG。",
+        ],
+        finalTitle: "少打字，多表达。",
+        finalBody: "下载 ReadyType，把自然口述直接变成可用文字。",
       },
-      features: [
-        ["菜单栏状态", "在系统菜单栏中查看 Codex 额度摘要，减少切换页面的成本。"],
-        ["桌面小组件", "将可拖拽小组件放在工作区，持续显示关键使用状态。"],
-        ["可控刷新", "支持手动刷新，也支持 1 分钟、3 分钟或 5 分钟自动刷新。"],
-        ["失败不猜测", "当数据无法验证时显示降级状态，不估算或编造额度。"],
-      ],
-      notes: [
-        "支持 Codex OAuth 订阅方式登录。",
-        "OAuth 凭据通过 macOS Keychain 安全保存。",
-        "提供 macOS DMG 预览版构建。",
-        "通过 GitHub Releases 获取最新版本。",
-      ],
-      ctaBody: "主下载按钮会打开 ReadyCheck 的 GitHub 最新 release。每次发布都以 GitHub Releases 作为可信下载来源。",
-      releaseLabel: "所有发布",
-    },
-    readytype: {
-      eyebrow: "macOS 1.0",
-      title: "把自然口述变成可直接使用的文字。",
-      body: "ReadyType 是中文优先的 macOS 语音输入工具。双击 Option 开始说话，再次双击完成输出；可直接转文字、整理成文、翻译成英文，或整理成适合发给 AI 的任务说明。",
-      primary: "下载 ReadyType",
-      secondary: "查看源码",
-      sections: {
-        features: "核心能力",
-        notes: "发布说明",
-        download: "下载 ReadyType",
+      readycheck: {
+        name: "ReadyCheck",
+        version: "0.1.72",
+        platform: "macOS · Windows",
+        eyebrow: "Codex 用量",
+        title: "随时看清 Codex 剩余额度。",
+        body: "在主窗口、菜单栏、桌面 Widget 或 Mac 刘海下方查看 Codex 额度状态。刷新只读取用量数据，不发送模型推理请求。",
+        primary: "下载 ReadyCheck",
+        secondary: "查看源码",
+        highlights: ["macOS 与 Windows", "菜单栏与 Widget", "本地消耗看板"],
+        sectionLabel: "始终可见",
+        sectionTitle: "把额度状态放在需要它的地方。",
+        features: [
+          ["菜单栏摘要", "无需切换页面，直接查看当前 Codex 额度窗口。"],
+          ["桌面 Widget", "可拖拽并置顶，让剩余额度和刷新状态持续可见。"],
+          ["刘海状态条", "在支持的 Mac 内置刘海屏下方显示紧凑额度状态。"],
+          ["本地消耗看板", "按检测到的额度下降记录 7 天窗口消耗，不冒充 Token 用量。"],
+        ],
+        spotlight: "同一个发布页",
+        spotlightValue: "macOS DMG + Windows 便携版",
+        spotlightBody: "0.1.72 同时提供 macOS 与 Windows 10/11 预览包。",
+        notesTitle: "ReadyCheck 0.1.72",
+        notes: [
+          "支持 Codex OAuth 订阅方式登录。",
+          "OAuth 凭据通过系统安全存储保存。",
+          "支持手动刷新与 1、3、5 分钟自动刷新。",
+          "通过 GitHub Releases 获取最新版本。",
+        ],
+        finalTitle: "专注构建，不再反复检查额度。",
+        finalBody: "下载 ReadyCheck，让 Codex 使用状态保持可见。",
       },
-      features: [
-        ["双击 Option", "在任意输入框中双击 Option 开始和结束语音输入。"],
-        ["四种输出方式", "支持直接转文字、整理成文、翻译成英文和写给 AI。"],
-        ["DeepSeek-v4-flash", "调用 DeepSeek-v4-flash 处理 AI 输出，爽用一天不到 1 毛钱。"],
-        ["粘贴降级", "自动粘贴不可用时，会把结果复制到剪贴板。"],
-      ],
-      notes: [
-        "需要 macOS 14 或更高版本。",
-        "整理成文、翻译成英文和写给 AI 需要 DeepSeek 密钥，默认调用 DeepSeek-v4-flash。",
-        "直接转文字不调用 DeepSeek。",
-        "当前 1.0.0 分发包未签名、未公证。",
-      ],
-      ctaBody: "ReadyType 通过 GitHub Releases 分发 `ReadyType.dmg`。首次打开未签名构建时，请在 Applications 中右键应用并选择打开，不要关闭 macOS 系统安全设置。",
-      releaseLabel: "所有发布",
-    },
-    crossfit: {
-      eyebrow: "开源视频制作工作流",
-      title: "把运动数据做进竖屏 4K 视频。",
-      body: "CrossFit WHOOP Video 是一个开源视频制作工作流，用 HyperFrames 模板、自动化资产和 WHOOP 风格 HUD，把训练片段包装成适合 Shorts、Reels 和 TikTok 的发布素材。",
-      primary: "打开仓库",
-      secondary: "阅读文档",
-      sections: {
-        features: "工作流内容",
-        notes: "仓库边界",
-        download: "项目资源",
+      crossfit: {
+        name: "CrossFit WHOOP Video",
+        version: "1.0.11",
+        platform: "HyperFrames · Codex · OpenClaw",
+        eyebrow: "运动短片工作流",
+        title: "把训练素材做成电影感数据短片。",
+        body: "用可复用的 9:16 4K 模板、Codex Skill 和 WHOOP 风格动态 HUD，把训练素材制作成适合 Shorts、Reels 与 TikTok 的运动短片。",
+        primary: "打开项目",
+        secondary: "阅读文档",
+        highlights: ["9:16 4K", "10 套 HUD", "Codex / OpenClaw"],
+        sectionLabel: "完整工作流",
+        sectionTitle: "从素材检查，到电影感运动成片。",
+        features: [
+          ["HyperFrames 模板", "替换素材和数据后即可复用同一套竖屏 4K composition。"],
+          ["Codex Skill", "让 Codex 按既定方法检查素材、挑选动作、安排 HUD 并验证输出。"],
+          ["10 套 HUD", "包含全息矩阵、速度 BPM、恢复环和冲击标题等数据视觉预设。"],
+          ["多种数据来源", "支持 WHOOP、Apple Health 导出、FIT、TCX、GPX、CSV 和手动指标。"],
+        ],
+        spotlight: "三种使用方式",
+        spotlightValue: "模板 · Skill · Plugin",
+        spotlightBody: "既可在本地修改模板，也可让 Codex 或 OpenClaw 按工作流完成制作。",
+        notesTitle: "CrossFit WHOOP Video 1.0.11",
+        notes: [
+          "支持 9:16 竖屏 4K 运动视频制作。",
+          "提供 Codex Skill 与 Plugin bundle。",
+          "提供 OpenClaw 使用参考流程。",
+          "使用隐私安全的合成预览素材。",
+        ],
+        finalTitle: "让运动数据成为画面的一部分。",
+        finalBody: "打开项目，选择模板、HUD 和适合你的制作方式。",
       },
-      features: [
-        ["竖屏 4K 输出", "面向 Shorts、Reels 和 TikTok 的 9:16 视频制作目标。"],
-        ["HyperFrames 模板", "提供可复用的视频组合结构和制作脚手架。"],
-        ["自动化资产", "包含 Codex/OpenClaw skill 与 plugin 相关资源。"],
-        ["HUD 预设", "提供 WHOOP 风格的运动数据叠加层预设。"],
-      ],
-      notes: [
-        "仓库不包含真实训练视频。",
-        "仓库不包含渲染完成的 MP4 文件。",
-        "仓库不包含 token、.env 或真实 WHOOP 数据。",
-        "这是开源工作流资源，不是可安装桌面应用。",
-      ],
-      ctaBody: "该项目以 GitHub 仓库形式发布。请从仓库 README 查看结构、使用说明和资源边界。",
-      releaseLabel: "查看文档",
     },
     resources: {
       downloads: {
-        eyebrow: "下载中心",
-        title: "选择产品并获取最新版本。",
-        body: "ReadySuite 的下载入口按产品独立维护。可安装软件通过 GitHub Releases 分发，开源工作流直接进入项目仓库。",
-        primary: "打开下载",
-        secondary: "查看源码",
-        cards: [
-          ["ReadyType", "macOS 中文语音输入工具，支持 DeepSeek-v4-flash AI 输出。", "下载最新版本"],
-          ["ReadyCheck", "macOS Codex 额度监控工具，支持菜单栏和桌面 widget。", "下载预览版"],
-          ["CrossFit WHOOP Video", "开源竖屏 4K 健身视频制作工作流。", "打开仓库"],
-        ],
+        eyebrow: "下载",
+        title: "获取最新版本。",
+        body: "每个产品独立发布。应用通过 GitHub Releases 分发，工作流项目直接进入对应仓库。",
       },
       support: {
-        eyebrow: "支持与反馈",
-        title: "用 GitHub Issues 处理公开反馈。",
-        body: "请按产品提交问题，避免在公开 issue 中粘贴 API key、私人聊天记录、内部文件路径或敏感业务内容。",
-        primary: "提交反馈",
-        secondary: "查看仓库",
-        cards: [
-          ["ReadyType", "安装、权限、快捷键、语音识别、AI 输出和粘贴问题。", "提交 ReadyType 反馈"],
-          ["ReadyCheck", "OAuth、额度读取、刷新、菜单栏和桌面 widget 问题。", "提交 ReadyCheck 反馈"],
-          ["CrossFit WHOOP Video", "模板结构、渲染流程、HUD 预设和自动化资源问题。", "提交工作流反馈"],
-        ],
+        eyebrow: "支持",
+        title: "按产品提交问题。",
+        body: "GitHub Issues 是公开反馈入口。提交前请移除 API Key、账号信息、私人内容和本地路径。",
       },
       privacy: {
-        eyebrow: "隐私说明",
-        title: "尽量把敏感数据留在本机和你控制的服务中。",
-        body: "ReadySuite 产品会按功能需要请求系统权限或外部 API。本站不托管用户数据，下载、源码和反馈入口由 GitHub 提供。",
-        primary: "查看产品",
-        secondary: "提交问题",
-        cards: [
-          ["本地优先", "ReadyType 的快捷键、剪贴板和系统权限由 macOS 管理；ReadyCheck 的 OAuth 凭据存储在 macOS Keychain。", "查看 ReadyType"],
-          ["外部 API", "ReadyType 的 AI 输出模式需要 DeepSeek key；直接转文字不调用 DeepSeek。ReadyCheck 检查 Codex 状态不发送模型推理请求。", "查看 ReadyCheck"],
-          ["公开反馈", "GitHub Issues 是公开区域，提交前请移除 token、账号、私人文件路径和敏感上下文。", "查看支持"],
-        ],
+        eyebrow: "隐私",
+        title: "清楚说明数据边界。",
+        body: "ReadySuite 官网不托管用户数据。产品仅在对应功能需要时使用系统权限或外部服务。",
       },
     },
-    mock: {
-      quota: "额度窗口",
-      ready: "可以继续构建",
-      fiveHour: "5 小时窗口",
-      sevenDay: "7 天窗口",
-      lastRefresh: "上次刷新",
-      validation: "校验",
-      passed: "通过",
-      menuBar: "菜单栏",
-      refresh: "刷新",
-      ago: "12 秒前",
-      vertical: "竖屏 4K 模板",
-      workflow: "Shorts / Reels / TikTok 工作流",
+    footer: {
+      line: "© 2026 ReadySuite",
+      note: "源码、下载与更新记录由对应 GitHub 项目维护。",
+      privacy: "隐私",
     },
-    footer: "© 2026 ReadySuite。产品下载、源码和发布记录由 GitHub 托管。",
   },
   en: {
     nav: {
-      software: "Software",
-      readycheck: "ReadyCheck",
-      readytype: "ReadyType",
-      crossfit: "CrossFit WHOOP Video",
+      products: "Products",
       downloads: "Downloads",
       support: "Support",
       github: "GitHub",
+      readytype: "ReadyType",
+      readycheck: "ReadyCheck",
+      crossfit: "CrossFit WHOOP Video",
     },
     home: {
       eyebrow: "ReadySuite",
-      title: "An AI-native workflow toolkit.",
-      body: "ReadySuite provides downloadable, verifiable, and continuously improving tools for AI-native workflows, starting with high-frequency input, quota visibility, and automated content production.",
-      primary: "View ReadyType",
-      secondary: "View ReadyCheck",
-      note: "Each product has its own page, release track, downloads, source, and version history.",
-      panelTitle: "Products",
-      panelBody: "Start with the tools currently available.",
-      products: [
-        ["ReadyType", "Chinese-first macOS voice input", "Download 1.0"],
-        ["ReadyCheck", "macOS Codex quota monitor", "Download preview"],
-        ["CrossFit WHOOP Video", "Vertical 4K video workflow", "Open repository"],
-      ],
+      title: "Make AI tools feel effortless.",
+      body: "From voice input and usage visibility to sports content production, ReadySuite puts practical tools into everyday workflows.",
+      primary: "Explore products",
+      secondary: "View downloads",
+      leadLabel: "Featured · ReadyType 1.5.0",
+      leadTitle: "Speak naturally. Get usable text.",
+      leadBody: "Double-press Option to speak. ReadyType can dictate directly, polish your words, translate into English, or turn them into a clear task for AI.",
+      productsLabel: "ReadySuite products",
+      productsTitle: "One product for each concrete problem.",
+      openSourceTitle: "Open source. Independently released.",
+      openSourceBody: "Versions, downloads, changelogs, and feedback are maintained in each product's GitHub repository.",
+      openSourceAction: "Visit GitHub",
     },
-    readycheck: {
-      eyebrow: "macOS preview",
-      title: "Keep Codex quota status visible.",
-      body: "ReadyCheck is a macOS menu-bar and desktop-widget app for monitoring Codex subscription usage windows. The desktop widget can stay pinned on top, keeping remaining quota and refresh status visible so you do not need to repeatedly run commands or switch contexts to check usage. Usage checks do not send model inference requests.",
-      primary: "Download latest DMG",
-      secondary: "View source",
-      sections: {
-        features: "Core Capabilities",
-        notes: "Release Notes",
-        download: "Download ReadyCheck",
+    products: {
+      readytype: {
+        name: "ReadyType",
+        version: "1.5.0",
+        platform: "macOS 14+",
+        eyebrow: "Voice input",
+        title: "Speak naturally. Get usable text.",
+        body: "Double-press Option to start and finish. Dictate, polish writing, translate into English, or create an AI-ready task without leaving the current text field.",
+        primary: "Download ReadyType",
+        secondary: "View source",
+        highlights: ["Four output modes", "Automatic selection", "High-accuracy model"],
+        sectionLabel: "Beyond transcription",
+        sectionTitle: "From natural speech to text ready to send.",
+        features: [
+          ["Double-press Option", "Start and finish voice input in any text field, and press Esc to cancel."],
+          ["Four outputs", "Direct dictation, polished writing, English translation, and clear AI-ready instructions."],
+          ["Automatic selection", "Short phrases prioritize speed; the high-accuracy model is selected when it is ready and useful."],
+          ["Controlled cost", "AI modes use DeepSeek V4 Flash, typically costing less than RMB 0.10 per day for light daily use."],
+        ],
+        spotlight: "Powered by DeepSeek V4 Flash",
+        spotlightValue: "Typical daily use under RMB 0.10",
+        spotlightBody: "Direct dictation does not call DeepSeek. Only polish, translation, and AI-task modes use your configured key.",
+        notesTitle: "ReadyType 1.5.0",
+        notes: [
+          "Supports macOS 14 and later.",
+          "Stores the DeepSeek key securely in macOS Keychain.",
+          "Public source builds disable anonymous analytics by default.",
+          "The latest DMG is available through GitHub Releases.",
+        ],
+        finalTitle: "Type less. Express more.",
+        finalBody: "Download ReadyType and turn natural speech into usable text.",
       },
-      features: [
-        ["Menu-bar status", "View Codex quota summaries from the macOS menu bar without switching pages."],
-        ["Desktop widget", "Place a draggable widget in the workspace for persistent usage visibility."],
-        ["Controlled refresh", "Refresh manually or choose 1-minute, 3-minute, or 5-minute auto-refresh intervals."],
-        ["Fails closed", "When usage data cannot be validated, the app shows a degraded state instead of inventing values."],
-      ],
-      notes: [
-        "Supports Codex OAuth subscription sign-in.",
-        "OAuth credentials are securely stored in macOS Keychain.",
-        "Provides macOS DMG preview builds.",
-        "Get the latest version through GitHub Releases.",
-      ],
-      ctaBody: "The primary download opens the latest ReadyCheck GitHub release. GitHub Releases is used as the trusted source for distributed builds.",
-      releaseLabel: "All releases",
-    },
-    readytype: {
-      eyebrow: "macOS 1.0",
-      title: "Turn natural speech into usable text.",
-      body: "ReadyType is a Chinese-first macOS voice input tool. Double-press Option to start speaking, press it again to output text, then choose direct dictation, polished writing, English translation, or AI-ready instructions.",
-      primary: "Download ReadyType",
-      secondary: "View source",
-      sections: {
-        features: "Core Capabilities",
-        notes: "Release Notes",
-        download: "Download ReadyType",
+      readycheck: {
+        name: "ReadyCheck",
+        version: "0.1.72",
+        platform: "macOS · Windows",
+        eyebrow: "Codex usage",
+        title: "Keep Codex quota in sight.",
+        body: "View Codex usage in the main window, menu bar, desktop widget, or below a supported Mac notch. Refreshing reads usage data without sending inference requests.",
+        primary: "Download ReadyCheck",
+        secondary: "View source",
+        highlights: ["macOS and Windows", "Menu bar and widget", "Local usage dashboard"],
+        sectionLabel: "Always visible",
+        sectionTitle: "Put usage status where you need it.",
+        features: [
+          ["Menu-bar summary", "View the current Codex usage window without switching pages."],
+          ["Desktop widget", "Drag and pin the widget so remaining quota and refresh status stay visible."],
+          ["Notch status", "Show a compact usage strip below the built-in notch on supported Macs."],
+          ["Local dashboard", "Track detected seven-day quota decreases without presenting them as token usage."],
+        ],
+        spotlight: "One release page",
+        spotlightValue: "macOS DMG + Windows portable build",
+        spotlightBody: "Version 0.1.72 includes previews for macOS and Windows 10/11.",
+        notesTitle: "ReadyCheck 0.1.72",
+        notes: [
+          "Supports Codex OAuth subscription sign-in.",
+          "Stores OAuth credentials in secure system storage.",
+          "Supports manual refresh and 1, 3, or 5-minute intervals.",
+          "The latest builds are available through GitHub Releases.",
+        ],
+        finalTitle: "Stay focused on building.",
+        finalBody: "Download ReadyCheck and keep Codex usage visible.",
       },
-      features: [
-        ["Double-press Option", "Start and finish voice input from any text field."],
-        ["Four output modes", "Use direct dictation, polished writing, English translation, or AI-instruction output."],
-        ["DeepSeek-v4-flash", "AI output modes call DeepSeek-v4-flash, keeping daily use under RMB 0.10 in typical use."],
-        ["Paste fallback", "If automatic paste is unavailable, ReadyType copies the result to the clipboard."],
-      ],
-      notes: [
-        "Requires macOS 14 or later.",
-        "Polished writing, English translation, and AI-instruction output require a DeepSeek key and call DeepSeek-v4-flash by default.",
-        "Direct dictation does not call DeepSeek.",
-        "The 1.0.0 distributed build is unsigned and not notarized.",
-      ],
-      ctaBody: "ReadyType distributes `ReadyType.dmg` through GitHub Releases. For the unsigned build, open the app from Applications with right-click Open; do not disable macOS security settings.",
-      releaseLabel: "All releases",
-    },
-    crossfit: {
-      eyebrow: "open video-production workflow",
-      title: "Turn workout data into vertical 4K video.",
-      body: "CrossFit WHOOP Video is an open production workflow that combines HyperFrames templates, automation assets, and WHOOP-style HUD presets for Shorts, Reels, and TikTok-ready training edits.",
-      primary: "Open repository",
-      secondary: "Read docs",
-      sections: {
-        features: "Workflow Contents",
-        notes: "Repository Boundaries",
-        download: "Project Resources",
+      crossfit: {
+        name: "CrossFit WHOOP Video",
+        version: "1.0.11",
+        platform: "HyperFrames · Codex · OpenClaw",
+        eyebrow: "Sports video workflow",
+        title: "Turn training footage into data-rich films.",
+        body: "Use reusable 9:16 4K templates, a Codex Skill, and animated WHOOP-style HUDs to produce training edits for Shorts, Reels, and TikTok.",
+        primary: "Open project",
+        secondary: "Read docs",
+        highlights: ["9:16 4K", "10 HUD presets", "Codex / OpenClaw"],
+        sectionLabel: "Complete workflow",
+        sectionTitle: "From footage review to a cinematic sports edit.",
+        features: [
+          ["HyperFrames template", "Replace footage and data while reusing the same vertical 4K composition."],
+          ["Codex Skill", "Guide Codex through footage review, action selection, HUD timing, and output validation."],
+          ["10 HUD presets", "Includes holographic matrix, speed BPM, recovery orbit, and impact-title treatments."],
+          ["Multiple data sources", "Supports WHOOP, Apple Health export, FIT, TCX, GPX, CSV, and manual metrics."],
+        ],
+        spotlight: "Three ways to use it",
+        spotlightValue: "Template · Skill · Plugin",
+        spotlightBody: "Edit the template locally or let Codex and OpenClaw follow the reusable production workflow.",
+        notesTitle: "CrossFit WHOOP Video 1.0.11",
+        notes: [
+          "Supports vertical 9:16 4K sports video production.",
+          "Includes a Codex Skill and plugin bundle.",
+          "Includes an OpenClaw reference workflow.",
+          "Uses privacy-safe synthetic preview assets.",
+        ],
+        finalTitle: "Make performance data part of the picture.",
+        finalBody: "Open the project and choose the template, HUD, and workflow that fits.",
       },
-      features: [
-        ["Vertical 4K output", "Targets 9:16 Shorts, Reels, and TikTok video production."],
-        ["HyperFrames templates", "Provides reusable composition structure and production scaffolding."],
-        ["Automation assets", "Includes Codex/OpenClaw skill and plugin resources."],
-        ["HUD presets", "Provides WHOOP-style athletic data overlay presets."],
-      ],
-      notes: [
-        "The repository does not include real training footage.",
-        "The repository does not include rendered MP4 files.",
-        "The repository does not include tokens, .env files, or real WHOOP data.",
-        "This is an open workflow resource, not an installable desktop app.",
-      ],
-      ctaBody: "This project is distributed as a GitHub repository. Use the README for structure, usage notes, and resource boundaries.",
-      releaseLabel: "Read docs",
     },
     resources: {
       downloads: {
-        eyebrow: "Download Center",
-        title: "Choose a product and get the latest version.",
-        body: "ReadySuite download entry points are maintained per product. Installable apps are distributed through GitHub Releases; open workflows link directly to their repositories.",
-        primary: "Open download",
-        secondary: "View source",
-        cards: [
-          ["ReadyType", "A macOS Chinese-first voice input app with DeepSeek-v4-flash AI output modes.", "Download latest"],
-          ["ReadyCheck", "A macOS Codex quota monitor with menu-bar and desktop-widget visibility.", "Download preview"],
-          ["CrossFit WHOOP Video", "An open vertical 4K fitness video production workflow.", "Open repository"],
-        ],
+        eyebrow: "Downloads",
+        title: "Get the latest version.",
+        body: "Each product is released independently. Apps use GitHub Releases, while the workflow project opens its repository.",
       },
       support: {
         eyebrow: "Support",
-        title: "Public feedback is handled through GitHub Issues.",
-        body: "Submit feedback by product, and do not include API keys, private chats, internal file paths, or sensitive business context in public issues.",
-        primary: "Submit feedback",
-        secondary: "View repository",
-        cards: [
-          ["ReadyType", "Installation, permissions, shortcuts, speech recognition, AI output, and paste behavior.", "Submit ReadyType feedback"],
-          ["ReadyCheck", "OAuth, quota reading, refresh behavior, menu-bar status, and desktop widget issues.", "Submit ReadyCheck feedback"],
-          ["CrossFit WHOOP Video", "Template structure, rendering workflow, HUD presets, and automation resources.", "Submit workflow feedback"],
-        ],
+        title: "Submit feedback by product.",
+        body: "GitHub Issues are public. Remove API keys, account data, private content, and local paths before submitting.",
       },
       privacy: {
         eyebrow: "Privacy",
-        title: "Keep sensitive data local or in services you control.",
-        body: "ReadySuite products request system permissions or external APIs only when the feature requires them. This website does not host user data; downloads, source, and feedback are provided through GitHub.",
-        primary: "View product",
-        secondary: "Submit issue",
-        cards: [
-          ["Local first", "ReadyType shortcuts, clipboard access, and system permissions are managed by macOS. ReadyCheck stores OAuth credentials in macOS Keychain.", "View ReadyType"],
-          ["External APIs", "ReadyType AI output modes require a DeepSeek key; direct dictation does not call DeepSeek. ReadyCheck does not send model inference requests when checking Codex status.", "View ReadyCheck"],
-          ["Public feedback", "GitHub Issues are public. Remove tokens, accounts, private paths, and sensitive context before submitting.", "View support"],
-        ],
+        title: "Clear data boundaries.",
+        body: "The ReadySuite website does not host user data. Products use system permissions or external services only when required by a feature.",
       },
     },
-    mock: {
-      quota: "Quota windows",
-      ready: "Ready to build",
-      fiveHour: "5-hour window",
-      sevenDay: "7-day window",
-      lastRefresh: "Last refresh",
-      validation: "Validation",
-      passed: "Passed",
-      menuBar: "Menu bar",
-      refresh: "Refresh",
-      ago: "12 sec ago",
-      vertical: "Vertical 4K template",
-      workflow: "Shorts / Reels / TikTok workflow",
+    footer: {
+      line: "© 2026 ReadySuite",
+      note: "Source, downloads, and release records are maintained in each GitHub project.",
+      privacy: "Privacy",
     },
-    footer: "© 2026 ReadySuite. Product downloads, source code, and release history are hosted on GitHub.",
   },
 } as const;
 
 const productLinks = {
-  readycheck: {
-    href: "/readycheck",
-    primary: links.readyCheckDownload,
-    secondary: links.readyCheckGitHub,
-    tertiary: links.readyCheckReleases,
-    repo: links.readyCheckGitHub,
-  },
   readytype: {
-    href: "/readytype",
-    primary: links.readyTypeDownload,
-    secondary: links.readyTypeGitHub,
-    tertiary: links.readyTypeReleases,
-    repo: links.readyTypeGitHub,
+    primary: links.readytypeDownload,
+    secondary: links.readytype,
+    tertiary: links.readytypeReleases,
+  },
+  readycheck: {
+    primary: links.readycheckDownload,
+    secondary: links.readycheck,
+    tertiary: links.readycheckReleases,
   },
   crossfit: {
-    href: "/crossfit-whoop-video",
-    primary: links.crossfitGitHub,
+    primary: links.crossfit,
     secondary: links.crossfitDocs,
     tertiary: links.crossfitDocs,
-    repo: links.crossfitGitHub,
   },
-};
+} as const;
 
-const featureIcons = [MonitorUp, Activity, RefreshCcw, WifiOff] as const;
-const readyTypeIcons = [Mic, WandSparkles, Languages, Clipboard] as const;
-const crossfitIcons = [Video, Film, Terminal, Activity] as const;
-const crossfitPipeline = [
-  { label: "Motion Capture", body: "pose map" },
-  { label: "Digital Athlete", body: "privacy-safe render" },
-  { label: "WHOOP HUD", body: "data overlay" },
-] as const;
+const featureIcons: Record<ProductKey, readonly LucideIcon[]> = {
+  readytype: [Keyboard, Languages, Sparkles, WandSparkles],
+  readycheck: [PanelTop, Monitor, Gauge, RefreshCcw],
+  crossfit: [Film, WandSparkles, Activity, Gauge],
+};
 
 function externalLinkProps(href: string) {
   return href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {};
+}
+
+function MotionObserver() {
+  useEffect(() => {
+    const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      elements.forEach((element) => element.classList.add("is-visible"));
+      if (reduceMotion) {
+        document
+          .querySelectorAll<HTMLVideoElement>("[data-motion-video]")
+          .forEach((video) => video.pause());
+      }
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+    );
+
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
+
+  return null;
+}
+
+function LanguageToggle({
+  lang,
+  onChange,
+}: {
+  lang: Lang;
+  onChange: (lang: Lang) => void;
+}) {
+  return (
+    <div className="language-toggle" aria-label="Language">
+      <button
+        aria-pressed={lang === "zh"}
+        className={lang === "zh" ? "is-active" : ""}
+        onClick={() => onChange("zh")}
+        type="button"
+      >
+        中文
+      </button>
+      <button
+        aria-pressed={lang === "en"}
+        className={lang === "en" ? "is-active" : ""}
+        onClick={() => onChange("en")}
+        type="button"
+      >
+        EN
+      </button>
+    </div>
+  );
 }
 
 function Button({
@@ -401,15 +436,11 @@ function Button({
 }: {
   children: ReactNode;
   href: string;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "light";
 }) {
   return (
     <a
-      className={
-        variant === "primary"
-          ? "inline-flex min-h-12 max-w-full items-center justify-center gap-2 rounded-lg bg-cyan px-4 py-3 text-center text-sm font-black leading-5 text-[#06101d] shadow-glow transition hover:-translate-y-0.5 hover:bg-[#6addff] sm:px-5"
-          : "inline-flex min-h-12 max-w-full items-center justify-center gap-2 rounded-lg border border-white/16 bg-white/[.06] px-4 py-3 text-center text-sm font-black leading-5 text-white transition hover:bg-white/[.11] sm:px-5"
-      }
+      className={`site-button site-button-${variant}`}
       href={href}
       {...externalLinkProps(href)}
     >
@@ -418,132 +449,274 @@ function Button({
   );
 }
 
-function LanguageToggle({ lang, onChange }: { lang: Lang; onChange: (lang: Lang) => void }) {
-  return (
-    <div className="inline-grid grid-cols-2 overflow-hidden rounded-lg border border-white/15 bg-white/[.06] p-1 text-xs font-black sm:text-sm">
-      <button
-        className={`rounded-md px-2 py-2 transition sm:px-3 ${lang === "zh" ? "bg-cyan text-[#06101d]" : "text-white/70 hover:text-white"}`}
-        type="button"
-        onClick={() => onChange("zh")}
-      >
-        中文
-      </button>
-      <button
-        className={`rounded-md px-2 py-2 transition sm:px-3 ${lang === "en" ? "bg-cyan text-[#06101d]" : "text-white/70 hover:text-white"}`}
-        type="button"
-        onClick={() => onChange("en")}
-      >
-        EN
-      </button>
-    </div>
-  );
-}
-
 function Header({
+  activeProduct,
   lang,
   setLang,
-  activeProduct,
 }: {
+  activeProduct?: ProductKey;
   lang: Lang;
   setLang: (lang: Lang) => void;
-  activeProduct?: ProductKey;
 }) {
-  const t = copy[lang];
+  const t = copy[lang].nav;
 
   return (
-    <header className="relative mx-auto mt-5 max-w-7xl px-4 sm:px-5">
-      <nav className="flex items-center justify-between gap-3 py-4">
-        <a className="flex items-center gap-3" href="/">
-          <div className="grid h-10 w-10 place-items-center rounded-lg bg-cyan font-black text-[#06101d]">R</div>
-          <span className="hidden text-lg font-black tracking-tight sm:inline">ReadySuite</span>
+    <header className="site-header">
+      <nav className="site-nav" aria-label="Primary navigation">
+        <a className="brand-link" href="/" aria-label="ReadySuite home">
+          <span className="brand-mark">R</span>
+          <span className="brand-name">ReadySuite</span>
         </a>
-        <div className="hidden items-center gap-6 text-sm font-semibold text-white/70 md:flex">
-          <span className="text-white/45">{t.nav.software}</span>
-          <a className={activeProduct === "readytype" ? "text-white" : ""} href={productLinks.readytype.href}>
-            {t.nav.readytype}
+
+        <div className="nav-center">
+          <details className="product-menu">
+            <summary>
+              {t.products}
+              <ChevronDown size={14} />
+            </summary>
+            <div className="product-menu-panel">
+              {(Object.keys(routes) as ProductKey[]).map((key) => (
+                <a
+                  className={activeProduct === key ? "is-active" : ""}
+                  href={routes[key]}
+                  key={key}
+                >
+                  <span>{copy[lang].products[key].name}</span>
+                  <small>
+                    {copy[lang].products[key].version} ·{" "}
+                    {copy[lang].products[key].eyebrow}
+                  </small>
+                </a>
+              ))}
+            </div>
+          </details>
+          <a className="nav-link" href="/downloads">
+            {t.downloads}
           </a>
-          <a className={activeProduct === "readycheck" ? "text-white" : ""} href={productLinks.readycheck.href}>
-            {t.nav.readycheck}
+          <a className="nav-link" href="/support">
+            {t.support}
           </a>
-          <a className={activeProduct === "crossfit" ? "text-white" : ""} href={productLinks.crossfit.href}>
-            {t.nav.crossfit}
-          </a>
-          <a href="/downloads">{t.nav.downloads}</a>
-          <a href="/support">{t.nav.support}</a>
         </div>
-        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
-          <select
-            className="h-11 w-[132px] rounded-lg border border-white/15 bg-[#111827] px-2 text-sm font-bold text-white md:hidden"
-            value={activeProduct ? productLinks[activeProduct].href : ""}
-            onChange={(event) => {
-              if (event.target.value) {
-                window.location.href = event.target.value;
-              }
-            }}
-          >
-            <option value="">{t.nav.software}</option>
-            <option value={productLinks.readytype.href}>{t.nav.readytype}</option>
-            <option value={productLinks.readycheck.href}>{t.nav.readycheck}</option>
-            <option value={productLinks.crossfit.href}>{t.nav.crossfit}</option>
-          </select>
-          <div className="hidden sm:block">
-            <LanguageToggle lang={lang} onChange={setLang} />
-          </div>
+
+        <div className="nav-actions">
+          <LanguageToggle lang={lang} onChange={setLang} />
           <a
-            className="hidden items-center gap-2 rounded-lg border border-white/15 bg-white/[.06] px-4 py-3 text-sm font-bold lg:flex"
-            href={activeProduct ? productLinks[activeProduct].repo : links.readyCheckGitHub}
-            {...externalLinkProps(activeProduct ? productLinks[activeProduct].repo : links.readyCheckGitHub)}
+            className="nav-github"
+            href={activeProduct ? productLinks[activeProduct].secondary : links.profile}
+            {...externalLinkProps(
+              activeProduct ? productLinks[activeProduct].secondary : links.profile,
+            )}
           >
             <Github size={16} />
-            {t.nav.github}
+            <span>{t.github}</span>
           </a>
         </div>
       </nav>
-      <div className="flex justify-end sm:hidden">
-        <LanguageToggle lang={lang} onChange={setLang} />
-      </div>
     </header>
   );
 }
 
+function Footer({ lang }: { lang: Lang }) {
+  const t = copy[lang];
+
+  return (
+    <footer className="site-footer">
+      <div className="footer-inner">
+        <div>
+          <a className="footer-brand" href="/">
+            ReadySuite
+          </a>
+          <p>{t.footer.line}</p>
+          <p>{t.footer.note}</p>
+        </div>
+        <div className="footer-links">
+          <a href="/readytype">ReadyType</a>
+          <a href="/readycheck">ReadyCheck</a>
+          <a href="/crossfit-whoop-video">CrossFit WHOOP Video</a>
+          <a href="/downloads">{t.nav.downloads}</a>
+          <a href="/support">{t.nav.support}</a>
+          <a href="/privacy">{t.footer.privacy}</a>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 function Shell({
+  activeProduct,
   children,
   lang,
   setLang,
-  activeProduct,
 }: {
+  activeProduct?: ProductKey;
   children: ReactNode;
   lang: Lang;
   setLang: (lang: Lang) => void;
-  activeProduct?: ProductKey;
 }) {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-base text-white">
-      <div className="grid-bg pointer-events-none absolute inset-0 opacity-70" />
-      <div className="pointer-events-none absolute -left-48 top-16 h-[30rem] w-[30rem] rounded-full bg-cyan/15 blur-3xl" />
-      <div className="pointer-events-none absolute right-0 top-40 h-[26rem] w-[26rem] rounded-full bg-green/10 blur-3xl" />
-      <Header lang={lang} setLang={setLang} activeProduct={activeProduct} />
+    <main className="site-shell">
+      <MotionObserver />
+      <Header activeProduct={activeProduct} lang={lang} setLang={setLang} />
       {children}
-      <footer className="relative border-t border-white/10 px-6 py-10">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 text-sm text-muted md:flex-row">
-          <div>
-            <p className="font-black text-white">ReadySuite</p>
-            <p className="mt-2">{copy[lang].footer}</p>
-          </div>
-          <div className="flex flex-wrap gap-5">
-            <a href={productLinks.readytype.href}>ReadyType</a>
-            <a href={productLinks.readycheck.href}>ReadyCheck</a>
-            <a href={productLinks.crossfit.href}>CrossFit WHOOP Video</a>
-            <a href="/downloads">{copy[lang].nav.downloads}</a>
-            <a href="/support">{copy[lang].nav.support}</a>
-            <a href="/privacy">{lang === "zh" ? "隐私" : "Privacy"}</a>
-            <a href={links.readyCheckReleases} {...externalLinkProps(links.readyCheckReleases)}>Releases</a>
-            <a href={links.readyCheckIssues} {...externalLinkProps(links.readyCheckIssues)}>Issues</a>
-          </div>
-        </div>
-      </footer>
+      <Footer lang={lang} />
     </main>
   );
+}
+
+function ReadyTypeVisual({
+  compact = false,
+  priority = false,
+}: {
+  compact?: boolean;
+  priority?: boolean;
+}) {
+  return (
+    <div className={`product-visual readytype-visual ${compact ? "is-compact" : ""}`}>
+      <div className="app-window-frame">
+        <Image
+          alt="ReadyType app window"
+          className="app-window-image"
+          height={712}
+          priority={priority}
+          sizes={compact ? "(max-width: 768px) 90vw, 620px" : "(max-width: 900px) 92vw, 760px"}
+          src="/readytype-window.jpg"
+          width={900}
+        />
+      </div>
+      <div className="readytype-hud">
+        <Image
+          alt="ReadyType recording HUD"
+          height={148}
+          sizes={compact ? "(max-width: 768px) 84vw, 520px" : "(max-width: 900px) 88vw, 680px"}
+          src="/readytype-hud-recording.png"
+          width={1180}
+        />
+        <span className="hud-live-dot" />
+      </div>
+    </div>
+  );
+}
+
+function ReadyCheckVisual({
+  compact = false,
+  priority = false,
+}: {
+  compact?: boolean;
+  priority?: boolean;
+}) {
+  return (
+    <div className={`product-visual readycheck-visual ${compact ? "is-compact" : ""}`}>
+      <div className="app-window-frame app-window-dark">
+        <video
+          aria-label="ReadyCheck product demonstration"
+          autoPlay
+          className="readycheck-demo-video"
+          data-motion-video
+          loop
+          muted
+          playsInline
+          poster="/readycheck-preview.jpg"
+          preload="metadata"
+        >
+          <source src="/readycheck-preview.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div className="readycheck-detail-row">
+        <div className="readycheck-main-shot">
+          <Image
+            alt="ReadyCheck main window"
+            height={1086}
+            priority={priority}
+            sizes="(max-width: 768px) 58vw, 460px"
+            src="/readycheck-main-cropped.jpg"
+            width={1456}
+          />
+        </div>
+        <div className="readycheck-widget-shot">
+          <Image
+            alt="ReadyCheck desktop widget"
+            height={650}
+            sizes="(max-width: 768px) 30vw, 220px"
+            src="/readycheck-widget-real.jpg"
+            width={700}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CrossfitVisual({
+  compact = false,
+  priority = false,
+}: {
+  compact?: boolean;
+  priority?: boolean;
+}) {
+  return (
+    <div className={`product-visual crossfit-visual ${compact ? "is-compact" : ""}`}>
+      <div className="crossfit-phone">
+        <Image
+          alt="Privacy-safe synthetic athlete with WHOOP-style HUD"
+          className="crossfit-image"
+          fill
+          priority={priority}
+          sizes={compact ? "(max-width: 768px) 66vw, 330px" : "(max-width: 900px) 72vw, 420px"}
+          src="/crossfit-digital-athlete.jpg"
+        />
+        <div className="crossfit-shade" />
+        <div className="crossfit-scan" />
+        <div className="crossfit-hud">
+          <div className="crossfit-hud-top">
+            <span>WHOOP LIVE</span>
+            <span>00:18</span>
+          </div>
+          <div className="crossfit-metrics">
+            <div>
+              <small>HR</small>
+              <strong>156</strong>
+            </div>
+            <div>
+              <small>STRAIN</small>
+              <strong>12.4</strong>
+            </div>
+            <div>
+              <small>ZONE</small>
+              <strong>4</strong>
+            </div>
+          </div>
+        </div>
+        <div className="crossfit-output">
+          <span>9:16 · 4K</span>
+          <div>
+            <i />
+          </div>
+        </div>
+      </div>
+      <div className="crossfit-caption">
+        <Film size={18} />
+        <span>HyperFrames · 10 HUD presets · Privacy-safe preview</span>
+      </div>
+    </div>
+  );
+}
+
+function ProductVisual({
+  compact,
+  priority,
+  product,
+}: {
+  compact?: boolean;
+  priority?: boolean;
+  product: ProductKey;
+}) {
+  if (product === "readytype") {
+    return <ReadyTypeVisual compact={compact} priority={priority} />;
+  }
+  if (product === "readycheck") {
+    return <ReadyCheckVisual compact={compact} priority={priority} />;
+  }
+  return <CrossfitVisual compact={compact} priority={priority} />;
 }
 
 export function HomePage() {
@@ -552,547 +725,346 @@ export function HomePage() {
 
   return (
     <Shell lang={lang} setLang={setLang}>
-      <section className="relative mx-auto grid max-w-7xl gap-14 px-6 pb-24 pt-20 lg:grid-cols-[1fr_.9fr] lg:items-center">
-        <div>
-          <span className="inline-flex rounded-md border border-cyan/25 bg-cyan/10 px-4 py-2 text-sm font-bold text-cyan">
-            {t.home.eyebrow}
-          </span>
-          <h1 className="mt-8 max-w-5xl break-all text-3xl font-black leading-tight tracking-tight text-white sm:break-words sm:text-5xl md:text-6xl xl:whitespace-nowrap">
-            {t.home.title}
-          </h1>
-          <p className="mt-7 max-w-2xl break-words text-lg leading-8 text-white/70">{t.home.body}</p>
-          <div className="mt-9 flex flex-wrap gap-4">
-            <Button href={productLinks.readytype.href}>
+      <section className="home-hero">
+        <div className="home-hero-copy" data-reveal>
+          <p className="eyebrow">{t.home.eyebrow}</p>
+          <h1>{t.home.title}</h1>
+          <p className="hero-body">{t.home.body}</p>
+          <div className="hero-actions">
+            <Button href="#products">
               {t.home.primary}
-              <ArrowRight size={16} />
+              <ArrowRight size={17} />
             </Button>
-            <Button href={productLinks.readycheck.href} variant="secondary">
+            <Button href="/downloads" variant="secondary">
               {t.home.secondary}
-              <ArrowRight size={16} />
             </Button>
           </div>
-          <p className="mt-6 max-w-xl text-sm leading-6 text-muted">{t.home.note}</p>
         </div>
-        <HomeMotionShowcase lang={lang} />
+        <div className="home-lead" data-reveal>
+          <div className="home-lead-heading">
+            <div>
+              <p>{t.home.leadLabel}</p>
+              <h2>{t.home.leadTitle}</h2>
+            </div>
+            <Image
+              alt="ReadyType app icon"
+              height={76}
+              priority
+              src="/readytype-icon.png"
+              width={76}
+            />
+          </div>
+          <ReadyTypeVisual compact priority />
+          <p className="home-lead-body">{t.home.leadBody}</p>
+          <a className="text-link" href="/readytype">
+            {t.products.readytype.primary}
+            <ArrowRight size={16} />
+          </a>
+        </div>
+      </section>
+
+      <section className="products-intro" id="products" data-reveal>
+        <p className="eyebrow">{t.home.productsLabel}</p>
+        <h2>{t.home.productsTitle}</h2>
+      </section>
+
+      {(Object.keys(routes) as ProductKey[]).map((product, index) => (
+        <HomeProductBand
+          index={index}
+          key={product}
+          lang={lang}
+          product={product}
+        />
+      ))}
+
+      <section className="open-source-band" data-reveal>
+        <div>
+          <Github size={28} />
+          <h2>{t.home.openSourceTitle}</h2>
+          <p>{t.home.openSourceBody}</p>
+        </div>
+        <Button href={links.profile} variant="light">
+          {t.home.openSourceAction}
+          <ArrowRight size={17} />
+        </Button>
       </section>
     </Shell>
   );
 }
 
-function HomeMotionShowcase({ lang }: { lang: Lang }) {
-  const t = copy[lang];
+function HomeProductBand({
+  index,
+  lang,
+  product,
+}: {
+  index: number;
+  lang: Lang;
+  product: ProductKey;
+}) {
+  const t = copy[lang].products[product];
+  const reverse = index % 2 === 1;
 
   return (
-    <div className="motion-stage relative overflow-hidden rounded-lg border border-white/10 bg-[#0d1426] p-5 shadow-panel md:p-6">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_76%_12%,rgba(72,208,245,.18),transparent_32%),radial-gradient(circle_at_16%_82%,rgba(53,229,153,.14),transparent_34%)]" />
-      <div className="relative flex items-center justify-between gap-4">
-        <div>
-          <p className="text-sm font-black tracking-[0.24em] text-cyan">{t.home.panelTitle}</p>
-          <p className="mt-2 text-sm leading-6 text-white/60">{t.home.panelBody}</p>
+    <section
+      className={`home-product-band product-${product} ${reverse ? "is-reverse" : ""}`}
+      data-reveal
+    >
+      <div className="home-product-copy">
+        <div className="product-meta">
+          <span>{t.name}</span>
+          <span>{t.version}</span>
+          <span>{t.platform}</span>
         </div>
-        <div className="flex gap-1.5">
-          <span className="h-2 w-2 rounded-full bg-cyan motion-dot motion-dot-a" />
-          <span className="h-2 w-2 rounded-full bg-green motion-dot motion-dot-b" />
-          <span className="h-2 w-2 rounded-full bg-purple motion-dot motion-dot-c" />
-        </div>
-      </div>
-
-      <div className="relative mt-7 min-h-[440px] overflow-hidden rounded-lg border border-white/10 bg-[#070d19] p-4 sm:min-h-[390px]">
-        <div className="motion-card motion-card-type">
-          <ReadyTypeMini />
-        </div>
-        <div className="motion-card motion-card-check">
-          <ReadyCheckMini />
-        </div>
-        <div className="motion-card motion-card-fit">
-          <CrossfitMini t={copy[lang].mock} />
-        </div>
-      </div>
-
-      <div className="relative mt-5 grid gap-3 sm:grid-cols-3">
-        <SoftwarePill
-          title={t.home.products[0][0]}
-          action={t.home.products[0][2]}
-          href={productLinks.readytype.href}
-        />
-        <SoftwarePill
-          title={t.home.products[1][0]}
-          action={t.home.products[1][2]}
-          href={productLinks.readycheck.href}
-        />
-        <SoftwarePill
-          title={t.home.products[2][0]}
-          action={t.home.products[2][2]}
-          href={productLinks.crossfit.href}
-        />
-      </div>
-    </div>
-  );
-}
-
-function SoftwarePill({ title, action, href }: { title: string; action: string; href: string }) {
-  return (
-    <a className="group rounded-lg border border-white/10 bg-white/[.045] p-4 transition hover:bg-white/[.08]" href={href}>
-      <span className="block text-sm font-black text-white">{title}</span>
-      <span className="mt-2 inline-flex items-center gap-2 text-xs font-black text-cyan">
-        {action}
-        <ArrowRight size={14} className="transition group-hover:translate-x-0.5" />
-      </span>
-    </a>
-  );
-}
-
-const resourceTargets = {
-  downloads: [
-    { primary: links.readyTypeDownload, secondary: links.readyTypeGitHub },
-    { primary: links.readyCheckDownload, secondary: links.readyCheckGitHub },
-    { primary: links.crossfitGitHub, secondary: links.crossfitDocs },
-  ],
-  support: [
-    { primary: links.readyTypeIssues, secondary: links.readyTypeGitHub },
-    { primary: links.readyCheckIssues, secondary: links.readyCheckGitHub },
-    { primary: links.crossfitIssues, secondary: links.crossfitGitHub },
-  ],
-  privacy: [
-    { primary: productLinks.readytype.href, secondary: links.readyTypeIssues },
-    { primary: productLinks.readycheck.href, secondary: links.readyCheckIssues },
-    { primary: "/support", secondary: "/support" },
-  ],
-} as const;
-
-export function ResourcePage({ page }: { page: ResourceKey }) {
-  const [lang, setLang] = useState<Lang>("zh");
-  const t = copy[lang].resources[page];
-  const targets = resourceTargets[page];
-
-  return (
-    <Shell lang={lang} setLang={setLang}>
-      <section className="relative mx-auto max-w-7xl px-6 pb-24 pt-20">
-        <span className="inline-flex rounded-md border border-cyan/25 bg-cyan/10 px-4 py-2 text-sm font-bold text-cyan">
-          {t.eyebrow}
-        </span>
-        <h1 className="mt-8 max-w-4xl break-all text-3xl font-black leading-tight tracking-tight text-white [text-wrap:balance] sm:break-words sm:text-5xl md:text-6xl">{t.title}</h1>
-        <p className="mt-7 max-w-3xl break-words text-lg leading-8 text-white/70">{t.body}</p>
-
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {t.cards.map(([title, body, action], index) => (
-            <article key={title} className="flex min-h-[320px] flex-col rounded-lg border border-white/10 bg-panel/82 p-6 shadow-panel">
-              <div className="grid h-12 w-12 place-items-center rounded-lg border border-cyan/25 bg-cyan/10 text-cyan">
-                {index === 0 ? <Mic size={20} /> : index === 1 ? <MonitorUp size={20} /> : <Film size={20} />}
-              </div>
-              <h2 className="mt-7 break-words text-2xl font-black text-white">{title}</h2>
-              <p className="mt-4 flex-1 break-words text-base leading-7 text-white/66">{body}</p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button href={targets[index].primary}>{action}</Button>
-                <Button href={targets[index].secondary} variant="secondary">
-                  {t.secondary}
-                </Button>
-              </div>
-            </article>
+        <h2>{t.title}</h2>
+        <p>{t.body}</p>
+        <div className="highlight-list">
+          {t.highlights.map((highlight) => (
+            <span key={highlight}>
+              <Check size={14} />
+              {highlight}
+            </span>
           ))}
         </div>
-      </section>
-    </Shell>
+        <a className="text-link" href={routes[product]}>
+          {t.primary}
+          <ArrowRight size={16} />
+        </a>
+      </div>
+      <ProductVisual compact product={product} />
+    </section>
   );
 }
 
 export function ProductPage({ product }: { product: ProductKey }) {
   const [lang, setLang] = useState<Lang>("zh");
-  const t = copy[lang][product];
-  const productLink = productLinks[product];
-  const isReadyCheck = product === "readycheck";
-  const isReadyType = product === "readytype";
-  const isCrossfit = product === "crossfit";
-  const icons = isReadyCheck ? featureIcons : isReadyType ? readyTypeIcons : crossfitIcons;
-  const readyTypeCost =
-    lang === "zh"
-      ? {
-          label: "低成本 AI 处理",
-          title: "调用 DeepSeek-v4-flash",
-          body: "爽用一天不到 1 毛钱",
-        }
-      : {
-          label: "Low-cost AI processing",
-          title: "Powered by DeepSeek-v4-flash",
-          body: "Typical daily use stays under RMB 0.10",
-        };
+  const t = copy[lang].products[product];
+  const icons = featureIcons[product];
 
   return (
-    <Shell lang={lang} setLang={setLang} activeProduct={product}>
-      <section className="relative mx-auto grid max-w-7xl gap-14 px-6 pb-20 pt-20 lg:grid-cols-[1fr_.95fr] lg:items-center">
-        <div>
-          <span className="inline-flex rounded-md border border-cyan/25 bg-cyan/10 px-4 py-2 text-sm font-bold text-cyan">
-            {t.eyebrow}
-          </span>
-          <h1
-            className={`mt-8 max-w-4xl break-all font-black leading-tight tracking-tight text-white [text-wrap:balance] sm:break-words ${
-              isCrossfit ? "text-3xl sm:text-4xl md:text-5xl" : "text-3xl sm:text-5xl md:text-6xl"
-            }`}
-          >
-            {t.title}
-          </h1>
-          <p className="mt-7 max-w-2xl break-words text-lg leading-8 text-white/70">{t.body}</p>
-          {isReadyType ? (
-            <div className="mt-7 max-w-2xl rounded-lg border border-green/25 bg-green/10 p-5 shadow-panel">
-              <p className="text-xs font-black tracking-[0.22em] text-green">{readyTypeCost.label}</p>
-              <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-                <p className="break-words text-2xl font-black text-white">{readyTypeCost.title}</p>
-                <p className="break-words text-lg font-black text-green">{readyTypeCost.body}</p>
-              </div>
-            </div>
-          ) : null}
-          <div className="mt-9 flex flex-wrap gap-4">
-            <Button href={productLink.primary}>
-              {isReadyCheck ? <ArrowDownToLine size={18} /> : <Github size={18} />}
+    <Shell activeProduct={product} lang={lang} setLang={setLang}>
+      <section className={`product-hero product-${product}`}>
+        <div className="product-hero-copy" data-reveal>
+          <div className="product-meta">
+            <span>{t.name}</span>
+            <span>{t.version}</span>
+            <span>{t.platform}</span>
+          </div>
+          <p className="eyebrow">{t.eyebrow}</p>
+          <h1>{t.title}</h1>
+          <p className="hero-body">{t.body}</p>
+          <div className="hero-actions">
+            <Button href={productLinks[product].primary}>
+              {product === "crossfit" ? <Github size={17} /> : <ArrowDownToLine size={17} />}
               {t.primary}
             </Button>
-            <Button href={productLink.secondary} variant="secondary">
+            <Button href={productLinks[product].secondary} variant="secondary">
               {t.secondary}
-              <ArrowRight size={16} />
+              <ArrowRight size={17} />
             </Button>
           </div>
+          <div className="highlight-list">
+            {t.highlights.map((highlight) => (
+              <span key={highlight}>
+                <Check size={14} />
+                {highlight}
+              </span>
+            ))}
+          </div>
         </div>
-        {isReadyCheck ? <ReadyCheckScreenshot /> : isReadyType ? <ReadyTypePreview /> : <CrossfitPreview t={copy[lang].mock} />}
+        <div data-reveal>
+          <ProductVisual priority product={product} />
+        </div>
       </section>
 
-      <section className="relative mx-auto max-w-7xl px-6 pb-24">
-        <p className="text-sm font-black tracking-[0.24em] text-cyan">{t.sections.features}</p>
-        <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <section className="feature-section" data-reveal>
+        <div className="section-heading">
+          <p className="eyebrow">{t.sectionLabel}</p>
+          <h2>{t.sectionTitle}</h2>
+        </div>
+        <div className="feature-grid">
           {t.features.map(([title, body], index) => {
             const Icon = icons[index];
             return (
-              <article key={title} className="rounded-lg border border-white/10 bg-panel/82 p-6 shadow-panel">
-                <div className="grid h-12 w-12 place-items-center rounded-lg border border-cyan/25 bg-cyan/10 text-cyan">
-                  <Icon size={20} />
-                </div>
-                <h3 className="mt-6 break-words text-xl font-black">{title}</h3>
-                <p className="mt-3 break-words text-sm leading-6 text-white/65">{body}</p>
+              <article key={title}>
+                <Icon size={22} />
+                <h3>{title}</h3>
+                <p>{body}</p>
               </article>
             );
           })}
         </div>
       </section>
 
-      <section className="relative mx-auto max-w-7xl px-6 pb-24">
-        <div className="grid overflow-hidden rounded-lg border border-white/10 bg-[#0d1426] shadow-panel lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="border-b border-white/10 p-7 md:p-10 lg:border-b-0 lg:border-r">
-            <p className="text-sm font-black tracking-[0.24em] text-cyan">{t.sections.notes}</p>
-            <h2 className="mt-4 text-4xl font-black tracking-tight md:text-5xl">{t.sections.download}</h2>
-            <p className="mt-6 text-lg leading-8 text-white/70">{t.ctaBody}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button href={productLink.primary}>{t.primary}</Button>
-              <Button href={productLink.tertiary} variant="secondary">{t.releaseLabel}</Button>
+      <section className={`spotlight-band product-${product}`} data-reveal>
+        <p>{t.spotlight}</p>
+        <h2>{t.spotlightValue}</h2>
+        <span>{t.spotlightBody}</span>
+      </section>
+
+      <section className="release-section" data-reveal>
+        <div className="release-heading">
+          <p className="eyebrow">{t.notesTitle}</p>
+          <h2>{t.finalTitle}</h2>
+          <p>{t.finalBody}</p>
+          <Button href={productLinks[product].primary}>
+            {product === "crossfit" ? <Github size={17} /> : <ArrowDownToLine size={17} />}
+            {t.primary}
+          </Button>
+        </div>
+        <div className="release-notes">
+          {t.notes.map((note) => (
+            <div key={note}>
+              <ShieldCheck size={19} />
+              <span>{note}</span>
             </div>
-          </div>
-          <div className="grid gap-px bg-white/10 sm:grid-cols-2">
-            {t.notes.map((item, index) => (
-              <div key={item} className="bg-[#09101f] p-6">
-                <div className="grid h-11 w-11 place-items-center rounded-lg bg-white/[.06] text-cyan">
-                  {index === 0 ? <Terminal size={19} /> : index === 1 ? <LockKeyhole size={19} /> : <ShieldCheck size={19} />}
-                </div>
-                <p className="mt-5 text-base font-bold leading-7 text-white">{item}</p>
-              </div>
-            ))}
-          </div>
+          ))}
+          <a
+            className="release-link"
+            href={productLinks[product].tertiary}
+            {...externalLinkProps(productLinks[product].tertiary)}
+          >
+            {product === "crossfit"
+              ? lang === "zh"
+                ? "阅读完整文档"
+                : "Read full docs"
+              : lang === "zh"
+                ? "查看所有发布"
+                : "View all releases"}
+            <ArrowRight size={16} />
+          </a>
         </div>
       </section>
     </Shell>
   );
 }
 
-function ReadyCheckScreenshot() {
-  return (
-    <div className="motion-shell readycheck-shell relative mx-auto w-full max-w-[700px] overflow-hidden rounded-lg border border-white/12 bg-[#07101e] p-3 shadow-panel">
-      <div className="readycheck-backlight pointer-events-none absolute inset-0" />
-      <div className="readycheck-main-frame relative z-10 overflow-hidden rounded-md border border-white/10">
-        <Image
-          alt="ReadyCheck macOS app quota window"
-          className="readycheck-main-shot block w-full"
-          height={1110}
-          priority
-          sizes="(min-width: 1024px) 700px, calc(100vw - 48px)"
-          src="/readycheck-main-cropped.jpg"
-          width={1456}
-        />
-      </div>
-      <div className="relative z-10 mt-3 grid gap-3 sm:grid-cols-[1fr_0.82fr]">
-        <ReadyCheckMenuCard />
-        <div className="readycheck-widget-shot rounded-lg border border-white/14 bg-[#09101f] p-1.5 shadow-[0_18px_54px_rgba(0,0,0,.34)]">
-          <Image
-            alt="ReadyCheck desktop widget"
-            className="block w-full rounded-md"
-            height={650}
-            sizes="260px"
-            src="/readycheck-widget-real.jpg"
-            width={700}
-          />
-        </div>
-      </div>
-    </div>
-  );
+const resourceIcons: Record<ResourceKey, LucideIcon> = {
+  downloads: ArrowDownToLine,
+  support: Github,
+  privacy: LockKeyhole,
+};
+
+function getResourceRows(page: ResourceKey, lang: Lang) {
+  const products = copy[lang].products;
+
+  if (page === "downloads") {
+    return [
+      {
+        name: products.readytype.name,
+        meta: `${products.readytype.version} · ${products.readytype.platform}`,
+        body: products.readytype.body,
+        action: products.readytype.primary,
+        href: links.readytypeDownload,
+      },
+      {
+        name: products.readycheck.name,
+        meta: `${products.readycheck.version} · ${products.readycheck.platform}`,
+        body: products.readycheck.body,
+        action: products.readycheck.primary,
+        href: links.readycheckDownload,
+      },
+      {
+        name: products.crossfit.name,
+        meta: `${products.crossfit.version} · ${products.crossfit.platform}`,
+        body: products.crossfit.body,
+        action: products.crossfit.primary,
+        href: links.crossfit,
+      },
+    ];
+  }
+
+  if (page === "support") {
+    return [
+      {
+        name: products.readytype.name,
+        meta: lang === "zh" ? "安装、权限、识别与输出" : "Install, permissions, recognition, and output",
+        body: lang === "zh"
+          ? "提交 ReadyType 安装、快捷键、语音识别、DeepSeek 或粘贴问题。"
+          : "Report ReadyType installation, shortcut, recognition, DeepSeek, or paste issues.",
+        action: lang === "zh" ? "提交问题" : "Open issue",
+        href: links.readytypeIssues,
+      },
+      {
+        name: products.readycheck.name,
+        meta: lang === "zh" ? "OAuth、额度读取与桌面显示" : "OAuth, usage reading, and desktop UI",
+        body: lang === "zh"
+          ? "提交 ReadyCheck 连接、刷新、菜单栏、Widget 或平台兼容问题。"
+          : "Report ReadyCheck connection, refresh, menu-bar, widget, or platform issues.",
+        action: lang === "zh" ? "提交问题" : "Open issue",
+        href: links.readycheckIssues,
+      },
+      {
+        name: products.crossfit.name,
+        meta: lang === "zh" ? "模板、HUD 与渲染工作流" : "Templates, HUDs, and rendering workflow",
+        body: lang === "zh"
+          ? "提交模板结构、素材处理、HUD 预设、Skill 或 Plugin 问题。"
+          : "Report template, footage, HUD preset, Skill, or Plugin issues.",
+        action: lang === "zh" ? "提交问题" : "Open issue",
+        href: links.crossfitIssues,
+      },
+    ];
+  }
+
+  return [
+    {
+      name: "ReadyType",
+      meta: lang === "zh" ? "本机权限与安全存储" : "Local permissions and secure storage",
+      body: lang === "zh"
+        ? "麦克风、语音识别和辅助功能权限由 macOS 管理；DeepSeek 密钥存储在 macOS 钥匙串。"
+        : "macOS manages microphone, speech-recognition, and accessibility permissions; the DeepSeek key is stored in Keychain.",
+      action: lang === "zh" ? "查看产品" : "View product",
+      href: "/readytype",
+    },
+    {
+      name: "ReadyCheck",
+      meta: lang === "zh" ? "只读用量检查" : "Read-only usage checks",
+      body: lang === "zh"
+        ? "额度刷新读取已授权的用量数据，不通过发送 Prompt 或调用模型推理来估算额度。"
+        : "Usage refresh reads authorized usage data and does not estimate quota by sending prompts or inference requests.",
+      action: lang === "zh" ? "查看产品" : "View product",
+      href: "/readycheck",
+    },
+    {
+      name: "GitHub Issues",
+      meta: lang === "zh" ? "公开反馈区域" : "Public feedback area",
+      body: lang === "zh"
+        ? "提交问题前，请移除 Token、回调 URL、账户 ID、私人素材和本地文件路径。"
+        : "Remove tokens, callback URLs, account IDs, private media, and local file paths before submitting.",
+      action: lang === "zh" ? "查看支持" : "View support",
+      href: "/support",
+    },
+  ];
 }
 
-function ReadyCheckMenuCard({ className = "" }: { className?: string }) {
+export function ResourcePage({ page }: { page: ResourceKey }) {
+  const [lang, setLang] = useState<Lang>("zh");
+  const t = copy[lang].resources[page];
+  const rows = getResourceRows(page, lang);
+  const Icon = resourceIcons[page];
+
   return (
-    <div className={`readycheck-menu-card rounded-lg border border-white/14 bg-[#111827]/92 p-4 shadow-[0_24px_70px_rgba(0,0,0,.48)] backdrop-blur ${className}`}>
-      <div className="flex items-center justify-between gap-3">
-        <div>
-          <p className="text-sm font-black text-white">菜单栏速览</p>
-          <p className="mt-1 text-xs font-bold text-white/55">ReadyCheck</p>
-        </div>
-        <div className="readycheck-spinner grid h-9 w-9 place-items-center rounded-md bg-[linear-gradient(135deg,#48d0f5,#35e599)]">
-          <span className="h-4 w-4 rounded-full border-[3px] border-white border-t-white/40" />
-        </div>
-      </div>
-      <div className="mt-4 grid gap-3">
-        <MenuMetric label="5 小时窗口" value="88%" tone="cyan" />
-        <MenuMetric label="7 天窗口" value="78%" tone="green" />
-      </div>
-      <div className="mt-4 flex items-center justify-between gap-3 text-[11px] font-black text-white/60">
-        <span>自动刷新</span>
-        <span className="text-green">不消耗模型额度</span>
-      </div>
-    </div>
-  );
-}
-
-function MenuMetric({ label, value, tone }: { label: string; value: string; tone: "cyan" | "green" }) {
-  return (
-    <div>
-      <div className="flex items-center justify-between text-xs font-black text-white/82">
-        <span>{label}</span>
-        <span>{value}</span>
-      </div>
-      <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-white/12">
-        <div className={`readycheck-menu-fill h-full rounded-full ${tone === "cyan" ? "bg-cyan" : "bg-green"}`} />
-      </div>
-    </div>
-  );
-}
-
-function ReadyTypePreview() {
-  return (
-    <div className="motion-shell relative mx-auto w-full max-w-[620px] overflow-hidden rounded-lg border border-white/12 bg-[#09101f] shadow-panel">
-      <div className="flex items-center gap-2 border-b border-white/10 bg-white/[.045] px-5 py-4">
-        <span className="h-3 w-3 rounded-full bg-[#ff6258]" />
-        <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
-        <span className="h-3 w-3 rounded-full bg-[#28c840]" />
-        <span className="ml-4 text-sm font-semibold text-white/76">ReadyType</span>
-        <span className="pulse-chip ml-auto rounded-md border border-cyan/25 bg-cyan/10 px-3 py-1 text-xs font-bold text-cyan">
-          Option x2
-        </span>
-      </div>
-      <div className="grid gap-5 p-6 md:p-7">
-        <div className="rounded-lg border border-white/10 bg-[#111827] p-5">
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan">Voice Input</p>
-          <p className="mt-4 text-2xl font-black text-white">说出想法，ReadyType 输出可用文本。</p>
-          <div className="mt-5 flex h-16 items-end gap-1.5 rounded-md bg-[#050914] p-4">
-            {Array.from({ length: 18 }).map((_, index) => (
-              <span
-                key={index}
-                className="wave-bar flex-1 rounded-full bg-cyan"
-                style={{ animationDelay: `${index * 80}ms` }}
-              />
-            ))}
-          </div>
-          <div className="type-output mt-4 rounded-md border border-white/10 bg-[#050914] p-4 text-sm leading-6 text-white/70">
-            <span>双击 Option 开始，完成后自动粘贴到当前输入框。</span>
-          </div>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {["直接转文字", "整理成文", "翻译成英文", "写给 AI"].map((mode, index) => (
-            <div key={mode} className={`mode-card mode-card-${index} rounded-lg border border-white/10 bg-white/[.045] p-4`}>
-              <p className="font-black text-white">{mode}</p>
-              <p className="mt-2 text-xs text-muted">输出模式</p>
+    <Shell lang={lang} setLang={setLang}>
+      <section className="resource-hero" data-reveal>
+        <Icon size={28} />
+        <p className="eyebrow">{t.eyebrow}</p>
+        <h1>{t.title}</h1>
+        <p>{t.body}</p>
+      </section>
+      <section className="resource-list" data-reveal>
+        {rows.map((row) => (
+          <article key={row.name}>
+            <div>
+              <p className="resource-meta">{row.meta}</p>
+              <h2>{row.name}</h2>
+              <p>{row.body}</p>
             </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function CrossfitPreview({ t }: { t: (typeof copy)[Lang]["mock"] }) {
-  return (
-    <div className="motion-shell crossfit-workbench relative mx-auto w-full max-w-[620px] overflow-hidden rounded-lg border border-white/12 bg-[#050914] shadow-panel">
-      <div className="flex items-center gap-2 border-b border-white/10 bg-white/[.045] px-5 py-4">
-        <span className="h-3 w-3 rounded-full bg-[#ff6258]" />
-        <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
-        <span className="h-3 w-3 rounded-full bg-[#28c840]" />
-        <span className="ml-4 text-sm font-semibold text-white/76">CrossFit WHOOP Video</span>
-        <span className="pulse-chip ml-auto rounded-md border border-green/25 bg-green/10 px-3 py-1 text-xs font-bold text-green">
-          4K 9:16
-        </span>
-      </div>
-
-      <div className="grid gap-4 p-4 md:grid-cols-[0.72fr_1fr] md:p-5">
-        <div className="rounded-lg border border-white/10 bg-[#09101f] p-4">
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-green">Privacy-safe pipeline</p>
-          <div className="mt-4 grid gap-3">
-            {crossfitPipeline.map((step, index) => (
-              <div key={step.label} className={`asset-row asset-row-${index} flex items-center gap-3 rounded-md border border-white/10 bg-white/[.045] p-3`}>
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-md border border-green/20 bg-green/10 text-green">
-                  {index === 0 ? <Activity size={17} /> : index === 1 ? <MonitorUp size={17} /> : <Video size={17} />}
-                </span>
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-black text-white">{step.label}</p>
-                  <p className="mt-1 text-xs text-muted">{step.body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="relative mx-auto aspect-[9/16] w-full max-w-[300px] overflow-hidden rounded-lg border border-white/12 bg-[#050914]">
-          <Image
-            alt="CrossFit WHOOP Video anonymized digital athlete preview"
-            className="crossfit-real-frame object-cover"
-            fill
-            priority
-            sizes="(min-width: 1024px) 300px, 80vw"
-            src="/crossfit-digital-athlete.jpg"
-          />
-          <div className="crossfit-scene crossfit-scene-0 absolute inset-0" />
-          <div className="crossfit-scene crossfit-scene-1 absolute inset-0" />
-          <div className="crossfit-scene crossfit-scene-2 absolute inset-0" />
-          <div className="digital-grid absolute inset-0 opacity-60" />
-          <div className="pose-skeleton absolute inset-x-[30%] top-[24%] h-64">
-            <span className="pose-head" />
-            <span className="pose-spine" />
-            <span className="pose-arm pose-arm-left" />
-            <span className="pose-arm pose-arm-right" />
-            <span className="pose-leg pose-leg-left" />
-            <span className="pose-leg pose-leg-right" />
-          </div>
-          <div className="rep-figure absolute left-1/2 top-[32%] h-52 w-32 -translate-x-1/2 rounded-full border border-green/35 bg-green/10 shadow-[0_0_55px_rgba(53,229,153,.28)] mix-blend-screen" />
-          <div className="hud-scan absolute inset-x-0 top-0 h-28 bg-green/10" />
-          <div className="absolute left-4 right-4 top-4 rounded-lg border border-white/12 bg-[#07101d]/80 p-3 backdrop-blur">
-            <div className="flex items-center justify-between gap-3">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-green">DIGITAL ATHLETE</p>
-              <p className="text-xs font-black text-white/70">LIVE HUD</p>
-            </div>
-            <div className="mt-3 grid grid-cols-3 gap-2 text-center">
-              <HudMetric label="HR" value="156" active />
-              <HudMetric label="Strain" value="12.4" />
-              <HudMetric label="Zone" value="4" />
-            </div>
-          </div>
-          <div className="absolute bottom-4 left-4 right-4 rounded-lg border border-white/12 bg-[#07101d]/86 p-3">
-            <p className="text-xs font-black tracking-[0.18em] text-green">EXPORT</p>
-            <p className="mt-1 text-sm font-black text-white">{t.vertical}</p>
-            <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/10">
-              <div className="export-progress h-full rounded-full bg-green" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t border-white/10 bg-[#09101f] p-4">
-        <div className="flex items-center gap-3">
-          <Film className="shrink-0 text-green" size={20} />
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-black text-white">{t.workflow}</p>
-            <div className="timeline-track mt-3 h-3 overflow-hidden rounded-full bg-white/10">
-              <div className="timeline-progress h-full rounded-full bg-cyan" />
-              <span className="timeline-cursor" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ReadyTypeMini() {
-  return (
-    <div className="h-full rounded-lg border border-white/10 bg-[#09101f] p-5">
-      <div className="flex items-center gap-2">
-        <Mic className="text-cyan" size={20} />
-        <p className="font-black text-white">ReadyType</p>
-        <span className="pulse-chip ml-auto rounded-md bg-cyan/10 px-3 py-1 text-xs font-black text-cyan">Option x2</span>
-      </div>
-      <div className="mt-7 flex h-20 items-end gap-2 rounded-lg bg-[#050914] p-4">
-        {Array.from({ length: 20 }).map((_, index) => (
-          <span
-            key={index}
-            className="wave-bar flex-1 rounded-full bg-cyan"
-            style={{ animationDelay: `${index * 55}ms` }}
-          />
+            <a href={row.href} {...externalLinkProps(row.href)}>
+              {row.action}
+              <ArrowRight size={16} />
+            </a>
+          </article>
         ))}
-      </div>
-      <p className="type-output mt-6 rounded-lg border border-white/10 bg-white/[.045] p-4 text-lg font-black leading-8 text-white">
-        把自然口述整理成可直接使用的文字。
-      </p>
-      <div className="mt-5 rounded-lg border border-green/20 bg-green/10 p-4">
-        <p className="text-xs font-black tracking-[0.18em] text-green">DEEPSEEK-V4-FLASH</p>
-        <p className="mt-2 text-xl font-black text-white">一天不到 1 毛钱</p>
-      </div>
-    </div>
-  );
-}
-
-function ReadyCheckMini() {
-  return (
-    <div className="relative h-full overflow-hidden rounded-lg border border-white/10 bg-[#09101f] p-4">
-      <div className="readycheck-backlight pointer-events-none absolute inset-0" />
-      <div className="relative z-10 flex items-center gap-2">
-        <MonitorUp className="text-cyan" size={20} />
-        <p className="font-black text-white">ReadyCheck</p>
-        <span className="ml-auto rounded-md border border-green/25 bg-green/10 px-3 py-1 text-xs font-black text-green">LIVE</span>
-      </div>
-      <div className="readycheck-main-frame readycheck-mini-shot relative mt-6 overflow-hidden rounded-lg border border-white/10 bg-[#050914]">
-        <Image
-          alt="ReadyCheck product screenshot"
-          className="readycheck-main-shot block w-full"
-          height={1110}
-          sizes="360px"
-          src="/readycheck-main-cropped.jpg"
-          width={1456}
-        />
-      </div>
-      <div className="relative z-10 mt-3 grid grid-cols-[1fr_0.76fr] gap-3">
-        <ReadyCheckMenuCard className="readycheck-menu-mini" />
-        <div className="readycheck-mini-widget readycheck-widget-shot rounded-lg border border-white/14 bg-[#09101f] p-1 shadow-[0_18px_42px_rgba(0,0,0,.34)]">
-          <Image
-            alt="ReadyCheck pinned desktop widget"
-            className="block w-full rounded-md"
-            height={650}
-            sizes="180px"
-            src="/readycheck-widget-real.jpg"
-            width={700}
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function CrossfitMini({ t }: { t: (typeof copy)[Lang]["mock"] }) {
-  return (
-    <div className="relative mx-auto h-full max-w-[260px] overflow-hidden rounded-lg border border-white/10 bg-[#050914] p-4">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(53,229,153,.28),transparent_30%),linear-gradient(180deg,#111827,#050914_64%,#02050c)]" />
-      <div className="hud-scan absolute inset-x-0 top-0 h-24 bg-green/10" />
-      <div className="relative rounded-lg border border-white/12 bg-white/[.07] p-4">
-        <p className="text-xs font-black tracking-[0.18em] text-green">WHOOP HUD</p>
-        <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-          <HudMetric label="HR" value="156" active />
-          <HudMetric label="Strain" value="12.4" />
-          <HudMetric label="Zone" value="4" />
-        </div>
-      </div>
-      <div className="relative mt-40 rounded-lg border border-white/12 bg-[#07101d]/86 p-4">
-        <p className="text-sm font-black text-white">{t.vertical}</p>
-        <p className="mt-1 text-xs text-muted">{t.workflow}</p>
-      </div>
-    </div>
-  );
-}
-
-function HudMetric({ label, value, active = false }: { label: string; value: string; active?: boolean }) {
-  return (
-    <div className={`rounded-md bg-[#06101d] p-2 ${active ? "metric-pulse" : ""}`}>
-      <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-muted">{label}</p>
-      <p className="mt-1 text-lg font-black text-white">{value}</p>
-    </div>
+      </section>
+    </Shell>
   );
 }

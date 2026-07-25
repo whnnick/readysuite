@@ -4,12 +4,25 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ReadySuite — AI 原生工作流工具箱",
+  metadataBase: new URL("https://readysuite.vercel.app"),
+  title: {
+    default: "ReadySuite — 让 AI 工具更顺手",
+    template: "%s — ReadySuite",
+  },
   description:
-    "ReadySuite 为开发者和创作者提供轻量工具，当前包含 ReadyCheck、ReadyType 与开源视频制作工作流。",
+    "ReadySuite 为语音输入、Codex 用量管理和运动内容制作提供实用的开源工具。",
   icons: {
     icon: "/icon.svg",
     apple: "/apple-icon.svg",
+  },
+  openGraph: {
+    title: "ReadySuite — 让 AI 工具更顺手",
+    description:
+      "从语音输入、用量管理到运动内容制作，把实用工具放进每天的工作流。",
+    siteName: "ReadySuite",
+    type: "website",
+    locale: "zh_CN",
+    url: "/",
   },
 };
 

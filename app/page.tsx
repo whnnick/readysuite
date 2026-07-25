@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { HomePage } from "./product-ui";
 
 export const metadata: Metadata = {
-  title: "ReadySuite — AI 原生工作流工具箱",
+  title: "让 AI 工具更顺手",
   description:
-    "ReadySuite 为开发者和创作者提供轻量工具，包含 ReadyCheck、ReadyType 和开源视频制作工作流。",
+    "从语音输入、用量管理到运动内容制作，ReadySuite 把实用工具放进每天的工作流。",
 };
 
 export default function Page() {

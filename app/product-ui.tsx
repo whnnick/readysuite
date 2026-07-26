@@ -990,7 +990,7 @@ function HomeProductBand({
           <ArrowRight size={16} />
         </a>
       </div>
-      <ProductVisual compact product={product} />
+      <ProductVisual compact priority={index === 0} product={product} />
     </section>
   );
 }

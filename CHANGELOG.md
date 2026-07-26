@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.2 - 2026-07-26
+
+- Reduced the ReadyType HUD capsule scale across homepage, product, and mobile layouts.
+- Added a shared inset mask that removes inconsistent source-image edges across all HUD states.
+- Added subtle opposing scroll motion between product copy and visuals on desktop.
+- Kept mobile and reduced-motion layouts static, and preloaded first-viewport HUD states.
+
 ## 1.2.1 - 2026-07-26
 
 - Added privacy-safe campaign attribution for product, download, release, support, documentation, and language events.

@@ -523,6 +523,73 @@ function MotionObserver() {
   return null;
 }
 
+function ScrollPairMotion() {
+  useEffect(() => {
+    const pairs = document.querySelectorAll<HTMLElement>("[data-scroll-pair]");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduceMotion || !("IntersectionObserver" in window)) return;
+
+    const activePairs = new Set<HTMLElement>();
+    let animationFrame = 0;
+
+    const update = () => {
+      animationFrame = 0;
+      const viewportHeight = window.innerHeight;
+
+      activePairs.forEach((pair) => {
+        const bounds = pair.getBoundingClientRect();
+        const range = viewportHeight / 2 + bounds.height / 2;
+        const progress = Math.max(
+          -1,
+          Math.min(1, (bounds.top + bounds.height / 2 - viewportHeight / 2) / range),
+        );
+        const direction = pair.classList.contains("is-reverse") ? -1 : 1;
+
+        pair.style.setProperty("--copy-shift", `${progress * 18 * direction}px`);
+        pair.style.setProperty("--copy-lift", `${progress * 5}px`);
+        pair.style.setProperty("--visual-shift", `${progress * -28 * direction}px`);
+        pair.style.setProperty("--visual-lift", `${progress * -8}px`);
+        pair.style.setProperty("--visual-tilt", `${progress * 0.55 * direction}deg`);
+        pair.style.setProperty("--visual-scale", `${1 - Math.abs(progress) * 0.018}`);
+      });
+    };
+
+    const scheduleUpdate = () => {
+      if (!animationFrame) animationFrame = window.requestAnimationFrame(update);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const pair = entry.target as HTMLElement;
+          if (entry.isIntersecting) {
+            activePairs.add(pair);
+          } else {
+            activePairs.delete(pair);
+          }
+        });
+        scheduleUpdate();
+      },
+      { rootMargin: "18% 0px", threshold: 0 },
+    );
+
+    pairs.forEach((pair) => observer.observe(pair));
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    scheduleUpdate();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+    };
+  }, []);
+
+  return null;
+}
+
 function LanguageToggle({
   lang,
   onChange,
@@ -697,6 +764,7 @@ function Shell({
     <main className="site-shell">
       <PromotionAnalytics />
       <MotionObserver />
+      <ScrollPairMotion />
       <Header activeProduct={activeProduct} lang={lang} setLang={setLang} />
       {children}
       <Footer lang={lang} />
@@ -730,31 +798,36 @@ function ReadyTypeVisual({
         className="readytype-hud-sequence"
         role="img"
       >
-        <Image
-          alt=""
-          className="readytype-hud-state is-listening"
-          height={96}
-          priority={priority}
-          sizes={compact ? "(max-width: 768px) 72vw, 360px" : "(max-width: 900px) 76vw, 430px"}
-          src="/readytype-hud-recording-latest.png"
-          width={500}
-        />
-        <Image
-          alt=""
-          className="readytype-hud-state is-processing"
-          height={96}
-          sizes={compact ? "(max-width: 768px) 72vw, 360px" : "(max-width: 900px) 76vw, 430px"}
-          src="/readytype-hud-processing-latest.png"
-          width={500}
-        />
-        <Image
-          alt=""
-          className="readytype-hud-state is-complete"
-          height={96}
-          sizes={compact ? "(max-width: 768px) 72vw, 360px" : "(max-width: 900px) 76vw, 430px"}
-          src="/readytype-hud-pasted-latest.png"
-          width={500}
-        />
+        <div className="readytype-hud-mask">
+          <Image
+            alt=""
+            className="readytype-hud-state is-listening"
+            height={96}
+            loading={priority ? "eager" : "lazy"}
+            priority={priority}
+            sizes={compact ? "(max-width: 768px) 58vw, 340px" : "(max-width: 900px) 54vw, 360px"}
+            src="/readytype-hud-recording-latest.png"
+            width={500}
+          />
+          <Image
+            alt=""
+            className="readytype-hud-state is-processing"
+            height={96}
+            loading={priority ? "eager" : "lazy"}
+            sizes={compact ? "(max-width: 768px) 58vw, 340px" : "(max-width: 900px) 54vw, 360px"}
+            src="/readytype-hud-processing-latest.png"
+            width={500}
+          />
+          <Image
+            alt=""
+            className="readytype-hud-state is-complete"
+            height={96}
+            loading={priority ? "eager" : "lazy"}
+            sizes={compact ? "(max-width: 768px) 58vw, 340px" : "(max-width: 900px) 54vw, 360px"}
+            src="/readytype-hud-pasted-latest.png"
+            width={500}
+          />
+        </div>
       </div>
     </div>
   );
@@ -961,6 +1034,7 @@ function HomeProductBand({
     <section
       className={`home-product-band product-${product} ${reverse ? "is-reverse" : ""}`}
       data-reveal
+      data-scroll-pair
     >
       <div className="home-product-copy">
         <div className="product-meta">

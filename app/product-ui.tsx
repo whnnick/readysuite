@@ -68,8 +68,6 @@ const copy = {
       body: "从语音输入、用量管理到运动内容制作，每个工具只解决一个具体问题。",
       primary: "探索产品",
       secondary: "查看下载",
-      leadLabel: "首选工具 · ReadyType 1.5.0",
-      leadTitle: "开口说，直接得到可用文字。",
       productsLabel: "ReadySuite 产品",
       productsTitle: "每个产品，专注一个具体问题。",
       openSourceTitle: "开源、透明，并持续更新。",
@@ -219,8 +217,6 @@ const copy = {
       body: "From voice input and usage visibility to sports content production, each tool solves one concrete problem.",
       primary: "Explore products",
       secondary: "View downloads",
-      leadLabel: "Featured · ReadyType 1.5.0",
-      leadTitle: "Speak naturally. Get usable text.",
       productsLabel: "ReadySuite products",
       productsTitle: "One product for each concrete problem.",
       openSourceTitle: "Open, transparent, and continuously updated.",
@@ -924,15 +920,6 @@ export function HomePage() {
               {t.home.secondary}
             </Button>
           </div>
-        </div>
-        <div className="home-lead" data-reveal>
-          <div className="home-lead-heading">
-            <div>
-              <p>{t.home.leadLabel}</p>
-              <h2>{t.home.leadTitle}</h2>
-            </div>
-          </div>
-          <ReadyTypeVisual compact priority />
         </div>
       </section>
 

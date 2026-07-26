@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.4 - 2026-07-27
+
+- Removed the duplicate ReadyType feature card from the homepage hero.
+- Refocused the hero on the ReadySuite proposition and primary navigation.
+- Shortened the first viewport so the single detailed ReadyType product story appears sooner.
+
 ## 1.2.3 - 2026-07-26
 
 - Replaced lateral scroll parallax with restrained, staggered product-section focus transitions.

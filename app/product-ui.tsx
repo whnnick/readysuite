@@ -523,73 +523,6 @@ function MotionObserver() {
   return null;
 }
 
-function ScrollPairMotion() {
-  useEffect(() => {
-    const pairs = document.querySelectorAll<HTMLElement>("[data-scroll-pair]");
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (reduceMotion || !("IntersectionObserver" in window)) return;
-
-    const activePairs = new Set<HTMLElement>();
-    let animationFrame = 0;
-
-    const update = () => {
-      animationFrame = 0;
-      const viewportHeight = window.innerHeight;
-
-      activePairs.forEach((pair) => {
-        const bounds = pair.getBoundingClientRect();
-        const range = viewportHeight / 2 + bounds.height / 2;
-        const progress = Math.max(
-          -1,
-          Math.min(1, (bounds.top + bounds.height / 2 - viewportHeight / 2) / range),
-        );
-        const direction = pair.classList.contains("is-reverse") ? -1 : 1;
-
-        pair.style.setProperty("--copy-shift", `${progress * 18 * direction}px`);
-        pair.style.setProperty("--copy-lift", `${progress * 5}px`);
-        pair.style.setProperty("--visual-shift", `${progress * -28 * direction}px`);
-        pair.style.setProperty("--visual-lift", `${progress * -8}px`);
-        pair.style.setProperty("--visual-tilt", `${progress * 0.55 * direction}deg`);
-        pair.style.setProperty("--visual-scale", `${1 - Math.abs(progress) * 0.018}`);
-      });
-    };
-
-    const scheduleUpdate = () => {
-      if (!animationFrame) animationFrame = window.requestAnimationFrame(update);
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const pair = entry.target as HTMLElement;
-          if (entry.isIntersecting) {
-            activePairs.add(pair);
-          } else {
-            activePairs.delete(pair);
-          }
-        });
-        scheduleUpdate();
-      },
-      { rootMargin: "18% 0px", threshold: 0 },
-    );
-
-    pairs.forEach((pair) => observer.observe(pair));
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("resize", scheduleUpdate);
-    scheduleUpdate();
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", scheduleUpdate);
-      if (animationFrame) window.cancelAnimationFrame(animationFrame);
-    };
-  }, []);
-
-  return null;
-}
-
 function LanguageToggle({
   lang,
   onChange,
@@ -764,7 +697,6 @@ function Shell({
     <main className="site-shell">
       <PromotionAnalytics />
       <MotionObserver />
-      <ScrollPairMotion />
       <Header activeProduct={activeProduct} lang={lang} setLang={setLang} />
       {children}
       <Footer lang={lang} />
@@ -781,7 +713,7 @@ function ReadyTypeVisual({
 }) {
   return (
     <div className={`product-visual readytype-visual ${compact ? "is-compact" : ""}`}>
-      <div className="app-window-frame app-window-light">
+      <div className="app-window-frame app-window-light readytype-window-stage">
         <Image
           alt="ReadyType app window"
           className="app-window-image"
@@ -789,9 +721,24 @@ function ReadyTypeVisual({
           loading={priority ? "eager" : "lazy"}
           priority={priority}
           sizes={compact ? "(max-width: 768px) 90vw, 620px" : "(max-width: 900px) 92vw, 760px"}
-          src="/readytype-window-light.png"
+          src="/readytype-window-clean.png"
           width={900}
         />
+        <div aria-hidden="true" className="readytype-input-demo">
+          <div className="readytype-demo-status">
+            <span className="is-listening">正在聆听</span>
+            <span className="is-processing">正在整理</span>
+            <span className="is-complete">已输入</span>
+          </div>
+          <div className="readytype-demo-field">
+            <span className="readytype-demo-raw">
+              帮我整理：周五完成界面验收，下周邀请测试用户。
+            </span>
+            <span className="readytype-demo-final">
+              周五完成界面验收，下周邀请首批测试用户。
+            </span>
+          </div>
+        </div>
       </div>
       <div
         aria-label="ReadyType voice input changes from listening to processing and completion"
@@ -1034,7 +981,6 @@ function HomeProductBand({
     <section
       className={`home-product-band product-${product} ${reverse ? "is-reverse" : ""}`}
       data-reveal
-      data-scroll-pair
     >
       <div className="home-product-copy">
         <div className="product-meta">

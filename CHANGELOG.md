@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.3 - 2026-07-26
+
+- Replaced lateral scroll parallax with restrained, staggered product-section focus transitions.
+- Added a synchronized ReadyType demo for listening, live text entry, processing, and final output.
+- Replaced the ReadyType product image with a cursor-free light interface preview.
+- Kept the product window stable while limiting motion to meaningful interface state changes.
+
 ## 1.2.2 - 2026-07-26
 
 - Reduced the ReadyType HUD capsule scale across homepage, product, and mobile layouts.

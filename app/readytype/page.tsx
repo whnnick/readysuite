@@ -14,7 +14,7 @@ export const metadata: Metadata = {
       "双击 Option 开始说话，把口述内容直接输入、整理成文、翻译成英文或写给 AI。",
     images: [
       {
-        url: "/readytype-window-light.png",
+        url: "/readytype-window-clean.png",
         width: 900,
         height: 680,
         alt: "ReadyType macOS app",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ReadyType 1.5.0",
     description: "双击 Option，说出想法，ReadyType 自动整理成可以直接发送的文字。",
-    images: ["/readytype-window-light.png"],
+    images: ["/readytype-window-clean.png"],
   },
 };
 

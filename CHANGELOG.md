@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.5 - 2026-07-29
+
+- Updated ReadyCheck product and social metadata from 0.1.72 to 0.1.75.
+- Added verified Credits balance, unlimited-state, and per-reset expiration details to the bilingual product copy.
+- Kept the privacy-cropped ReadyCheck visual instead of publishing a full screenshot containing subscription details.
+
 ## 1.2.4 - 2026-07-27
 
 - Removed the duplicate ReadyType feature card from the homepage hero.

@@ -5,7 +5,7 @@
 The official bilingual website for ReadySuite products:
 
 - ReadyType 1.5.0: a Chinese-first macOS voice input app.
-- ReadyCheck 0.1.72: a macOS and Windows Codex usage monitor.
+- ReadyCheck 0.1.75: a macOS and Windows Codex usage monitor.
 - CrossFit WHOOP Video 1.0.11: a vertical 4K sports video workflow.
 
 ## Local preview

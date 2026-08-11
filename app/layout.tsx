@@ -15,6 +15,9 @@ export const metadata: Metadata = {
     icon: "/icon.svg",
     apple: "/apple-icon.svg",
   },
+  verification: {
+    google: "9H24-EJPHHJr1xqq8iX3Gc2vcb_6rYh3EakOFRaLkqI",
+  },
   openGraph: {
     title: "ReadySuite — 让 AI 工具更顺手",
     description:

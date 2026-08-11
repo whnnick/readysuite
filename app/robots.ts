@@ -6,6 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
+    host: "https://readysuite.vercel.app",
     sitemap: "https://readysuite.vercel.app/sitemap.xml",
   };
 }

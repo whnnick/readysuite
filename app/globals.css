@@ -1369,6 +1369,133 @@ img {
   font-weight: 700;
 }
 
+.guide-entry {
+  display: flex;
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 42px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.guide-entry h2 {
+  max-width: 720px;
+  margin: 8px 0 0;
+  font-size: 28px;
+  line-height: 1.25;
+}
+
+.guide-entry > a {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.guide-page {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 72px 0 120px;
+}
+
+.guide-hero {
+  display: grid;
+  min-height: 590px;
+  align-items: center;
+  grid-template-columns: minmax(0, 0.86fr) minmax(440px, 1.14fr);
+  gap: 70px;
+}
+
+.guide-hero h1 {
+  max-width: 650px;
+  margin: 18px 0 0;
+  font-size: 54px;
+  line-height: 1.08;
+}
+
+.guide-hero > div:first-child > p:not(.eyebrow) {
+  max-width: 610px;
+  margin: 24px 0 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.guide-hero .product-visual {
+  padding: 28px;
+}
+
+.guide-body {
+  width: min(860px, 100%);
+  margin: 58px auto 0;
+  border-top: 1px solid var(--line);
+}
+
+.guide-body > section {
+  display: grid;
+  padding: 54px 0;
+  border-bottom: 1px solid var(--line);
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 22px;
+}
+
+.guide-body > section > span {
+  padding-top: 5px;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 760;
+}
+
+.guide-body h2 {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.25;
+}
+
+.guide-body p,
+.guide-body li {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.guide-body p {
+  margin: 18px 0 0;
+}
+
+.guide-body ol {
+  margin: 22px 0 0;
+  padding-left: 22px;
+}
+
+.guide-body li + li {
+  margin-top: 8px;
+}
+
+.guide-cta {
+  display: flex;
+  margin-top: 82px;
+  padding: 52px;
+  border-radius: 8px;
+  background: var(--soft);
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.guide-cta h2 {
+  max-width: 680px;
+  margin: 10px 0 0;
+  font-size: 34px;
+  line-height: 1.2;
+}
+
 .site-footer {
   padding: 56px 0;
   border-top: 1px solid var(--line);
@@ -1806,6 +1933,8 @@ img {
   .open-source-band,
   .resource-hero,
   .resource-list,
+  .guide-entry,
+  .guide-page,
   .footer-inner {
     width: calc(100% - 32px);
   }
@@ -1982,6 +2111,60 @@ img {
 
   .resource-list article > a {
     width: fit-content;
+  }
+
+  .guide-entry,
+  .guide-cta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .guide-entry h2 {
+    font-size: 25px;
+  }
+
+  .guide-page {
+    padding-top: 32px;
+    padding-bottom: 80px;
+  }
+
+  .guide-hero {
+    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .guide-hero h1 {
+    font-size: 38px;
+  }
+
+  .guide-hero .product-visual {
+    max-height: 220px;
+    overflow: hidden;
+    padding: 14px;
+  }
+
+  .guide-body {
+    margin-top: 50px;
+  }
+
+  .guide-body > section {
+    padding: 38px 0;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .guide-body h2 {
+    font-size: 25px;
+  }
+
+  .guide-cta {
+    margin-top: 52px;
+    padding: 34px 24px;
+  }
+
+  .guide-cta h2 {
+    font-size: 28px;
   }
 
   .open-source-band {

@@ -1,15 +1,8 @@
-import type { Metadata } from "next";
 import { ResourcePage } from "../product-ui";
+import { resourceMetadata } from "../seo";
 
-export const metadata: Metadata = {
-  title: "下载中心",
-  description:
-    "获取 ReadyType、ReadyCheck、ReadyDownloader 与 CrossFit WHOOP Video 的最新公开版本或源码预览。",
-  alternates: {
-    canonical: "/downloads",
-  },
-};
+export const metadata = resourceMetadata("downloads", "zh");
 
 export default function Page() {
-  return <ResourcePage page="downloads" />;
+  return <ResourcePage lang="zh" page="downloads" />;
 }

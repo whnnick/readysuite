@@ -35,8 +35,9 @@ import {
   routes,
   type ProductKey,
 } from "./product-registry";
+import { guideContent, type GuideKey } from "./guide-content";
 
-type Lang = "zh" | "en";
+export type Lang = "zh" | "en";
 type ResourceKey = "downloads" | "support" | "privacy";
 type CampaignContext = Partial<Record<"campaign" | "medium" | "source", string>>;
 
@@ -422,6 +423,13 @@ function externalLinkProps(href: string) {
   return href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {};
 }
 
+function localizedHref(href: string, lang: Lang) {
+  if (lang === "zh" || href.startsWith("#") || !href.startsWith("/")) {
+    return href;
+  }
+  return href === "/" ? "/en" : `/en${href}`;
+}
+
 const campaignStorageKey = "readysuite-campaign";
 
 function sanitizeCampaignValue(value: string | null) {
@@ -564,10 +572,8 @@ function MotionObserver() {
 
 function LanguageToggle({
   lang,
-  onChange,
 }: {
   lang: Lang;
-  onChange: (lang: Lang) => void;
 }) {
   const changeLanguage = (nextLang: Lang) => {
     if (nextLang !== lang) {
@@ -579,7 +585,12 @@ function LanguageToggle({
         }),
       );
     }
-    onChange(nextLang);
+    const { hash, pathname, search } = window.location;
+    const unprefixedPath = pathname.replace(/^\/en(?=\/|$)/, "") || "/";
+    const nextPath = nextLang === "en"
+      ? unprefixedPath === "/" ? "/en" : `/en${unprefixedPath}`
+      : unprefixedPath;
+    window.location.assign(`${nextPath}${search}${hash}`);
   };
 
   return (
@@ -627,18 +638,16 @@ function Button({
 function Header({
   activeProduct,
   lang,
-  setLang,
 }: {
   activeProduct?: ProductKey;
   lang: Lang;
-  setLang: (lang: Lang) => void;
 }) {
   const t = copy[lang].nav;
 
   return (
     <header className="site-header">
       <nav className="site-nav" aria-label="Primary navigation">
-        <a className="brand-link" href="/" aria-label="ReadySuite home">
+        <a className="brand-link" href={localizedHref("/", lang)} aria-label="ReadySuite home">
           <span className="brand-mark">R</span>
           <span className="brand-name">ReadySuite</span>
         </a>
@@ -653,7 +662,7 @@ function Header({
               {productOrder.map((key) => (
                 <a
                   className={activeProduct === key ? "is-active" : ""}
-                  href={routes[key]}
+                  href={localizedHref(routes[key], lang)}
                   key={key}
                 >
                   <span>{copy[lang].products[key].name}</span>
@@ -665,16 +674,16 @@ function Header({
               ))}
             </div>
           </details>
-          <a className="nav-link" href="/downloads">
+          <a className="nav-link" href={localizedHref("/downloads", lang)}>
             {t.downloads}
           </a>
-          <a className="nav-link" href="/support">
+          <a className="nav-link" href={localizedHref("/support", lang)}>
             {t.support}
           </a>
         </div>
 
         <div className="nav-actions">
-          <LanguageToggle lang={lang} onChange={setLang} />
+          <LanguageToggle lang={lang} />
           <a
             className="nav-github"
             href={activeProduct ? productLinks[activeProduct].secondary : links.profile}
@@ -698,20 +707,20 @@ function Footer({ lang }: { lang: Lang }) {
     <footer className="site-footer">
       <div className="footer-inner">
         <div>
-          <a className="footer-brand" href="/">
+          <a className="footer-brand" href={localizedHref("/", lang)}>
             ReadySuite
           </a>
           <p>{t.footer.line}</p>
           <p>{t.footer.note}</p>
         </div>
         <div className="footer-links">
-          <a href="/readytype">ReadyType</a>
-          <a href="/readycheck">ReadyCheck</a>
-          <a href="/readydownloader">ReadyDownloader</a>
-          <a href="/crossfit-whoop-video">CrossFit WHOOP Video</a>
-          <a href="/downloads">{t.nav.downloads}</a>
-          <a href="/support">{t.nav.support}</a>
-          <a href="/privacy">{t.footer.privacy}</a>
+          <a href={localizedHref("/readytype", lang)}>ReadyType</a>
+          <a href={localizedHref("/readycheck", lang)}>ReadyCheck</a>
+          <a href={localizedHref("/readydownloader", lang)}>ReadyDownloader</a>
+          <a href={localizedHref("/crossfit-whoop-video", lang)}>CrossFit WHOOP Video</a>
+          <a href={localizedHref("/downloads", lang)}>{t.nav.downloads}</a>
+          <a href={localizedHref("/support", lang)}>{t.nav.support}</a>
+          <a href={localizedHref("/privacy", lang)}>{t.footer.privacy}</a>
         </div>
       </div>
     </footer>
@@ -722,22 +731,20 @@ function Shell({
   activeProduct,
   children,
   lang,
-  setLang,
 }: {
   activeProduct?: ProductKey;
   children: ReactNode;
   lang: Lang;
-  setLang: (lang: Lang) => void;
 }) {
   useEffect(() => {
     document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
   }, [lang]);
 
   return (
-    <main className="site-shell">
+    <main className="site-shell" lang={lang === "zh" ? "zh-CN" : "en"}>
       <PromotionAnalytics />
       <MotionObserver />
-      <Header activeProduct={activeProduct} lang={lang} setLang={setLang} />
+      <Header activeProduct={activeProduct} lang={lang} />
       {children}
       <Footer lang={lang} />
     </main>
@@ -979,14 +986,34 @@ function ProductVisual({
   return <CrossfitVisual compact={compact} priority={priority} />;
 }
 
-export function HomePage() {
-  const [lang, setLang] = useState<Lang>("zh");
+const guideRoutes: Partial<Record<ProductKey, string>> = {
+  readytype: "/guides/macos-chinese-voice-input",
+  readycheck: "/guides/codex-usage-limit",
+  readydownloader: "/guides/download-youtube-instagram-mac",
+};
+
+const guideLabels: Record<Lang, Record<ProductKey, string>> = {
+  zh: {
+    readytype: "如何在 Mac 上用中文语音直接输入和整理文字",
+    readycheck: "如何查看 Codex 额度、Token 用量和重置时间",
+    readydownloader: "如何在 Mac 上保存 YouTube 与 Instagram 视频",
+    crossfit: "",
+  },
+  en: {
+    readytype: "How to use Chinese voice input on Mac",
+    readycheck: "How to track Codex limits, token usage, and resets",
+    readydownloader: "How to save YouTube and Instagram videos on Mac",
+    crossfit: "",
+  },
+};
+
+export function HomePage({ lang = "zh" }: { lang?: Lang }) {
   const [selectedProduct, setSelectedProduct] = useState<ProductKey>("readytype");
   const t = copy[lang];
   const selected = t.products[selectedProduct];
 
   return (
-    <Shell lang={lang} setLang={setLang}>
+    <Shell lang={lang}>
       <section className="home-hero">
         <div className="home-hero-copy" data-reveal>
           <p className="eyebrow">{t.home.eyebrow}</p>
@@ -997,7 +1024,7 @@ export function HomePage() {
               {t.home.primary}
               <ArrowRight size={17} />
             </Button>
-            <Button href="/downloads" variant="secondary">
+            <Button href={localizedHref("/downloads", lang)} variant="secondary">
               {t.home.secondary}
             </Button>
           </div>
@@ -1045,7 +1072,7 @@ export function HomePage() {
                 <span key={highlight}><Check size={14} />{highlight}</span>
               ))}
             </div>
-            <a className="text-link" href={routes[selectedProduct]}>
+            <a className="text-link" href={localizedHref(routes[selectedProduct], lang)}>
               {selected.homeAction}<ArrowRight size={16} />
             </a>
           </div>
@@ -1070,14 +1097,13 @@ export function HomePage() {
   );
 }
 
-export function ProductPage({ product }: { product: ProductKey }) {
-  const [lang, setLang] = useState<Lang>("zh");
+export function ProductPage({ product, lang = "zh" }: { product: ProductKey; lang?: Lang }) {
   const t = copy[lang].products[product];
   const icons = featureIcons[product];
   const repositoryFirst = product === "crossfit" || product === "readydownloader";
 
   return (
-    <Shell activeProduct={product} lang={lang} setLang={setLang}>
+    <Shell activeProduct={product} lang={lang}>
       <section className={`product-hero product-${product}`}>
         <div className="product-hero-copy" data-reveal>
           <div className="product-meta">
@@ -1136,6 +1162,19 @@ export function ProductPage({ product }: { product: ProductKey }) {
         <h2>{t.spotlightValue}</h2>
         <span>{t.spotlightBody}</span>
       </section>
+
+      {guideRoutes[product] ? (
+        <section className="guide-entry" data-reveal>
+          <div>
+            <p className="eyebrow">{lang === "zh" ? "使用指南" : "Practical guide"}</p>
+            <h2>{guideLabels[lang][product]}</h2>
+          </div>
+          <a href={localizedHref(guideRoutes[product], lang)}>
+            {lang === "zh" ? "阅读指南" : "Read guide"}
+            <ArrowRight size={16} />
+          </a>
+        </section>
+      ) : null}
 
       <section className="release-section" data-reveal>
         <div className="release-heading">
@@ -1242,7 +1281,7 @@ function getResourceRows(page: ResourceKey, lang: Lang) {
         ? "麦克风、语音识别和辅助功能权限由 macOS 管理；DeepSeek 密钥存储在 macOS 钥匙串。"
         : "macOS manages microphone, speech-recognition, and accessibility permissions; the DeepSeek key is stored in Keychain.",
       action: lang === "zh" ? "查看产品" : "View product",
-      href: "/readytype",
+      href: localizedHref("/readytype", lang),
     },
     {
       name: "ReadyCheck",
@@ -1251,7 +1290,7 @@ function getResourceRows(page: ResourceKey, lang: Lang) {
         ? "额度刷新读取已授权的用量数据，不通过发送 Prompt 或调用模型推理来估算额度。"
         : "Usage refresh reads authorized usage data and does not estimate quota by sending prompts or inference requests.",
       action: lang === "zh" ? "查看产品" : "View product",
-      href: "/readycheck",
+      href: localizedHref("/readycheck", lang),
     },
     {
       name: "ReadyDownloader",
@@ -1260,7 +1299,7 @@ function getResourceRows(page: ResourceKey, lang: Lang) {
         ? "下载文件保存在用户选择的位置；Cookie 仅用于用户授权的会话，不应上传到公开反馈。"
         : "Files are saved to the chosen local destination. Cookies are only for authorized sessions and must not be attached to public issues.",
       action: lang === "zh" ? "查看产品" : "View product",
-      href: "/readydownloader",
+      href: localizedHref("/readydownloader", lang),
     },
     {
       name: "GitHub Issues",
@@ -1269,19 +1308,18 @@ function getResourceRows(page: ResourceKey, lang: Lang) {
         ? "提交问题前，请移除 Token、回调 URL、账户 ID、私人素材和本地文件路径。"
         : "Remove tokens, callback URLs, account IDs, private media, and local file paths before submitting.",
       action: lang === "zh" ? "查看支持" : "View support",
-      href: "/support",
+      href: localizedHref("/support", lang),
     },
   ];
 }
 
-export function ResourcePage({ page }: { page: ResourceKey }) {
-  const [lang, setLang] = useState<Lang>("zh");
+export function ResourcePage({ page, lang = "zh" }: { page: ResourceKey; lang?: Lang }) {
   const t = copy[lang].resources[page];
   const rows = getResourceRows(page, lang);
   const Icon = resourceIcons[page];
 
   return (
-    <Shell lang={lang} setLang={setLang}>
+    <Shell lang={lang}>
       <section className="resource-hero" data-reveal>
         <Icon size={28} />
         <p className="eyebrow">{t.eyebrow}</p>
@@ -1303,6 +1341,58 @@ export function ResourcePage({ page }: { page: ResourceKey }) {
           </article>
         ))}
       </section>
+    </Shell>
+  );
+}
+
+export function GuidePage({ guide, lang = "zh" }: { guide: GuideKey; lang?: Lang }) {
+  const content = guideContent[lang][guide];
+  const product = copy[lang].products[content.product];
+
+  return (
+    <Shell activeProduct={content.product} lang={lang}>
+      <article className="guide-page">
+        <header className="guide-hero" data-reveal>
+          <div>
+            <p className="eyebrow">{content.eyebrow}</p>
+            <h1>{content.title}</h1>
+            <p>{content.intro}</p>
+            <div className="highlight-list">
+              {content.summary.map((item) => (
+                <span key={item}><Check size={14} />{item}</span>
+              ))}
+            </div>
+          </div>
+          <ProductVisual compact priority product={content.product} />
+        </header>
+
+        <div className="guide-body" data-reveal>
+          {content.sections.map((section, index) => (
+            <section key={section.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <div>
+                <h2>{section.title}</h2>
+                <p>{section.body}</p>
+                {section.steps ? (
+                  <ol>
+                    {section.steps.map((step) => <li key={step}>{step}</li>)}
+                  </ol>
+                ) : null}
+              </div>
+            </section>
+          ))}
+        </div>
+
+        <section className="guide-cta" data-reveal>
+          <div>
+            <p className="eyebrow">{product.name}</p>
+            <h2>{product.finalTitle}</h2>
+          </div>
+          <Button href={localizedHref(routes[content.product], lang)}>
+            {content.cta}<ArrowRight size={17} />
+          </Button>
+        </section>
+      </article>
     </Shell>
   );
 }

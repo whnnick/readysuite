@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.0 - 2026-08-11
+
+- Added independently crawlable English routes with canonical and `hreflang` relationships across the full site.
+- Reworked page titles and descriptions around real search intent for voice input, Codex usage, and multi-platform video downloads.
+- Added accurate `WebSite`, `Organization`, `SoftwareApplication`, `SoftwareSourceCode`, `Article`, and breadcrumb structured data without fabricated reviews.
+- Published three bilingual practical guides and linked each guide from its corresponding product page.
+- Expanded the sitemap to cover all localized pages and added Google Search Console ownership verification.
+
 ## 1.3.1 - 2026-08-11
 
 - Removed fixed product-count language from the homepage so the catalog can grow without rewriting its positioning.

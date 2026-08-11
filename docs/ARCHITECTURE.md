@@ -7,6 +7,8 @@
 - `/`: brand proposition and one interactive product showcase.
 - Product routes: one focused page per product, with product-specific SEO metadata.
 - `/downloads`, `/support`, `/privacy`: shared operational pages generated from the same catalog.
+- `/en/...`: independently rendered English counterparts for every public page.
+- `/guides/...` and `/en/guides/...`: search-focused, task-oriented guides linked from the relevant product page.
 
 The homepage attracts and routes visitors. Product pages explain, demonstrate, and convert. Shared pages provide release, support, and privacy boundaries without duplicating product stories.
 
@@ -16,8 +18,12 @@ The homepage attracts and routes visitors. Product pages explain, demonstrate, a
 2. `app/product-ui.tsx`: bilingual product copy and the visual renderer selected by product key.
 3. `app/<product>/page.tsx`: static metadata for search and social sharing.
 4. `public/`: privacy-safe screenshots, posters, and motion assets.
+5. `app/seo.tsx`: localized metadata, canonical and `hreflang` relationships, and schema.org structured data.
+6. `app/guide-content.ts`: bilingual guide content kept separate from product positioning copy.
 
 Adding a product requires one registry entry, localized product copy, one visual renderer, one metadata page, and sitemap coverage. It must not add another homepage section.
+
+Chinese remains the default at `/`; English lives at `/en`. Language switching must navigate between these stable URLs instead of changing only client-side state. New public routes require a localized counterpart, reciprocal language alternates, sitemap coverage, and at least one internal link.
 
 ## Product Status Rules
 
@@ -36,3 +42,4 @@ Every user-visible update requires:
 - horizontal-overflow and console-error checks;
 - version and bilingual changelog updates;
 - sensitive-information scan before commit.
+- rendered metadata checks for title, canonical, `hreflang`, JSON-LD, robots, and sitemap.

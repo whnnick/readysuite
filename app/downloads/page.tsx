@@ -4,7 +4,7 @@ import { ResourcePage } from "../product-ui";
 export const metadata: Metadata = {
   title: "下载中心",
   description:
-    "选择 ReadySuite 产品并获取最新版本。ReadyType、ReadyCheck 通过 GitHub Releases 分发，开源工作流通过 GitHub 仓库发布。",
+    "获取 ReadyType、ReadyCheck、ReadyDownloader 与 CrossFit WHOOP Video 的最新公开版本或源码预览。",
   alternates: {
     canonical: "/downloads",
   },

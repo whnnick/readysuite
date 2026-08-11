@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { HomePage } from "./product-ui";
 
 export const metadata: Metadata = {
-  title: "让 AI 工具更顺手",
+  title: "让常用工作一步到位",
   description:
-    "从语音输入、用量管理到运动内容制作，ReadySuite 把实用工具放进每天的工作流。",
+    "ReadySuite 提供语音输入、Codex 用量查看、媒体下载和运动内容制作工具。",
   alternates: {
     canonical: "/",
   },

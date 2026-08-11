@@ -11,45 +11,34 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
+  Download,
   Film,
+  Folder,
   Github,
   Gauge,
   Keyboard,
   Languages,
+  Link2,
   LockKeyhole,
   Monitor,
   PanelTop,
   RefreshCcw,
   ShieldCheck,
+  Smartphone,
   Sparkles,
   WandSparkles,
 } from "lucide-react";
+import {
+  links,
+  productLinks,
+  productOrder,
+  routes,
+  type ProductKey,
+} from "./product-registry";
 
 type Lang = "zh" | "en";
-type ProductKey = "readytype" | "readycheck" | "crossfit";
 type ResourceKey = "downloads" | "support" | "privacy";
 type CampaignContext = Partial<Record<"campaign" | "medium" | "source", string>>;
-
-const links = {
-  profile: "https://github.com/whnnick",
-  readytype: "https://github.com/whnnick/readytype",
-  readytypeDownload: "https://github.com/whnnick/readytype/releases/latest",
-  readytypeReleases: "https://github.com/whnnick/readytype/releases",
-  readytypeIssues: "https://github.com/whnnick/readytype/issues",
-  readycheck: "https://github.com/whnnick/readycheck",
-  readycheckDownload: "https://github.com/whnnick/readycheck/releases/latest",
-  readycheckReleases: "https://github.com/whnnick/readycheck/releases",
-  readycheckIssues: "https://github.com/whnnick/readycheck/issues",
-  crossfit: "https://github.com/whnnick/crossfit-whoop-video",
-  crossfitDocs: "https://github.com/whnnick/crossfit-whoop-video#readme",
-  crossfitIssues: "https://github.com/whnnick/crossfit-whoop-video/issues",
-} as const;
-
-const routes: Record<ProductKey, string> = {
-  readytype: "/readytype",
-  readycheck: "/readycheck",
-  crossfit: "/crossfit-whoop-video",
-};
 
 const copy = {
   zh: {
@@ -60,16 +49,17 @@ const copy = {
       github: "GitHub",
       readytype: "ReadyType",
       readycheck: "ReadyCheck",
+      readydownloader: "ReadyDownloader",
       crossfit: "CrossFit WHOOP Video",
     },
     home: {
       eyebrow: "ReadySuite",
-      title: "让 AI 工具，更顺手。",
-      body: "从语音输入、用量管理到运动内容制作，每个工具只解决一个具体问题。",
+      title: "让常用工作，一步到位。",
+      body: "输入、用量、下载和内容制作。选择一个工具，直接解决眼前的问题。",
       primary: "探索产品",
       secondary: "查看下载",
-      productsLabel: "ReadySuite 产品",
-      productsTitle: "每个产品，专注一个具体问题。",
+      productsLabel: "选择产品",
+      productsTitle: "四个工具，各自把一件事做好。",
       openSourceTitle: "开源、透明，并持续更新。",
       openSourceBody: "版本、下载、更新记录和反馈入口均由对应的 GitHub 项目维护。",
       openSourceAction: "访问 GitHub",
@@ -111,37 +101,71 @@ const copy = {
       },
       readycheck: {
         name: "ReadyCheck",
-        version: "0.1.75",
+        version: "0.1.83",
         platform: "macOS · Windows",
         eyebrow: "Codex 用量",
         title: "随时看清 Codex 剩余额度。",
         body: "在主窗口、菜单栏、桌面 Widget 或 Mac 刘海下方查看 Codex 额度状态。刷新只读取用量数据，不发送模型推理请求。",
-        homeTitle: "随时看清 Codex 剩余额度。",
-        homeBody: "主窗口、菜单栏、桌面 Widget 和 Mac 刘海状态保持同步；主窗口与详细 Widget 还可显示经验证的 Credits 和重置时间。",
+        homeTitle: "Codex 额度，随时可见。",
+        homeBody: "在主窗口、菜单栏、桌面 Widget 和 Mac 刘海查看额度；主动重置即将到期时及时提醒。",
         homeAction: "了解 ReadyCheck",
         primary: "下载 ReadyCheck",
         secondary: "查看源码",
-        highlights: ["macOS 与 Windows", "菜单栏与 Widget", "Credits 与重置信息"],
+        highlights: ["macOS 与 Windows", "Token 用量看板", "重置到期提醒"],
         sectionLabel: "始终可见",
         sectionTitle: "把额度状态放在需要它的地方。",
         features: [
           ["菜单栏摘要", "无需切换页面，直接查看当前 Codex 额度窗口。"],
           ["桌面 Widget", "可拖拽并置顶，让剩余额度和刷新状态持续可见。"],
           ["刘海状态条", "在支持的 Mac 内置刘海屏下方显示紧凑额度状态。"],
-          ["Credits 与重置", "在授权数据包含对应字段时，显示 Credits 余额或无限状态，并逐条列出主动重置过期时间。"],
+          ["用量与提醒", "显示 7/30/90 天 Token 用量，并在主动重置到期前 72、48、24 和 12 小时提醒。"],
         ],
         spotlight: "同一个发布页",
         spotlightValue: "macOS DMG + Windows 便携版",
-        spotlightBody: "0.1.75 同时提供 macOS 与 Windows 10/11 预览包。",
-        notesTitle: "ReadyCheck 0.1.75",
+        spotlightBody: "0.1.83 同时提供 macOS 与 Windows 10/11 预览包，并保持主要行为一致。",
+        notesTitle: "ReadyCheck 0.1.83",
         notes: [
           "支持 Codex OAuth 订阅方式登录。",
           "OAuth 凭据通过系统安全存储保存。",
-          "仅在授权数据可以验证时显示额度、Credits 与重置时间。",
+          "通知历史会记录投递状态、尝试时间和重试次数。",
           "通过 GitHub Releases 获取最新版本。",
         ],
         finalTitle: "专注构建，不再反复检查额度。",
         finalBody: "下载 ReadyCheck，让 Codex 使用状态保持可见。",
+      },
+      readydownloader: {
+        name: "ReadyDownloader",
+        version: "0.1.4",
+        platform: "macOS 14+ · Windows",
+        eyebrow: "媒体下载",
+        title: "粘贴链接，拿到需要的视频。",
+        body: "读取视频信息和可用画质，按最高画质、iPhone 兼容或指定格式下载。需要时自动合并音视频，并支持代理与 Cookie。",
+        homeTitle: "下载视频，画质由你选。",
+        homeBody: "先查看分辨率、编码和大小，再选择最高画质、iPhone 兼容或指定格式下载。",
+        homeAction: "了解 ReadyDownloader",
+        primary: "查看 ReadyDownloader",
+        secondary: "查看源码",
+        highlights: ["最高画质", "iPhone 兼容", "macOS 与 Windows"],
+        sectionLabel: "下载前看清楚",
+        sectionTitle: "格式、画质和保存方式，都由你决定。",
+        features: [
+          ["解析可用格式", "通过 yt-dlp 读取分辨率、帧率、编码、预估大小和码率。"],
+          ["最高画质", "默认选择可用的最高画质，并在视频流没有音频时使用 FFmpeg 合并最佳音频。"],
+          ["iPhone 兼容", "检查成品编码，并在需要时转换为 H.264、AAC 和 yuv420p。"],
+          ["网络与登录", "支持直连、系统代理、自定义代理，以及可选的 Netscape 格式 Cookie。"],
+        ],
+        spotlight: "三种下载方式",
+        spotlightValue: "最高画质 · iPhone 兼容 · 指定格式",
+        spotlightBody: "macOS 是当前主产品线；Windows x64 保留为兼容实现并持续对齐共享行为。",
+        notesTitle: "ReadyDownloader 0.1.4 源码预览",
+        notes: [
+          "当前公开版本面向 macOS 14+ Apple Silicon。",
+          "下载进度、取消、保存位置和 Finder 定位均在应用内完成。",
+          "项目不提供 DRM 绕过能力，请仅下载你有权保存的内容。",
+          "0.1.4 尚未发布 GitHub Release，当前可查看源码与构建说明。",
+        ],
+        finalTitle: "下载前先看清，完成后直接使用。",
+        finalBody: "打开 ReadyDownloader 项目，了解当前源码预览和安装准备。",
       },
       crossfit: {
         name: "CrossFit WHOOP Video",
@@ -209,16 +233,17 @@ const copy = {
       github: "GitHub",
       readytype: "ReadyType",
       readycheck: "ReadyCheck",
+      readydownloader: "ReadyDownloader",
       crossfit: "CrossFit WHOOP Video",
     },
     home: {
       eyebrow: "ReadySuite",
-      title: "Make AI tools feel effortless.",
-      body: "From voice input and usage visibility to sports content production, each tool solves one concrete problem.",
+      title: "Finish everyday work in fewer steps.",
+      body: "Input, usage, downloads, and content production. Pick one tool and solve the task in front of you.",
       primary: "Explore products",
       secondary: "View downloads",
-      productsLabel: "ReadySuite products",
-      productsTitle: "One product for each concrete problem.",
+      productsLabel: "Choose a product",
+      productsTitle: "Four focused tools. One clear job each.",
       openSourceTitle: "Open, transparent, and continuously updated.",
       openSourceBody: "Versions, downloads, changelogs, and feedback are maintained in each product's GitHub repository.",
       openSourceAction: "Visit GitHub",
@@ -260,37 +285,71 @@ const copy = {
       },
       readycheck: {
         name: "ReadyCheck",
-        version: "0.1.75",
+        version: "0.1.83",
         platform: "macOS · Windows",
         eyebrow: "Codex usage",
         title: "Keep Codex quota in sight.",
         body: "View Codex usage in the main window, menu bar, desktop widget, or below a supported Mac notch. Refreshing reads usage data without sending inference requests.",
-        homeTitle: "Keep Codex quota in sight.",
-        homeBody: "The main window, menu bar, desktop widget, and supported Mac notch stay synchronized. The main window and detailed widget can also show verified Credits and reset times.",
+        homeTitle: "Codex quota, always in sight.",
+        homeBody: "See quota in the main window, menu bar, desktop widget, or Mac notch, and get timely reminders before manual resets expire.",
         homeAction: "Explore ReadyCheck",
         primary: "Download ReadyCheck",
         secondary: "View source",
-        highlights: ["macOS and Windows", "Menu bar and widget", "Credits and reset details"],
+        highlights: ["macOS and Windows", "Token usage dashboard", "Reset-expiry reminders"],
         sectionLabel: "Always visible",
         sectionTitle: "Put usage status where you need it.",
         features: [
           ["Menu-bar summary", "View the current Codex usage window without switching pages."],
           ["Desktop widget", "Drag and pin the widget so remaining quota and refresh status stay visible."],
           ["Notch status", "Show a compact usage strip below the built-in notch on supported Macs."],
-          ["Credits and resets", "When authorized data provides the fields, show the Credits balance or unlimited state and list each manual-reset expiration."],
+          ["Usage and reminders", "Show 7/30/90-day Token usage and remind you 72, 48, 24, and 12 hours before a manual reset expires."],
         ],
         spotlight: "One release page",
         spotlightValue: "macOS DMG + Windows portable build",
-        spotlightBody: "Version 0.1.75 includes previews for macOS and Windows 10/11.",
-        notesTitle: "ReadyCheck 0.1.75",
+        spotlightBody: "Version 0.1.83 includes macOS and Windows 10/11 previews with aligned core behavior.",
+        notesTitle: "ReadyCheck 0.1.83",
         notes: [
           "Supports Codex OAuth subscription sign-in.",
           "Stores OAuth credentials in secure system storage.",
-          "Shows quota, Credits, and reset times only when authorized data can be verified.",
+          "Notification history records delivery state, attempt time, and retry count.",
           "The latest builds are available through GitHub Releases.",
         ],
         finalTitle: "Stay focused on building.",
         finalBody: "Download ReadyCheck and keep Codex usage visible.",
+      },
+      readydownloader: {
+        name: "ReadyDownloader",
+        version: "0.1.4",
+        platform: "macOS 14+ · Windows",
+        eyebrow: "Media downloads",
+        title: "Paste a link. Get the video you need.",
+        body: "Inspect media details and available formats, then download the best quality, an iPhone-compatible file, or a selected format. Audio-video merging, proxies, and cookies are available when needed.",
+        homeTitle: "Download video in the quality you choose.",
+        homeBody: "Inspect resolution, codecs, and size before choosing best quality, iPhone compatibility, or a specific format.",
+        homeAction: "Explore ReadyDownloader",
+        primary: "View ReadyDownloader",
+        secondary: "View source",
+        highlights: ["Best quality", "iPhone compatible", "macOS and Windows"],
+        sectionLabel: "Know before downloading",
+        sectionTitle: "Choose the format, quality, and destination.",
+        features: [
+          ["Inspect formats", "Use yt-dlp metadata to see resolution, frame rate, codecs, estimated size, and bitrate."],
+          ["Best quality", "Select the highest available quality and merge the best audio with FFmpeg when needed."],
+          ["iPhone compatible", "Inspect the final media and convert to H.264, AAC, and yuv420p only when required."],
+          ["Network and sign-in", "Use direct, system-proxy, or custom-proxy modes with optional Netscape-format cookies."],
+        ],
+        spotlight: "Three download modes",
+        spotlightValue: "Best quality · iPhone · Selected format",
+        spotlightBody: "macOS is the primary product line. The Windows x64 compatibility implementation follows the shared behavior contract.",
+        notesTitle: "ReadyDownloader 0.1.4 source preview",
+        notes: [
+          "The current public target is Apple Silicon on macOS 14 or later.",
+          "Progress, cancellation, destination selection, and Finder reveal stay inside the app.",
+          "The project does not bypass DRM; download only media you are authorized to save.",
+          "Version 0.1.4 has no GitHub Release yet; source and build instructions are available now.",
+        ],
+        finalTitle: "Inspect first. Download with confidence.",
+        finalBody: "Open the ReadyDownloader project to review the source preview and build instructions.",
       },
       crossfit: {
         name: "CrossFit WHOOP Video",
@@ -352,27 +411,10 @@ const copy = {
   },
 } as const;
 
-const productLinks = {
-  readytype: {
-    primary: links.readytypeDownload,
-    secondary: links.readytype,
-    tertiary: links.readytypeReleases,
-  },
-  readycheck: {
-    primary: links.readycheckDownload,
-    secondary: links.readycheck,
-    tertiary: links.readycheckReleases,
-  },
-  crossfit: {
-    primary: links.crossfit,
-    secondary: links.crossfitDocs,
-    tertiary: links.crossfitDocs,
-  },
-} as const;
-
 const featureIcons: Record<ProductKey, readonly LucideIcon[]> = {
   readytype: [Keyboard, Languages, Sparkles, WandSparkles],
   readycheck: [PanelTop, Monitor, Gauge, RefreshCcw],
+  readydownloader: [Link2, Download, Smartphone, Folder],
   crossfit: [Film, WandSparkles, Activity, Gauge],
 };
 
@@ -420,6 +462,7 @@ function eventProperties(properties: Record<string, string>) {
 function productFromPath(path: string): ProductKey | "readysuite" {
   if (path.includes("readytype")) return "readytype";
   if (path.includes("readycheck")) return "readycheck";
+  if (path.includes("readydownloader")) return "readydownloader";
   if (path.includes("crossfit-whoop-video")) return "crossfit";
   return "readysuite";
 }
@@ -430,7 +473,7 @@ function clickPlacement(anchor: HTMLAnchorElement) {
   if (anchor.closest(".hero-actions")) return "hero";
   if (anchor.closest(".release-section")) return "release";
   if (anchor.closest(".resource-list")) return "resource_list";
-  if (anchor.closest(".home-product-band")) return "product_band";
+  if (anchor.closest(".product-showcase")) return "product_showcase";
   return "body";
 }
 
@@ -607,7 +650,7 @@ function Header({
               <ChevronDown size={14} />
             </summary>
             <div className="product-menu-panel">
-              {(Object.keys(routes) as ProductKey[]).map((key) => (
+              {productOrder.map((key) => (
                 <a
                   className={activeProduct === key ? "is-active" : ""}
                   href={routes[key]}
@@ -664,6 +707,7 @@ function Footer({ lang }: { lang: Lang }) {
         <div className="footer-links">
           <a href="/readytype">ReadyType</a>
           <a href="/readycheck">ReadyCheck</a>
+          <a href="/readydownloader">ReadyDownloader</a>
           <a href="/crossfit-whoop-video">CrossFit WHOOP Video</a>
           <a href="/downloads">{t.nav.downloads}</a>
           <a href="/support">{t.nav.support}</a>
@@ -786,41 +830,73 @@ function ReadyCheckVisual({
   return (
     <div className={`product-visual readycheck-visual ${compact ? "is-compact" : ""}`}>
       <div
-        aria-label="ReadyCheck main controls, menu-bar status, and synchronized quota preview"
+        aria-label="ReadyCheck 0.1.83 product preview showing quota views and reminders"
         className="readycheck-stage"
         role="img"
       >
-        <div className="app-window-frame app-window-dark readycheck-window">
-          <Image
-            alt=""
-            height={314}
-            priority={priority}
-            sizes={compact ? "(max-width: 768px) 90vw, 580px" : "(max-width: 900px) 92vw, 760px"}
-            src="/readycheck-main-latest.png"
-            width={740}
-          />
+        <div className="app-window-frame app-window-light readycheck-window">
+          <video
+            autoPlay
+            data-motion-video
+            loop
+            muted
+            playsInline
+            poster="/readycheck-main-latest.png"
+            preload={priority ? "auto" : "metadata"}
+          >
+            <source src="/readycheck-preview-0.1.83.webm" type="video/webm" />
+          </video>
         </div>
-        <div className="readycheck-status-layer">
-          <div className="readycheck-menu-pill">
-            <span />
-            <strong>ReadyCheck</strong>
-            <b>72%</b>
-            <small>7d</small>
+      </div>
+    </div>
+  );
+}
+
+function ReadyDownloaderVisual({ compact = false }: { compact?: boolean }) {
+  return (
+    <div className={`product-visual downloader-visual ${compact ? "is-compact" : ""}`}>
+      <div className="downloader-window" role="img" aria-label="ReadyDownloader link parsing and download progress preview">
+        <div className="downloader-titlebar">
+          <Image alt="" height={40} src="/readydownloader-icon.png" width={40} />
+          <div>
+            <strong>ReadyDownloader</strong>
+            <span>0.1.4 · macOS</span>
           </div>
-          <div className="readycheck-quota-card">
-            <div className="readycheck-quota-heading">
-              <span>7 DAY QUOTA</span>
-              <strong>72%</strong>
-            </div>
-            <div className="readycheck-track">
-              <i />
-            </div>
-            <div className="readycheck-sync">
-              <RefreshCcw size={13} />
-              <span>AUTO REFRESH · 1 MIN</span>
-              <b>SYNCED</b>
-            </div>
+          <span className="downloader-ready">READY</span>
+        </div>
+        <div className="downloader-url-panel">
+          <span className="downloader-label">视频链接</span>
+          <div className="downloader-url-row">
+            <Link2 size={15} />
+            <span className="downloader-url-text">https://video.example/watch/demo</span>
+            <button type="button" tabIndex={-1}>解析链接</button>
           </div>
+        </div>
+        <div className="downloader-mode" aria-hidden="true">
+          <span className="is-active">最高画质</span>
+          <span>iPhone 兼容</span>
+          <span>指定格式</span>
+        </div>
+        <div className="downloader-formats" aria-hidden="true">
+          <div className="downloader-format-head">
+            <span>分辨率</span><span>编码</span><span>帧率</span><span>大小</span>
+          </div>
+          <div className="downloader-format-row is-selected">
+            <strong>2160p</strong><span>AV1</span><span>60</span><span>1.8 GB</span>
+          </div>
+          <div className="downloader-format-row">
+            <strong>1440p</strong><span>VP9</span><span>60</span><span>982 MB</span>
+          </div>
+          <div className="downloader-format-row">
+            <strong>1080p</strong><span>H.264</span><span>30</span><span>426 MB</span>
+          </div>
+        </div>
+        <div className="downloader-status" aria-hidden="true">
+          <div>
+            <span><Download size={14} /> 正在下载最高画质</span>
+            <strong>68%</strong>
+          </div>
+          <div className="downloader-progress"><i /></div>
         </div>
       </div>
     </div>
@@ -897,12 +973,17 @@ function ProductVisual({
   if (product === "readycheck") {
     return <ReadyCheckVisual compact={compact} priority={priority} />;
   }
+  if (product === "readydownloader") {
+    return <ReadyDownloaderVisual compact={compact} />;
+  }
   return <CrossfitVisual compact={compact} priority={priority} />;
 }
 
 export function HomePage() {
   const [lang, setLang] = useState<Lang>("zh");
+  const [selectedProduct, setSelectedProduct] = useState<ProductKey>("readytype");
   const t = copy[lang];
+  const selected = t.products[selectedProduct];
 
   return (
     <Shell lang={lang} setLang={setLang}>
@@ -923,19 +1004,56 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="products-intro" id="products" data-reveal>
-        <p className="eyebrow">{t.home.productsLabel}</p>
-        <h2>{t.home.productsTitle}</h2>
+      <section className="product-showcase" id="products" data-reveal>
+        <div className="product-showcase-rail">
+          <p className="eyebrow">{t.home.productsLabel}</p>
+          <h2>{t.home.productsTitle}</h2>
+          <div aria-label={t.home.productsLabel} className="product-selector" role="tablist">
+            {productOrder.map((product) => {
+              const item = t.products[product];
+              const active = selectedProduct === product;
+              return (
+                <button
+                  aria-controls="selected-product-panel"
+                  aria-selected={active}
+                  className={active ? "is-active" : ""}
+                  key={product}
+                  onClick={() => setSelectedProduct(product)}
+                  onFocus={() => setSelectedProduct(product)}
+                  onMouseEnter={() => setSelectedProduct(product)}
+                  role="tab"
+                  type="button"
+                >
+                  <span>{item.name}</span>
+                  <small>{item.eyebrow}</small>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+        <div className={`product-showcase-stage product-${selectedProduct}`} id="selected-product-panel" role="tabpanel">
+          <div className="product-showcase-copy" key={`${lang}-${selectedProduct}-copy`}>
+            <div className="product-meta">
+              <span>{selected.name}</span>
+              <span>{selected.version}</span>
+              <span>{selected.platform}</span>
+            </div>
+            <h3>{selected.homeTitle}</h3>
+            <p>{selected.homeBody}</p>
+            <div className="highlight-list">
+              {selected.highlights.map((highlight) => (
+                <span key={highlight}><Check size={14} />{highlight}</span>
+              ))}
+            </div>
+            <a className="text-link" href={routes[selectedProduct]}>
+              {selected.homeAction}<ArrowRight size={16} />
+            </a>
+          </div>
+          <div className="product-showcase-visual" key={`${selectedProduct}-visual`}>
+            <ProductVisual compact priority product={selectedProduct} />
+          </div>
+        </div>
       </section>
-
-      {(Object.keys(routes) as ProductKey[]).map((product, index) => (
-        <HomeProductBand
-          index={index}
-          key={product}
-          lang={lang}
-          product={product}
-        />
-      ))}
 
       <section className="open-source-band" data-reveal>
         <div>
@@ -952,53 +1070,11 @@ export function HomePage() {
   );
 }
 
-function HomeProductBand({
-  index,
-  lang,
-  product,
-}: {
-  index: number;
-  lang: Lang;
-  product: ProductKey;
-}) {
-  const t = copy[lang].products[product];
-  const reverse = index % 2 === 1;
-
-  return (
-    <section
-      className={`home-product-band product-${product} ${reverse ? "is-reverse" : ""}`}
-      data-reveal
-    >
-      <div className="home-product-copy">
-        <div className="product-meta">
-          <span>{t.name}</span>
-          <span>{t.version}</span>
-          <span>{t.platform}</span>
-        </div>
-        <h2>{t.homeTitle}</h2>
-        <p>{t.homeBody}</p>
-        <div className="highlight-list">
-          {t.highlights.map((highlight) => (
-            <span key={highlight}>
-              <Check size={14} />
-              {highlight}
-            </span>
-          ))}
-        </div>
-        <a className="text-link" href={routes[product]}>
-          {t.homeAction}
-          <ArrowRight size={16} />
-        </a>
-      </div>
-      <ProductVisual compact priority={index === 0} product={product} />
-    </section>
-  );
-}
-
 export function ProductPage({ product }: { product: ProductKey }) {
   const [lang, setLang] = useState<Lang>("zh");
   const t = copy[lang].products[product];
   const icons = featureIcons[product];
+  const repositoryFirst = product === "crossfit" || product === "readydownloader";
 
   return (
     <Shell activeProduct={product} lang={lang} setLang={setLang}>
@@ -1014,7 +1090,7 @@ export function ProductPage({ product }: { product: ProductKey }) {
           <p className="hero-body">{t.body}</p>
           <div className="hero-actions">
             <Button href={productLinks[product].primary}>
-              {product === "crossfit" ? <Github size={17} /> : <ArrowDownToLine size={17} />}
+              {repositoryFirst ? <Github size={17} /> : <ArrowDownToLine size={17} />}
               {t.primary}
             </Button>
             <Button href={productLinks[product].secondary} variant="secondary">
@@ -1067,7 +1143,7 @@ export function ProductPage({ product }: { product: ProductKey }) {
           <h2>{t.finalTitle}</h2>
           <p>{t.finalBody}</p>
           <Button href={productLinks[product].primary}>
-            {product === "crossfit" ? <Github size={17} /> : <ArrowDownToLine size={17} />}
+            {repositoryFirst ? <Github size={17} /> : <ArrowDownToLine size={17} />}
             {t.primary}
           </Button>
         </div>
@@ -1083,10 +1159,10 @@ export function ProductPage({ product }: { product: ProductKey }) {
             href={productLinks[product].tertiary}
             {...externalLinkProps(productLinks[product].tertiary)}
           >
-            {product === "crossfit"
+            {product === "crossfit" || product === "readydownloader"
               ? lang === "zh"
-                ? "阅读完整文档"
-                : "Read full docs"
+                ? "阅读构建说明"
+                : "Read build instructions"
               : lang === "zh"
                 ? "查看所有发布"
                 : "View all releases"}
@@ -1108,29 +1184,13 @@ function getResourceRows(page: ResourceKey, lang: Lang) {
   const products = copy[lang].products;
 
   if (page === "downloads") {
-    return [
-      {
-        name: products.readytype.name,
-        meta: `${products.readytype.version} · ${products.readytype.platform}`,
-        body: products.readytype.body,
-        action: products.readytype.primary,
-        href: links.readytypeDownload,
-      },
-      {
-        name: products.readycheck.name,
-        meta: `${products.readycheck.version} · ${products.readycheck.platform}`,
-        body: products.readycheck.body,
-        action: products.readycheck.primary,
-        href: links.readycheckDownload,
-      },
-      {
-        name: products.crossfit.name,
-        meta: `${products.crossfit.version} · ${products.crossfit.platform}`,
-        body: products.crossfit.body,
-        action: products.crossfit.primary,
-        href: links.crossfit,
-      },
-    ];
+    return productOrder.map((product) => ({
+      name: products[product].name,
+      meta: `${products[product].version} · ${products[product].platform}`,
+      body: products[product].body,
+      action: products[product].primary,
+      href: productLinks[product].primary,
+    }));
   }
 
   if (page === "support") {
@@ -1152,6 +1212,15 @@ function getResourceRows(page: ResourceKey, lang: Lang) {
           : "Report ReadyCheck connection, refresh, menu-bar, widget, or platform issues.",
         action: lang === "zh" ? "提交问题" : "Open issue",
         href: links.readycheckIssues,
+      },
+      {
+        name: products.readydownloader.name,
+        meta: lang === "zh" ? "解析、格式、下载与兼容转换" : "Parsing, formats, downloads, and compatibility",
+        body: lang === "zh"
+          ? "提交 ReadyDownloader 解析、下载、代理、Cookie 或 iPhone 兼容问题。"
+          : "Report ReadyDownloader parsing, download, proxy, cookie, or iPhone-compatibility issues.",
+        action: lang === "zh" ? "提交问题" : "Open issue",
+        href: links.readydownloaderIssues,
       },
       {
         name: products.crossfit.name,
@@ -1183,6 +1252,15 @@ function getResourceRows(page: ResourceKey, lang: Lang) {
         : "Usage refresh reads authorized usage data and does not estimate quota by sending prompts or inference requests.",
       action: lang === "zh" ? "查看产品" : "View product",
       href: "/readycheck",
+    },
+    {
+      name: "ReadyDownloader",
+      meta: lang === "zh" ? "本地下载与可选认证" : "Local downloads and optional authentication",
+      body: lang === "zh"
+        ? "下载文件保存在用户选择的位置；Cookie 仅用于用户授权的会话，不应上传到公开反馈。"
+        : "Files are saved to the chosen local destination. Cookies are only for authorized sessions and must not be attached to public issues.",
+      action: lang === "zh" ? "查看产品" : "View product",
+      href: "/readydownloader",
     },
     {
       name: "GitHub Issues",

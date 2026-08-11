@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.3.0 - 2026-08-11
+
+- Added ReadyDownloader 0.1.4 as a dedicated bilingual product page and source preview.
+- Updated ReadyCheck to 0.1.83 with Token usage, reset-expiry reminders, and notification-history details.
+- Replaced four stacked homepage product sections with one interactive product showcase.
+- Added a feature-accurate ReadyDownloader parsing and download animation plus the latest privacy-safe ReadyCheck product motion.
+- Centralized product identity, order, routes, and external destinations in a typed registry.
+- Documented the stable information architecture, product status rules, and verification boundary.
+
 ## 1.2.5 - 2026-07-29
 
 - Updated ReadyCheck product and social metadata from 0.1.72 to 0.1.75.

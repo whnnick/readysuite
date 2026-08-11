@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s — ReadySuite",
   },
   description:
-    "ReadySuite 为语音输入、Codex 用量查看、媒体下载和运动内容制作提供实用工具。",
+    "ReadySuite 为语音输入、Codex 用量查看、多平台视频下载和运动内容制作提供实用工具。",
   icons: {
     icon: "/icon.svg",
     apple: "/apple-icon.svg",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ReadySuite — 让 AI 工具更顺手",
     description:
-      "从语音输入、用量查看到媒体下载和运动内容制作，让常用工作一步到位。",
+      "从语音输入、用量查看到多平台视频下载和运动内容制作，让常用工作一步到位。",
     siteName: "ReadySuite",
     type: "website",
     locale: "zh_CN",

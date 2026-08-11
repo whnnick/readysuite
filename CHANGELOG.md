@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.1 - 2026-08-11
+
+- Removed fixed product-count language from the homepage so the catalog can grow without rewriting its positioning.
+- Reframed ReadyDownloader around free downloads from YouTube, Instagram, and other yt-dlp-supported platforms, with quality and format controls as supporting capabilities.
+- Corrected the minimum macOS target to 13+ and clarified platform-availability and responsible-use boundaries in the bilingual product copy and metadata.
+
 ## 1.3.0 - 2026-08-11
 
 - Added ReadyDownloader 0.1.4 as a dedicated bilingual product page and source preview.

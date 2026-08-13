@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.1 - 2026-08-13
+
+- Added first-visit locale routing that prioritizes the visitor's saved choice, browser language, and Vercel timezone in that order.
+- Preserved explicit English URLs and excluded crawlers, assets, and non-HTML requests from automatic redirects.
+- Persisted manual language changes for one year so automatic detection never overrides a visitor's choice.
+
 ## 1.4.0 - 2026-08-11
 
 - Added independently crawlable English routes with canonical and `hreflang` relationships across the full site.

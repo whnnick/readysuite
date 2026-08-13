@@ -25,6 +25,8 @@ Adding a product requires one registry entry, localized product copy, one visual
 
 Chinese remains the default at `/`; English lives at `/en`. Language switching must navigate between these stable URLs instead of changing only client-side state. New public routes require a localized counterpart, reciprocal language alternates, sitemap coverage, and at least one internal link.
 
+On a first visit to an unprefixed HTML route, `proxy.ts` selects English only when the saved preference or browser language requests it, with the Vercel timezone as a fallback. Manual selection is stored in `readysuite-language`. Explicit `/en` URLs and search crawlers are never redirected by locale detection.
+
 ## Product Status Rules
 
 - Versions come from public GitHub Releases, tags, or an explicitly labeled source preview.

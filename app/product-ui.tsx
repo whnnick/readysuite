@@ -40,6 +40,7 @@ import { guideContent, type GuideKey } from "./guide-content";
 export type Lang = "zh" | "en";
 type ResourceKey = "downloads" | "support" | "privacy";
 type CampaignContext = Partial<Record<"campaign" | "medium" | "source", string>>;
+const languageCookie = "readysuite-language";
 
 const copy = {
   zh: {
@@ -586,6 +587,7 @@ function LanguageToggle({
       );
     }
     const { hash, pathname, search } = window.location;
+    document.cookie = `${languageCookie}=${nextLang}; Max-Age=31536000; Path=/; SameSite=Lax; Secure`;
     const unprefixedPath = pathname.replace(/^\/en(?=\/|$)/, "") || "/";
     const nextPath = nextLang === "en"
       ? unprefixedPath === "/" ? "/en" : `/en${unprefixedPath}`

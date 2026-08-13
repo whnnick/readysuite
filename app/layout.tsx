@@ -6,11 +6,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://readysuite.vercel.app"),
   title: {
-    default: "ReadySuite — 让 AI 工具更顺手",
+    default: "ReadySuite AI 工具箱",
     template: "%s — ReadySuite",
   },
   description:
-    "ReadySuite 为语音输入、Codex 用量查看、多平台视频下载和运动内容制作提供实用工具。",
+    "面向 macOS 与 Windows 的 AI 工具箱，覆盖中文语音输入、Codex 用量查看、多平台视频下载和运动内容制作。",
   icons: {
     icon: "/icon.svg",
     apple: "/apple-icon.svg",
@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     google: "9H24-EJPHHJr1xqq8iX3Gc2vcb_6rYh3EakOFRaLkqI",
   },
   openGraph: {
-    title: "ReadySuite — 让 AI 工具更顺手",
+    title: "ReadySuite AI 工具箱",
     description:
       "从语音输入、用量查看到多平台视频下载和运动内容制作，让常用工作一步到位。",
-    siteName: "ReadySuite",
+    siteName: "ReadySuite AI",
     type: "website",
     locale: "zh_CN",
     url: "/",

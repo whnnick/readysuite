@@ -37,8 +37,15 @@ function isCrawler(userAgent: string | null) {
   );
 }
 
+function localizedResponse(language: "zh" | "en") {
+  const response = NextResponse.next();
+  response.headers.set("Content-Language", language === "zh" ? "zh-CN" : "en");
+  return response;
+}
+
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const routeLanguage = pathname === "/en" || pathname.startsWith("/en/") ? "en" : "zh";
 
   if (
     request.method !== "GET" ||
@@ -47,7 +54,7 @@ export function proxy(request: NextRequest) {
     isCrawler(request.headers.get("user-agent")) ||
     !request.headers.get("accept")?.includes("text/html")
   ) {
-    return NextResponse.next();
+    return localizedResponse(routeLanguage);
   }
 
   const storedLanguage = request.cookies.get(languageCookie)?.value;
@@ -58,7 +65,7 @@ export function proxy(request: NextRequest) {
     ? storedLanguage
     : inferredLanguage;
 
-  if (language !== "en") return NextResponse.next();
+  if (language !== "en") return localizedResponse("zh");
 
   const destination = request.nextUrl.clone();
   destination.pathname = pathname === "/" ? "/en" : `/en${pathname}`;

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.2 - 2026-08-13
+
+- Unified the public positioning around "ReadySuite AI Toolkit" in both English and Chinese to reduce search ambiguity with an established namesake product.
+- Reworked bilingual search titles and descriptions across the homepage, product pages, downloads, and guides around voice input, Codex usage, and multi-platform video download intent.
+- Added bilingual keyword and social metadata while strengthening brand relationships across website, organization, product, and article structured data.
+- Added localized `Content-Language` response headers aligned with canonical and `hreflang` signals.
+- Corrected guide breadcrumb structure and refreshed sitemap and article modification dates.
+
 ## 1.4.1 - 2026-08-13
 
 - Added first-visit locale routing that prioritizes the visitor's saved choice, browser language, and Vercel timezone in that order.

@@ -5,43 +5,49 @@ import type { Lang } from "./product-ui";
 
 const baseUrl = "https://readysuite.vercel.app";
 
+type SeoEntry = {
+  title: string;
+  description: string;
+  keywords: string[];
+};
+
 export const guidePaths: Record<GuideKey, string> = {
   "macos-chinese-voice-input": "/guides/macos-chinese-voice-input",
   "codex-usage-limit": "/guides/codex-usage-limit",
   "download-youtube-instagram-mac": "/guides/download-youtube-instagram-mac",
 };
 
-const productSeo: Record<ProductKey, Record<Lang, { title: string; description: string; image: string }>> = {
+const productSeo: Record<ProductKey, Record<Lang, SeoEntry & { image: string }>> = {
   readytype: {
-    zh: { title: "ReadyType：macOS 中文 AI 语音输入工具", description: "双击 Option 在任意输入框中使用中文语音输入，支持直接转文字、整理成文、英文翻译和 AI 任务整理。", image: "/readytype-window-clean.png" },
-    en: { title: "ReadyType: Chinese AI Voice Input for macOS", description: "Double-press Option to dictate in any text field, polish spoken thoughts, translate into English, or create clear AI tasks.", image: "/readytype-window-clean.png" },
+    zh: { title: "ReadyType：Mac 中文 AI 语音输入工具｜ReadySuite", description: "双击 Option，在 Mac 任意输入框中完成中文语音输入、语音转文字、内容整理、英文翻译和 AI 任务整理。", keywords: ["Mac 语音输入", "macOS 中文语音输入", "AI 语音转文字", "ReadyType"], image: "/readytype-window-clean.png" },
+    en: { title: "ReadyType: AI Voice Dictation for macOS | ReadySuite", description: "Double-press Option to dictate in any Mac text field, turn speech into polished writing, translate into English, or create clear AI tasks.", keywords: ["Mac voice dictation", "AI voice input for macOS", "speech to text Mac", "ReadyType"], image: "/readytype-window-clean.png" },
   },
   readycheck: {
-    zh: { title: "ReadyCheck：Codex 额度与 Token 用量监控", description: "在 macOS 与 Windows 查看 Codex 额度、Token 用量和重置时间，并通过菜单栏、Widget 和本地通知保持状态可见。", image: "/readycheck-preview-0.1.83.jpg" },
-    en: { title: "ReadyCheck: Codex Limits and Token Usage Monitor", description: "Track Codex limits, token usage, reset times, and expiry reminders on macOS and Windows.", image: "/readycheck-preview-0.1.83.jpg" },
+    zh: { title: "ReadyCheck：Codex 额度、Token 用量与重置提醒｜ReadySuite", description: "在 macOS 与 Windows 查看 Codex 额度、Token 用量和重置时间，通过菜单栏、桌面 Widget、Mac 刘海与本地通知保持状态可见。", keywords: ["Codex 额度", "Codex Token 用量", "Codex 用量监控", "ReadyCheck"], image: "/readycheck-preview-0.1.83.jpg" },
+    en: { title: "ReadyCheck: Codex Usage, Token Limits and Reset Alerts", description: "Track Codex usage limits, token consumption, reset times, and expiry reminders from macOS or Windows.", keywords: ["Codex usage monitor", "Codex token usage", "Codex limit tracker", "ReadyCheck"], image: "/readycheck-preview-0.1.83.jpg" },
   },
   readydownloader: {
-    zh: { title: "ReadyDownloader：YouTube、Instagram 视频下载工具", description: "免费保存 YouTube、Instagram、Bilibili、TikTok 等平台视频，并选择画质、iPhone 兼容格式和保存位置。", image: "/readydownloader-icon.png" },
-    en: { title: "ReadyDownloader: YouTube and Instagram Video Downloader", description: "Save videos from YouTube, Instagram, Bilibili, TikTok, and other supported platforms with quality and format control.", image: "/readydownloader-icon.png" },
+    zh: { title: "ReadyDownloader：YouTube、Instagram 免费下载工具", description: "在 Mac 或 Windows 免费保存有权下载的 YouTube、Instagram、Bilibili、TikTok 等平台视频，并选择画质、兼容格式与保存位置。", keywords: ["YouTube 视频下载", "Instagram 视频下载", "Mac 视频下载器", "ReadyDownloader"], image: "/readydownloader-icon.png" },
+    en: { title: "ReadyDownloader: Free YouTube and Instagram Video Downloader", description: "Save authorized videos from YouTube, Instagram, Bilibili, TikTok, and other supported platforms on Mac or Windows with quality and format control.", keywords: ["YouTube video downloader", "Instagram video downloader", "video downloader for Mac", "ReadyDownloader"], image: "/readydownloader-icon.png" },
   },
   crossfit: {
-    zh: { title: "CrossFit WHOOP Video：4K 竖屏运动视频工作流", description: "使用 HyperFrames 模板、Codex Skill 和 WHOOP 风格动态 HUD 制作 9:16 竖屏 4K 运动短片。", image: "/crossfit-digital-athlete.jpg" },
-    en: { title: "CrossFit WHOOP Video: Vertical 4K Sports Video Workflow", description: "Create vertical 4K training edits with HyperFrames templates, a Codex Skill, and animated WHOOP-style HUDs.", image: "/crossfit-digital-athlete.jpg" },
+    zh: { title: "CrossFit WHOOP Video：4K 竖屏运动视频工作流", description: "使用 HyperFrames 模板、Codex Skill 和 WHOOP 风格动态 HUD 制作适合 Shorts、Reels 与 TikTok 的 9:16 竖屏 4K 运动短片。", keywords: ["CrossFit 视频制作", "WHOOP HUD", "4K 竖屏运动视频", "HyperFrames"], image: "/crossfit-digital-athlete.jpg" },
+    en: { title: "CrossFit WHOOP Video: Vertical 4K Sports Video Workflow", description: "Create vertical 4K training edits for Shorts, Reels, and TikTok with HyperFrames templates, a Codex Skill, and animated WHOOP-style HUDs.", keywords: ["CrossFit video workflow", "WHOOP HUD", "vertical 4K sports video", "HyperFrames"], image: "/crossfit-digital-athlete.jpg" },
   },
 };
 
-const guideSeo: Record<GuideKey, Record<Lang, { title: string; description: string }>> = {
+const guideSeo: Record<GuideKey, Record<Lang, SeoEntry>> = {
   "macos-chinese-voice-input": {
-    zh: { title: "Mac 中文语音输入指南：说完直接变成文字", description: "了解如何在 Mac 任意输入框中用中文语音直接输入、整理成文、翻译英文或生成 AI 任务。" },
-    en: { title: "Chinese Voice Input on Mac: A Practical Guide", description: "Learn how to dictate Chinese in any Mac text field and turn speech into polished writing, translations, or AI tasks." },
+    zh: { title: "Mac 中文语音输入指南：说完直接变成文字", description: "了解如何在 Mac 任意输入框中用中文语音直接输入、整理成文、翻译英文或生成 AI 任务。", keywords: ["Mac 中文语音输入", "Mac 语音转文字", "macOS 语音输入", "AI 语音输入"] },
+    en: { title: "Chinese Voice Input on Mac: A Practical Guide", description: "Learn how to dictate Chinese in any Mac text field and turn speech into polished writing, translations, or AI tasks.", keywords: ["Chinese voice input Mac", "Mac speech to text", "AI dictation macOS", "voice typing Mac"] },
   },
   "codex-usage-limit": {
-    zh: { title: "Codex 额度怎么看：Token 用量与重置时间指南", description: "理解 Codex 额度窗口、Token 用量和主动重置时间，并通过菜单栏、Widget 与提醒持续查看。" },
-    en: { title: "How to Track Codex Limits, Token Usage, and Resets", description: "Understand Codex usage windows, longer-term token consumption, reset times, and practical monitoring options." },
+    zh: { title: "Codex 额度怎么看：Token 用量与重置时间指南", description: "理解 Codex 额度窗口、Token 用量和主动重置时间，并通过菜单栏、Widget 与提醒持续查看。", keywords: ["Codex 额度怎么看", "Codex Token 用量", "Codex 重置时间", "Codex 用量限制"] },
+    en: { title: "How to Track Codex Limits, Token Usage, and Resets", description: "Understand Codex usage windows, longer-term token consumption, reset times, and practical monitoring options.", keywords: ["Codex usage limits", "Codex token usage", "Codex reset time", "Codex usage tracker"] },
   },
   "download-youtube-instagram-mac": {
-    zh: { title: "Mac 下载 YouTube、Instagram 视频：画质与格式指南", description: "在 Mac 上解析并保存有权下载的 YouTube、Instagram 等平台视频，选择最高画质或 iPhone 兼容格式。" },
-    en: { title: "Download YouTube and Instagram Videos on Mac", description: "Learn how to save authorized videos on a Mac with format, quality, iPhone compatibility, proxy, and cookie options." },
+    zh: { title: "Mac 下载 YouTube、Instagram 视频：画质与格式指南", description: "在 Mac 上解析并保存有权下载的 YouTube、Instagram 等平台视频，选择最高画质或 iPhone 兼容格式。", keywords: ["Mac 下载 YouTube 视频", "Instagram 视频下载", "YouTube 最高画质下载", "iPhone 兼容视频"] },
+    en: { title: "Download YouTube and Instagram Videos on Mac", description: "Learn how to save authorized videos on a Mac with format, quality, iPhone compatibility, proxy, and cookie options.", keywords: ["download YouTube videos on Mac", "Instagram downloader Mac", "best quality video download", "iPhone compatible video"] },
   },
 };
 
@@ -62,11 +68,22 @@ function alternates(path: string, lang: Lang) {
 
 export function homeMetadata(lang: Lang): Metadata {
   const path = localizedPath("/", lang);
-  const title = lang === "zh" ? "ReadySuite：macOS 与 Windows AI 工具" : "ReadySuite: Practical AI Tools for macOS and Windows";
+  const title = lang === "zh" ? "ReadySuite AI 工具箱：Mac 语音输入、Codex 用量与视频下载" : "ReadySuite AI Toolkit: Dictation, Codex and Downloads";
   const description = lang === "zh"
-    ? "ReadySuite 提供中文语音输入、Codex 用量查看、多平台视频下载和运动内容制作工具。"
-    : "ReadySuite provides focused tools for voice input, Codex usage, multi-platform video downloads, and sports content production.";
-  return { title: { absolute: title }, description, alternates: alternates("/", lang), openGraph: { title, description, siteName: "ReadySuite", type: "website", locale: lang === "zh" ? "zh_CN" : "en_US", url: path } };
+    ? "ReadySuite 是面向 macOS 与 Windows 的 AI 工具箱，提供中文语音输入、Codex 额度与 Token 用量查看、多平台视频下载和运动内容制作工具。"
+    : "ReadySuite is an AI toolkit for macOS and Windows, covering voice dictation, Codex usage tracking, multi-platform video downloads, and sports content production.";
+  const keywords = lang === "zh"
+    ? ["ReadySuite AI 工具箱", "Mac AI 工具", "中文语音输入", "Codex 用量", "视频下载工具"]
+    : ["ReadySuite AI Toolkit", "AI tools for Mac", "voice dictation", "Codex usage tracker", "video downloader"];
+  return {
+    title: { absolute: title },
+    description,
+    keywords,
+    category: "software",
+    alternates: alternates("/", lang),
+    openGraph: { title, description, siteName: "ReadySuite AI", type: "website", locale: lang === "zh" ? "zh_CN" : "en_US", url: path },
+    twitter: { card: "summary", title, description },
+  };
 }
 
 export function productMetadata(product: ProductKey, lang: Lang): Metadata {
@@ -75,8 +92,10 @@ export function productMetadata(product: ProductKey, lang: Lang): Metadata {
   return {
     title: { absolute: seo.title },
     description: seo.description,
+    keywords: seo.keywords,
+    category: "software",
     alternates: alternates(routes[product], lang),
-    openGraph: { title: seo.title, description: seo.description, siteName: "ReadySuite", type: "website", locale: lang === "zh" ? "zh_CN" : "en_US", images: [{ url: seo.image }], url: path },
+    openGraph: { title: seo.title, description: seo.description, siteName: "ReadySuite AI", type: "website", locale: lang === "zh" ? "zh_CN" : "en_US", images: [{ url: seo.image }], url: path },
     twitter: { card: "summary_large_image", title: seo.title, description: seo.description, images: [seo.image] },
   };
 }
@@ -84,8 +103,8 @@ export function productMetadata(product: ProductKey, lang: Lang): Metadata {
 export function resourceMetadata(page: "downloads" | "support" | "privacy", lang: Lang): Metadata {
   const values = {
     downloads: {
-      zh: ["ReadySuite 下载中心", "获取 ReadyType、ReadyCheck、ReadyDownloader 与 CrossFit WHOOP Video 的最新版本或源码。"],
-      en: ["ReadySuite Downloads", "Get the latest ReadyType, ReadyCheck, ReadyDownloader, and CrossFit WHOOP Video releases or source."],
+      zh: ["ReadySuite AI 工具箱下载｜macOS 与 Windows", "下载 ReadyType、ReadyCheck、ReadyDownloader，或获取 CrossFit WHOOP Video 工作流源码。"],
+      en: ["ReadySuite AI Toolkit Downloads for macOS and Windows", "Download ReadyType, ReadyCheck, and ReadyDownloader, or get the CrossFit WHOOP Video workflow source."],
     },
     support: {
       zh: ["ReadySuite 支持与反馈", "通过对应 GitHub Issues 获取 ReadySuite 产品支持并提交公开反馈。"],
@@ -98,13 +117,13 @@ export function resourceMetadata(page: "downloads" | "support" | "privacy", lang
   } as const;
   const [title, description] = values[page][lang];
   const basePath = `/${page}`;
-  return { title: { absolute: title }, description, alternates: alternates(basePath, lang), openGraph: { title, description, siteName: "ReadySuite", type: "website", locale: lang === "zh" ? "zh_CN" : "en_US", url: localizedPath(basePath, lang) } };
+  return { title: { absolute: title }, description, alternates: alternates(basePath, lang), openGraph: { title, description, siteName: "ReadySuite AI", type: "website", locale: lang === "zh" ? "zh_CN" : "en_US", url: localizedPath(basePath, lang) }, twitter: { card: "summary", title, description } };
 }
 
 export function guideMetadata(guide: GuideKey, lang: Lang): Metadata {
   const seo = guideSeo[guide][lang];
   const basePath = guidePaths[guide];
-  return { title: { absolute: seo.title }, description: seo.description, alternates: alternates(basePath, lang), openGraph: { title: seo.title, description: seo.description, siteName: "ReadySuite", type: "article", locale: lang === "zh" ? "zh_CN" : "en_US", url: localizedPath(basePath, lang) } };
+  return { title: { absolute: seo.title }, description: seo.description, keywords: seo.keywords, alternates: alternates(basePath, lang), openGraph: { title: seo.title, description: seo.description, siteName: "ReadySuite AI", type: "article", locale: lang === "zh" ? "zh_CN" : "en_US", url: localizedPath(basePath, lang) }, twitter: { card: "summary", title: seo.title, description: seo.description } };
 }
 
 function JsonLd({ value }: { value: object | object[] }) {
@@ -113,9 +132,13 @@ function JsonLd({ value }: { value: object | object[] }) {
 
 export function HomeStructuredData({ lang }: { lang: Lang }) {
   const url = `${baseUrl}${localizedPath("/", lang)}`;
+  const description = lang === "zh"
+    ? "面向 macOS 与 Windows 的 AI 工具箱。"
+    : "An AI toolkit for macOS and Windows.";
   return <JsonLd value={[
-    { "@context": "https://schema.org", "@type": "Organization", name: "ReadySuite", url: baseUrl, sameAs: ["https://github.com/whnnick"] },
-    { "@context": "https://schema.org", "@type": "WebSite", name: "ReadySuite", url, inLanguage: lang === "zh" ? "zh-CN" : "en" },
+    { "@context": "https://schema.org", "@type": "Organization", "@id": `${baseUrl}/#organization`, name: "ReadySuite AI", alternateName: ["ReadySuite AI Toolkit", "ReadySuite AI 工具箱"], description, url: baseUrl, sameAs: ["https://github.com/whnnick"] },
+    { "@context": "https://schema.org", "@type": "WebSite", "@id": `${baseUrl}/#website`, name: "ReadySuite AI Toolkit", alternateName: "ReadySuite AI 工具箱", description, url: baseUrl, inLanguage: ["zh-CN", "en"], publisher: { "@id": `${baseUrl}/#organization` } },
+    { "@context": "https://schema.org", "@type": "WebPage", name: lang === "zh" ? "ReadySuite AI 工具箱" : "ReadySuite AI Toolkit", description, url, inLanguage: lang === "zh" ? "zh-CN" : "en", isPartOf: { "@id": `${baseUrl}/#website` }, about: { "@id": `${baseUrl}/#organization` } },
   ]} />;
 }
 
@@ -132,9 +155,9 @@ export function ProductStructuredData({ product, lang }: { product: ProductKey; 
   const pageUrl = `${baseUrl}${localizedPath(routes[product], lang)}`;
   const entity = product === "crossfit"
     ? { "@context": "https://schema.org", "@type": "SoftwareSourceCode", name: item.name, description: seo.description, codeRepository: productLinks[product].secondary, programmingLanguage: "TypeScript", version: item.version, url: pageUrl, inLanguage: lang === "zh" ? "zh-CN" : "en" }
-    : { "@context": "https://schema.org", "@type": "SoftwareApplication", name: item.name, description: seo.description, applicationCategory: item.category, operatingSystem: item.operatingSystem, softwareVersion: item.version, url: pageUrl, downloadUrl: productLinks[product].primary, offers: { "@type": "Offer", price: "0", priceCurrency: "CNY" }, inLanguage: lang === "zh" ? "zh-CN" : "en" };
+    : { "@context": "https://schema.org", "@type": "SoftwareApplication", name: item.name, description: seo.description, applicationCategory: item.category, operatingSystem: item.operatingSystem, softwareVersion: item.version, url: pageUrl, downloadUrl: productLinks[product].primary, sameAs: productLinks[product].secondary, brand: { "@type": "Brand", name: "ReadySuite AI" }, offers: { "@type": "Offer", price: "0", priceCurrency: "CNY" }, inLanguage: lang === "zh" ? "zh-CN" : "en" };
   const breadcrumb = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
-    { "@type": "ListItem", position: 1, name: "ReadySuite", item: `${baseUrl}${localizedPath("/", lang)}` },
+    { "@type": "ListItem", position: 1, name: "ReadySuite AI", item: `${baseUrl}${localizedPath("/", lang)}` },
     { "@type": "ListItem", position: 2, name: item.name, item: pageUrl },
   ] };
   return <JsonLd value={[entity, breadcrumb]} />;
@@ -145,11 +168,10 @@ export function GuideStructuredData({ guide, lang }: { guide: GuideKey; lang: La
   const path = guidePaths[guide];
   const url = `${baseUrl}${localizedPath(path, lang)}`;
   return <JsonLd value={[
-    { "@context": "https://schema.org", "@type": "Article", headline: seo.title, description: seo.description, datePublished: "2026-08-11", dateModified: "2026-08-11", inLanguage: lang === "zh" ? "zh-CN" : "en", mainEntityOfPage: url, author: { "@type": "Organization", name: "ReadySuite" }, publisher: { "@type": "Organization", name: "ReadySuite", url: baseUrl } },
+    { "@context": "https://schema.org", "@type": "Article", headline: seo.title, description: seo.description, keywords: seo.keywords.join(", "), datePublished: "2026-08-11", dateModified: "2026-08-13", inLanguage: lang === "zh" ? "zh-CN" : "en", mainEntityOfPage: url, author: { "@type": "Organization", name: "ReadySuite AI", url: baseUrl }, publisher: { "@type": "Organization", name: "ReadySuite AI", url: baseUrl } },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
-      { "@type": "ListItem", position: 1, name: "ReadySuite", item: `${baseUrl}${localizedPath("/", lang)}` },
-      { "@type": "ListItem", position: 2, name: lang === "zh" ? "指南" : "Guides", item: url },
-      { "@type": "ListItem", position: 3, name: seo.title, item: url },
+      { "@type": "ListItem", position: 1, name: "ReadySuite AI", item: `${baseUrl}${localizedPath("/", lang)}` },
+      { "@type": "ListItem", position: 2, name: seo.title, item: url },
     ] },
   ]} />;
 }

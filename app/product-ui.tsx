@@ -55,7 +55,7 @@ const copy = {
       crossfit: "CrossFit WHOOP Video",
     },
     home: {
-      eyebrow: "ReadySuite",
+      eyebrow: "ReadySuite AI 工具箱",
       title: "让常用工作，一步到位。",
       body: "输入、用量、下载和内容制作。选择一个工具，直接解决眼前的问题。",
       primary: "探索产品",
@@ -239,7 +239,7 @@ const copy = {
       crossfit: "CrossFit WHOOP Video",
     },
     home: {
-      eyebrow: "ReadySuite",
+      eyebrow: "ReadySuite AI Toolkit",
       title: "Finish everyday work in fewer steps.",
       body: "Input, usage, downloads, and content production. Pick one tool and solve the task in front of you.",
       primary: "Explore products",

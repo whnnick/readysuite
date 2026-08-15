@@ -32,6 +32,7 @@ On a first visit to an unprefixed HTML route, `proxy.ts` selects English only wh
 - Versions come from public GitHub Releases, tags, or an explicitly labeled source preview.
 - A product without a public Release links to its repository and must not be described as downloadable.
 - Real product media is preferred. Public media must not expose accounts, tokens, local paths, private content, or user data.
+- When a product has both a Web app and a desktop client, the primary CTA follows the recommended experience; Web, desktop release, release history, and source destinations remain distinct.
 - GitHub destinations open in a new tab; internal product navigation stays in the current tab.
 
 ## Verification

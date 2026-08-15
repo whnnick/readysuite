@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { productLinks, routes, type ProductKey } from "./product-registry";
+import { links, productLinks, routes, type ProductKey } from "./product-registry";
 import type { GuideKey } from "./guide-content";
 import type { Lang } from "./product-ui";
 
@@ -27,8 +27,8 @@ const productSeo: Record<ProductKey, Record<Lang, SeoEntry & { image: string }>>
     en: { title: "ReadyCheck: Codex Usage, Token Limits and Reset Alerts", description: "Track Codex usage limits, token consumption, reset times, and expiry reminders from macOS or Windows.", keywords: ["Codex usage monitor", "Codex token usage", "Codex limit tracker", "ReadyCheck"], image: "/readycheck-preview-0.1.83.jpg" },
   },
   readydownloader: {
-    zh: { title: "ReadyDownloader：YouTube、Instagram 免费下载工具", description: "在 Mac 或 Windows 免费保存有权下载的 YouTube、Instagram、Bilibili、TikTok 等平台视频，并选择画质、兼容格式与保存位置。", keywords: ["YouTube 视频下载", "Instagram 视频下载", "Mac 视频下载器", "ReadyDownloader"], image: "/readydownloader-icon.png" },
-    en: { title: "ReadyDownloader: Free YouTube and Instagram Video Downloader", description: "Save authorized videos from YouTube, Instagram, Bilibili, TikTok, and other supported platforms on Mac or Windows with quality and format control.", keywords: ["YouTube video downloader", "Instagram video downloader", "video downloader for Mac", "ReadyDownloader"], image: "/readydownloader-icon.png" },
+    zh: { title: "ReadyDownloader 在线视频下载｜YouTube、Instagram 等平台", description: "免安装使用 ReadyDownloader 网页版，解析并下载有权保存的 YouTube、Instagram、Bilibili、TikTok 等公开视频，支持最高画质、iPhone 兼容和指定格式。", keywords: ["在线视频下载", "YouTube 视频下载", "Instagram 视频下载", "ReadyDownloader 网页版"], image: "/readydownloader-web-0.2.0.png" },
+    en: { title: "ReadyDownloader Online Video Downloader for YouTube and Instagram", description: "Use ReadyDownloader online without installation to analyze and save authorized public videos from YouTube, Instagram, Bilibili, TikTok, and more.", keywords: ["online video downloader", "YouTube video downloader", "Instagram video downloader", "ReadyDownloader Web app"], image: "/readydownloader-web-0.2.0.png" },
   },
   crossfit: {
     zh: { title: "CrossFit WHOOP Video：4K 竖屏运动视频工作流", description: "使用 HyperFrames 模板、Codex Skill 和 WHOOP 风格动态 HUD 制作适合 Shorts、Reels 与 TikTok 的 9:16 竖屏 4K 运动短片。", keywords: ["CrossFit 视频制作", "WHOOP HUD", "4K 竖屏运动视频", "HyperFrames"], image: "/crossfit-digital-athlete.jpg" },
@@ -46,8 +46,8 @@ const guideSeo: Record<GuideKey, Record<Lang, SeoEntry>> = {
     en: { title: "How to Track Codex Limits, Token Usage, and Resets", description: "Understand Codex usage windows, longer-term token consumption, reset times, and practical monitoring options.", keywords: ["Codex usage limits", "Codex token usage", "Codex reset time", "Codex usage tracker"] },
   },
   "download-youtube-instagram-mac": {
-    zh: { title: "Mac 下载 YouTube、Instagram 视频：画质与格式指南", description: "在 Mac 上解析并保存有权下载的 YouTube、Instagram 等平台视频，选择最高画质或 iPhone 兼容格式。", keywords: ["Mac 下载 YouTube 视频", "Instagram 视频下载", "YouTube 最高画质下载", "iPhone 兼容视频"] },
-    en: { title: "Download YouTube and Instagram Videos on Mac", description: "Learn how to save authorized videos on a Mac with format, quality, iPhone compatibility, proxy, and cookie options.", keywords: ["download YouTube videos on Mac", "Instagram downloader Mac", "best quality video download", "iPhone compatible video"] },
+    zh: { title: "在线下载 YouTube、Instagram 视频：画质与格式指南", description: "无需安装，在浏览器解析并保存有权下载的 YouTube、Instagram 等公开视频，选择最高画质、iPhone 兼容或指定格式。", keywords: ["在线下载 YouTube 视频", "Instagram 视频下载", "YouTube 最高画质下载", "iPhone 兼容视频"] },
+    en: { title: "Download YouTube and Instagram Videos Online", description: "Save authorized public videos without installation and choose Best Quality, iPhone Compatible, or a specific format in your browser.", keywords: ["download YouTube videos online", "Instagram video downloader", "best quality video download", "iPhone compatible video"] },
   },
 };
 
@@ -145,7 +145,7 @@ export function HomeStructuredData({ lang }: { lang: Lang }) {
 const productSchema = {
   readytype: { name: "ReadyType", version: "1.5.0", operatingSystem: "macOS 14+", category: "ProductivityApplication" },
   readycheck: { name: "ReadyCheck", version: "0.1.83", operatingSystem: "macOS, Windows", category: "DeveloperApplication" },
-  readydownloader: { name: "ReadyDownloader", version: "0.1.4", operatingSystem: "macOS 13+, Windows", category: "MultimediaApplication" },
+  readydownloader: { name: "ReadyDownloader", version: "0.2.0", operatingSystem: "Web browser, macOS 13+, Windows", category: "MultimediaApplication" },
   crossfit: { name: "CrossFit WHOOP Video", version: "1.0.11", operatingSystem: "macOS, Windows, Linux", category: "MultimediaApplication" },
 } as const;
 
@@ -154,8 +154,8 @@ export function ProductStructuredData({ product, lang }: { product: ProductKey; 
   const item = productSchema[product];
   const pageUrl = `${baseUrl}${localizedPath(routes[product], lang)}`;
   const entity = product === "crossfit"
-    ? { "@context": "https://schema.org", "@type": "SoftwareSourceCode", name: item.name, description: seo.description, codeRepository: productLinks[product].secondary, programmingLanguage: "TypeScript", version: item.version, url: pageUrl, inLanguage: lang === "zh" ? "zh-CN" : "en" }
-    : { "@context": "https://schema.org", "@type": "SoftwareApplication", name: item.name, description: seo.description, applicationCategory: item.category, operatingSystem: item.operatingSystem, softwareVersion: item.version, url: pageUrl, downloadUrl: productLinks[product].primary, sameAs: productLinks[product].secondary, brand: { "@type": "Brand", name: "ReadySuite AI" }, offers: { "@type": "Offer", price: "0", priceCurrency: "CNY" }, inLanguage: lang === "zh" ? "zh-CN" : "en" };
+    ? { "@context": "https://schema.org", "@type": "SoftwareSourceCode", name: item.name, description: seo.description, codeRepository: productLinks[product].repository, programmingLanguage: "TypeScript", version: item.version, url: pageUrl, inLanguage: lang === "zh" ? "zh-CN" : "en" }
+    : { "@context": "https://schema.org", "@type": "SoftwareApplication", name: item.name, description: seo.description, applicationCategory: item.category, operatingSystem: item.operatingSystem, softwareVersion: item.version, url: pageUrl, downloadUrl: product === "readydownloader" ? links.readydownloaderDownload : productLinks[product].primary, sameAs: productLinks[product].repository, brand: { "@type": "Brand", name: "ReadySuite AI" }, offers: { "@type": "Offer", price: "0", priceCurrency: "CNY" }, inLanguage: lang === "zh" ? "zh-CN" : "en" };
   const breadcrumb = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
     { "@type": "ListItem", position: 1, name: "ReadySuite AI", item: `${baseUrl}${localizedPath("/", lang)}` },
     { "@type": "ListItem", position: 2, name: item.name, item: pageUrl },
@@ -168,7 +168,7 @@ export function GuideStructuredData({ guide, lang }: { guide: GuideKey; lang: La
   const path = guidePaths[guide];
   const url = `${baseUrl}${localizedPath(path, lang)}`;
   return <JsonLd value={[
-    { "@context": "https://schema.org", "@type": "Article", headline: seo.title, description: seo.description, keywords: seo.keywords.join(", "), datePublished: "2026-08-11", dateModified: "2026-08-13", inLanguage: lang === "zh" ? "zh-CN" : "en", mainEntityOfPage: url, author: { "@type": "Organization", name: "ReadySuite AI", url: baseUrl }, publisher: { "@type": "Organization", name: "ReadySuite AI", url: baseUrl } },
+    { "@context": "https://schema.org", "@type": "Article", headline: seo.title, description: seo.description, keywords: seo.keywords.join(", "), datePublished: "2026-08-11", dateModified: "2026-08-15", inLanguage: lang === "zh" ? "zh-CN" : "en", mainEntityOfPage: url, author: { "@type": "Organization", name: "ReadySuite AI", url: baseUrl }, publisher: { "@type": "Organization", name: "ReadySuite AI", url: baseUrl } },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
       { "@type": "ListItem", position: 1, name: "ReadySuite AI", item: `${baseUrl}${localizedPath("/", lang)}` },
       { "@type": "ListItem", position: 2, name: seo.title, item: url },

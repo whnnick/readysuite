@@ -6,7 +6,7 @@ The official bilingual website for ReadySuite products:
 
 - ReadyType 1.5.0: a Chinese-first macOS voice input app.
 - ReadyCheck 0.1.83: a macOS and Windows Codex usage and reset-reminder app.
-- ReadyDownloader 0.1.4: a macOS-first yt-dlp media downloader source preview.
+- ReadyDownloader 0.2.0: a no-install Web downloader with a macOS desktop app.
 - CrossFit WHOOP Video 1.0.11: a vertical 4K sports video workflow.
 
 The long-term page and product update boundaries are documented in the [site architecture](docs/ARCHITECTURE.md).

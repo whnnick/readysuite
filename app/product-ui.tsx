@@ -15,6 +15,7 @@ import {
   Film,
   Folder,
   Github,
+  Globe2,
   Gauge,
   Keyboard,
   Languages,
@@ -137,37 +138,37 @@ const copy = {
       },
       readydownloader: {
         name: "ReadyDownloader",
-        version: "0.1.4",
-        platform: "macOS 13+ · Windows",
-        eyebrow: "多平台视频下载",
-        title: "免费下载 YouTube、Instagram 等平台视频。",
-        body: "粘贴视频链接，即可从 YouTube、Bilibili、TikTok、Instagram 等 yt-dlp 可解析平台保存视频。支持最高画质、iPhone 兼容和指定格式，并可按需使用代理与 Cookie。",
-        homeTitle: "常用平台视频，免费保存。",
-        homeBody: "粘贴 YouTube、Instagram、Bilibili、TikTok 等平台链接即可下载；画质、兼容格式和保存位置都可选择。",
+        version: "0.2.0",
+        platform: "Web · macOS 13+ · Windows",
+        eyebrow: "免安装 Web 版",
+        title: "粘贴链接，直接在浏览器下载。",
+        body: "打开网页版，粘贴你有权保存的公开视频链接，即可解析并下载 YouTube、Instagram、Bilibili、TikTok 等平台视频。无需安装，也能选择最高画质、iPhone 兼容或指定格式。",
+        homeTitle: "常用平台视频，打开网页就能下载。",
+        homeBody: "无需安装。粘贴 YouTube、Instagram、Bilibili、TikTok 等公开视频链接，选择画质后直接下载。",
         homeAction: "了解 ReadyDownloader",
-        primary: "查看 ReadyDownloader",
-        secondary: "查看源码",
-        highlights: ["YouTube / Instagram", "免费保存到本地", "画质与格式可选"],
-        sectionLabel: "粘贴链接即可下载",
-        sectionTitle: "从常用视频平台，直接保存到本地。",
+        primary: "立即使用网页版",
+        secondary: "下载 macOS 客户端",
+        highlights: ["无需安装", "最高画质 / iPhone 兼容", "临时文件 24 小时清理"],
+        sectionLabel: "网页版优先",
+        sectionTitle: "从解析到下载，都在浏览器完成。",
         features: [
-          ["多平台解析", "支持 YouTube、Bilibili、TikTok、Instagram 等 yt-dlp 可解析的视频页面。"],
-          ["最高画质", "默认选择可用的最高画质，并在视频流没有音频时使用 FFmpeg 合并最佳音频。"],
-          ["iPhone 兼容", "检查成品编码，并在需要时转换为 H.264、AAC 和 yuv420p。"],
-          ["网络与登录", "支持直连、系统代理、自定义代理，以及可选的 Netscape 格式 Cookie。"],
+          ["无需安装", "打开网页即可使用，粘贴受支持的公开视频链接后查看可用画质与格式。"],
+          ["三种下载方式", "选择最高画质、iPhone 兼容或指定格式；服务端按需完成音视频合并与兼容转换。"],
+          ["临时私有存储", "成品进入私有 Blob，通过限时签名链接下载，并按 24 小时保留规则清理。"],
+          ["明确安全边界", "仅接受允许的公共来源，提供 SSRF 防护、限速、取消和 500 MB 单视频上限。"],
         ],
-        spotlight: "常用平台支持",
-        spotlightValue: "YouTube · Instagram · Bilibili · TikTok",
-        spotlightBody: "平台支持由内置 yt-dlp 提取器提供，实际可用性取决于视频链接、地区、登录状态和平台变化。",
-        notesTitle: "ReadyDownloader 0.1.4 源码预览",
+        spotlight: "立即在线使用",
+        spotlightValue: "打开网页，粘贴链接",
+        spotlightBody: "支持 YouTube、Instagram、Bilibili、TikTok 等公共页面；实际可用性取决于具体链接、地区和来源站点变化。",
+        notesTitle: "ReadyDownloader 0.2.0",
         notes: [
-          "当前公开版本面向 macOS 13+ Apple Silicon。",
-          "下载进度、取消、保存位置和 Finder 定位均在应用内完成。",
-          "项目不提供 DRM 绕过能力，请仅下载你有权保存的内容。",
-          "0.1.4 尚未发布 GitHub Release，当前可查看源码与构建说明。",
+          "Web 版已在 readydownloader.vercel.app 正式上线，并提供中英文界面。",
+          "macOS 13+ Apple Silicon 客户端继续通过 GitHub Releases 提供。",
+          "Web 版不接收 Cookie，也不处理私密、登录或 DRM 内容。",
+          "Web 版限制单个成品不超过 500 MB，并按 24 小时规则清理临时文件。",
         ],
-        finalTitle: "把有权保存的视频，直接下载到本地。",
-        finalBody: "打开 ReadyDownloader 项目，了解当前源码预览、支持平台和构建说明。",
+        finalTitle: "不安装，也能直接下载。",
+        finalBody: "打开 ReadyDownloader 网页版，粘贴公开视频链接并选择适合的下载方式。",
       },
       crossfit: {
         name: "CrossFit WHOOP Video",
@@ -321,37 +322,37 @@ const copy = {
       },
       readydownloader: {
         name: "ReadyDownloader",
-        version: "0.1.4",
-        platform: "macOS 13+ · Windows",
-        eyebrow: "Multi-platform video downloads",
-        title: "Download videos from YouTube, Instagram, and more for free.",
-        body: "Paste a video URL to save it locally from YouTube, Bilibili, TikTok, Instagram, and other services handled by yt-dlp. Choose best quality, iPhone compatibility, or a specific format, with proxy and optional cookie support.",
-        homeTitle: "Save videos from popular platforms for free.",
-        homeBody: "Paste a YouTube, Instagram, Bilibili, or TikTok link to download it, with control over quality, compatibility, and destination.",
+        version: "0.2.0",
+        platform: "Web · macOS 13+ · Windows",
+        eyebrow: "No-install Web app",
+        title: "Paste a link. Download in your browser.",
+        body: "Open the Web app and paste a public media URL you are authorized to save. Download from YouTube, Instagram, Bilibili, TikTok, and more without installing anything, with Best Quality, iPhone Compatible, and Selected Format modes.",
+        homeTitle: "Download popular videos right from the Web.",
+        homeBody: "No installation required. Paste a public YouTube, Instagram, Bilibili, or TikTok link, choose quality, and download.",
         homeAction: "Explore ReadyDownloader",
-        primary: "View ReadyDownloader",
-        secondary: "View source",
-        highlights: ["YouTube / Instagram", "Free local downloads", "Quality and format control"],
-        sectionLabel: "Paste a link to download",
-        sectionTitle: "Save videos from popular platforms directly to your computer.",
+        primary: "Use the Web app",
+        secondary: "Download the macOS app",
+        highlights: ["No installation", "Best quality / iPhone compatible", "24-hour temporary files"],
+        sectionLabel: "Web first",
+        sectionTitle: "Analyze and download without leaving your browser.",
         features: [
-          ["Multi-platform parsing", "Supports video pages handled by yt-dlp, including YouTube, Bilibili, TikTok, and Instagram."],
-          ["Best quality", "Select the highest available quality and merge the best audio with FFmpeg when needed."],
-          ["iPhone compatible", "Inspect the final media and convert to H.264, AAC, and yuv420p only when required."],
-          ["Network and sign-in", "Use direct, system-proxy, or custom-proxy modes with optional Netscape-format cookies."],
+          ["No installation", "Open the Web app, paste a supported public media URL, and inspect the available quality and format options."],
+          ["Three download modes", "Choose Best Quality, iPhone Compatible, or Selected Format, with server-side merge and conversion when needed."],
+          ["Private temporary storage", "Outputs use private Blob storage and expiring signed links, with cleanup scheduled under a 24-hour retention rule."],
+          ["Clear security boundaries", "Allowlisted public sources, SSRF protection, rate limits, cancellation, and a 500 MB single-video cap are built in."],
         ],
-        spotlight: "Popular platform support",
-        spotlightValue: "YouTube · Instagram · Bilibili · TikTok",
-        spotlightBody: "Platform support comes from the bundled yt-dlp extractors. Availability can vary by URL, region, sign-in state, and platform changes.",
-        notesTitle: "ReadyDownloader 0.1.4 source preview",
+        spotlight: "Use it online",
+        spotlightValue: "Open the app. Paste a link.",
+        spotlightBody: "Supports public pages from YouTube, Instagram, Bilibili, TikTok, and more. Availability varies by URL, region, and source-site changes.",
+        notesTitle: "ReadyDownloader 0.2.0",
         notes: [
-          "The current public target is Apple Silicon on macOS 13 or later.",
-          "Progress, cancellation, destination selection, and Finder reveal stay inside the app.",
-          "The project does not bypass DRM; download only media you are authorized to save.",
-          "Version 0.1.4 has no GitHub Release yet; source and build instructions are available now.",
+          "The bilingual Web app is live in production at readydownloader.vercel.app.",
+          "The macOS 13+ Apple Silicon client remains available through GitHub Releases.",
+          "The Web app does not accept cookies or process private, login-only, or DRM media.",
+          "Web outputs are capped at 500 MB and follow a 24-hour temporary-file cleanup rule.",
         ],
-        finalTitle: "Download videos you are authorized to save.",
-        finalBody: "Open the ReadyDownloader project to review the source preview, platform support, and build instructions.",
+        finalTitle: "Download without installing an app.",
+        finalBody: "Open ReadyDownloader on the Web, paste a public media URL, and choose the download mode that fits.",
       },
       crossfit: {
         name: "CrossFit WHOOP Video",
@@ -503,7 +504,7 @@ function PromotionAnalytics() {
       const baseProperties = {
         page: window.location.pathname,
         placement: clickPlacement(anchor),
-        product: productFromPath(`${destination.pathname}${destination.hash}`),
+        product: productFromPath(`${destination.hostname}${destination.pathname}${destination.hash}`),
       };
 
       if (destination.origin === window.location.origin) {
@@ -517,7 +518,9 @@ function PromotionAnalytics() {
         return;
       }
 
-      if (destination.pathname.endsWith("/releases/latest")) {
+      if (destination.hostname === "readydownloader.vercel.app") {
+        track("web_app_open", eventProperties(baseProperties));
+      } else if (destination.pathname.endsWith("/releases/latest")) {
         track("download_click", eventProperties(baseProperties));
       } else if (destination.pathname.endsWith("/releases")) {
         track("releases_click", eventProperties(baseProperties));
@@ -688,9 +691,9 @@ function Header({
           <LanguageToggle lang={lang} />
           <a
             className="nav-github"
-            href={activeProduct ? productLinks[activeProduct].secondary : links.profile}
+            href={activeProduct ? productLinks[activeProduct].repository : links.profile}
             {...externalLinkProps(
-              activeProduct ? productLinks[activeProduct].secondary : links.profile,
+              activeProduct ? productLinks[activeProduct].repository : links.profile,
             )}
           >
             <Github size={16} />
@@ -861,15 +864,46 @@ function ReadyCheckVisual({
   );
 }
 
-function ReadyDownloaderVisual({ compact = false }: { compact?: boolean }) {
+function ReadyDownloaderVisual({
+  compact = false,
+  priority = false,
+}: {
+  compact?: boolean;
+  priority?: boolean;
+}) {
+  if (!compact) {
+    return (
+      <div className="product-visual downloader-visual">
+        <div className="readydownloader-web-frame">
+          <div className="readydownloader-web-bar" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+            <strong>readydownloader.vercel.app</strong>
+            <em>Web</em>
+          </div>
+          <Image
+            alt="ReadyDownloader Web app with public media URL analysis and three download modes"
+            className="readydownloader-web-image"
+            height={1000}
+            priority={priority}
+            sizes="(max-width: 900px) 92vw, 700px"
+            src="/readydownloader-web-0.2.0.png"
+            width={1440}
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className={`product-visual downloader-visual ${compact ? "is-compact" : ""}`}>
+    <div className="product-visual downloader-visual is-compact">
       <div className="downloader-window" role="img" aria-label="ReadyDownloader link parsing and download progress preview">
         <div className="downloader-titlebar">
           <Image alt="" height={40} src="/readydownloader-icon.png" width={40} />
           <div>
             <strong>ReadyDownloader</strong>
-            <span>0.1.4 · macOS</span>
+            <span>0.2.0 · Web</span>
           </div>
           <span className="downloader-ready">READY</span>
         </div>
@@ -902,7 +936,7 @@ function ReadyDownloaderVisual({ compact = false }: { compact?: boolean }) {
         </div>
         <div className="downloader-status" aria-hidden="true">
           <div>
-            <span><Download size={14} /> 正在下载最高画质</span>
+            <span><Download size={14} /> 浏览器正在准备最高画质</span>
             <strong>68%</strong>
           </div>
           <div className="downloader-progress"><i /></div>
@@ -983,7 +1017,7 @@ function ProductVisual({
     return <ReadyCheckVisual compact={compact} priority={priority} />;
   }
   if (product === "readydownloader") {
-    return <ReadyDownloaderVisual compact={compact} />;
+    return <ReadyDownloaderVisual compact={compact} priority={priority} />;
   }
   return <CrossfitVisual compact={compact} priority={priority} />;
 }
@@ -998,13 +1032,13 @@ const guideLabels: Record<Lang, Record<ProductKey, string>> = {
   zh: {
     readytype: "如何在 Mac 上用中文语音直接输入和整理文字",
     readycheck: "如何查看 Codex 额度、Token 用量和重置时间",
-    readydownloader: "如何在 Mac 上保存 YouTube 与 Instagram 视频",
+    readydownloader: "如何在线保存 YouTube 与 Instagram 视频",
     crossfit: "",
   },
   en: {
     readytype: "How to use Chinese voice input on Mac",
     readycheck: "How to track Codex limits, token usage, and resets",
-    readydownloader: "How to save YouTube and Instagram videos on Mac",
+    readydownloader: "How to save YouTube and Instagram videos online",
     crossfit: "",
   },
 };
@@ -1102,7 +1136,8 @@ export function HomePage({ lang = "zh" }: { lang?: Lang }) {
 export function ProductPage({ product, lang = "zh" }: { product: ProductKey; lang?: Lang }) {
   const t = copy[lang].products[product];
   const icons = featureIcons[product];
-  const repositoryFirst = product === "crossfit" || product === "readydownloader";
+  const repositoryFirst = product === "crossfit";
+  const webFirst = product === "readydownloader";
 
   return (
     <Shell activeProduct={product} lang={lang}>
@@ -1118,7 +1153,7 @@ export function ProductPage({ product, lang = "zh" }: { product: ProductKey; lan
           <p className="hero-body">{t.body}</p>
           <div className="hero-actions">
             <Button href={productLinks[product].primary}>
-              {repositoryFirst ? <Github size={17} /> : <ArrowDownToLine size={17} />}
+              {repositoryFirst ? <Github size={17} /> : webFirst ? <Globe2 size={17} /> : <ArrowDownToLine size={17} />}
               {t.primary}
             </Button>
             <Button href={productLinks[product].secondary} variant="secondary">
@@ -1184,7 +1219,7 @@ export function ProductPage({ product, lang = "zh" }: { product: ProductKey; lan
           <h2>{t.finalTitle}</h2>
           <p>{t.finalBody}</p>
           <Button href={productLinks[product].primary}>
-            {repositoryFirst ? <Github size={17} /> : <ArrowDownToLine size={17} />}
+            {repositoryFirst ? <Github size={17} /> : webFirst ? <Globe2 size={17} /> : <ArrowDownToLine size={17} />}
             {t.primary}
           </Button>
         </div>
@@ -1200,10 +1235,14 @@ export function ProductPage({ product, lang = "zh" }: { product: ProductKey; lan
             href={productLinks[product].tertiary}
             {...externalLinkProps(productLinks[product].tertiary)}
           >
-            {product === "crossfit" || product === "readydownloader"
+            {product === "crossfit"
               ? lang === "zh"
                 ? "阅读构建说明"
                 : "Read build instructions"
+              : product === "readydownloader"
+                ? lang === "zh"
+                  ? "查看桌面版发布"
+                  : "View desktop releases"
               : lang === "zh"
                 ? "查看所有发布"
                 : "View all releases"}
@@ -1256,10 +1295,10 @@ function getResourceRows(page: ResourceKey, lang: Lang) {
       },
       {
         name: products.readydownloader.name,
-        meta: lang === "zh" ? "解析、格式、下载与兼容转换" : "Parsing, formats, downloads, and compatibility",
+        meta: lang === "zh" ? "网页版、解析、下载与兼容转换" : "Web app, parsing, downloads, and compatibility",
         body: lang === "zh"
-          ? "提交 ReadyDownloader 解析、下载、代理、Cookie 或 iPhone 兼容问题。"
-          : "Report ReadyDownloader parsing, download, proxy, cookie, or iPhone-compatibility issues.",
+          ? "提交 ReadyDownloader 网页版、解析、下载或 iPhone 兼容问题；代理与 Cookie 仅属于桌面客户端。"
+          : "Report ReadyDownloader Web app, parsing, download, or iPhone-compatibility issues; proxy and cookie options apply to the desktop client only.",
         action: lang === "zh" ? "提交问题" : "Open issue",
         href: links.readydownloaderIssues,
       },
@@ -1296,10 +1335,10 @@ function getResourceRows(page: ResourceKey, lang: Lang) {
     },
     {
       name: "ReadyDownloader",
-      meta: lang === "zh" ? "本地下载与可选认证" : "Local downloads and optional authentication",
+      meta: lang === "zh" ? "网页临时存储与桌面下载" : "Web temporary storage and desktop downloads",
       body: lang === "zh"
-        ? "下载文件保存在用户选择的位置；Cookie 仅用于用户授权的会话，不应上传到公开反馈。"
-        : "Files are saved to the chosen local destination. Cookies are only for authorized sessions and must not be attached to public issues.",
+        ? "网页版使用私有临时存储和限时下载链接，并按 24 小时规则清理；桌面版文件保存在用户选择的位置。"
+        : "The Web app uses private temporary storage and expiring links under a 24-hour cleanup rule; the desktop app saves files to the destination you choose.",
       action: lang === "zh" ? "查看产品" : "View product",
       href: localizedHref("/readydownloader", lang),
     },

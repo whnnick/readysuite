@@ -27,14 +27,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     return [
       {
         url: `${baseUrl}${zhPath}`,
-        lastModified: new Date("2026-08-13"),
+        lastModified: new Date("2026-08-15"),
         changeFrequency: "weekly" as const,
         priority,
         alternates: { languages },
       },
       {
         url: `${baseUrl}${enPath}`,
-        lastModified: new Date("2026-08-13"),
+        lastModified: new Date("2026-08-15"),
         changeFrequency: "weekly" as const,
         priority: Math.max(priority - 0.05, 0.3),
         alternates: { languages },

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.0 - 2026-08-15
+
+- Updated ReadyDownloader to 0.2.0 with its live bilingual Web app and a privacy-safe production screenshot.
+- Made the no-install Web app the primary ReadyDownloader action across its product page, catalog, and final call to action, with the macOS release as the secondary option.
+- Reworked the bilingual ReadyDownloader product copy and practical guide around public media URLs, three download modes, private temporary storage, and 24-hour cleanup.
+- Added Web-first bilingual search metadata, keywords, social imagery, and SoftwareApplication structured data while separating Web, desktop release, release history, and source links.
+
 ## 1.4.2 - 2026-08-13
 
 - Unified the public positioning around "ReadySuite AI Toolkit" in both English and Chinese to reduce search ambiguity with an established namesake product.

@@ -717,6 +717,55 @@ img {
   color: #1d1d1f;
 }
 
+.readydownloader-web-frame {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(29, 29, 31, 0.11);
+  border-radius: 8px;
+  background: #f1f3f4;
+  box-shadow: 0 22px 56px rgba(20, 22, 28, 0.13);
+}
+
+.readydownloader-web-bar {
+  display: grid;
+  min-height: 34px;
+  padding: 0 12px;
+  border-bottom: 1px solid rgba(29, 29, 31, 0.09);
+  align-items: center;
+  grid-template-columns: 8px 8px 8px 1fr auto;
+  gap: 6px;
+  color: #777a7f;
+}
+
+.readydownloader-web-bar > span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d0d2d4;
+}
+
+.readydownloader-web-bar strong {
+  overflow: hidden;
+  margin-left: 5px;
+  font-size: 10px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.readydownloader-web-bar em {
+  color: #35743d;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 750;
+}
+
+.readydownloader-web-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .downloader-titlebar,
 .downloader-url-row,
 .downloader-status > div:first-child {
@@ -1968,6 +2017,10 @@ img {
   .product-hero .hero-actions {
     display: grid;
     grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  }
+
+  .product-hero.product-readydownloader .hero-actions {
+    grid-template-columns: 1fr;
   }
 
   .product-hero {

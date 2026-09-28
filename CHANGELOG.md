@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.1 - 2026-09-28
+
+- Added a read-only check for public product versions against bilingual site copy, SEO data, and both READMEs, with an offline consistency mode.
+- Documented production-domain promotion and verification, and clarified the difference between emitted Analytics events and available reports.
+
 ## 1.5.0 - 2026-08-15
 
 - Updated ReadyDownloader to 0.2.0 with its live bilingual Web app and a privacy-safe production screenshot.

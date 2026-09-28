@@ -26,13 +26,29 @@ Open http://localhost:3000
 npm run build
 ```
 
-## Deployment
-
-Deploy from this folder:
+Before updating product content or deploying, compare the displayed versions with public releases/tags:
 
 ```bash
-vercel --prod
+npm run check:versions
 ```
+
+Use `npm run check:versions -- --local` when offline to check consistency between the two languages, SEO data, and both READMEs. The online check reports differences; it never changes product copy. Review feature descriptions and media separately.
+
+## Deployment
+
+Deploy from this folder and wait for the deployment to become Ready:
+
+```bash
+vercel --prod --scope ready-suite
+```
+
+Confirm that `readysuite.vercel.app` is configured as a production domain for this Vercel project and points to this Ready deployment. If domain assignment was skipped, promote the Ready deployment:
+
+```bash
+vercel promote <READY_DEPLOYMENT_URL> --scope ready-suite
+```
+
+Open the production domain and verify the intended version and both `/` and `/en` pages. A successful deployment URL alone does not verify the production domain.
 
 Product downloads intentionally point to each project's latest GitHub release or repository.
 
@@ -41,6 +57,9 @@ The production site is available at [readysuite.vercel.app](https://readysuite.v
 ## Promotion operations
 
 The [launch kit](docs/launch/README.md) contains campaign links, channel-ready
-copy, privacy checks, and a weekly metrics template. Vercel Analytics tracks
-product opens, downloads, releases, support, documentation, and language
-changes without collecting form content or account data.
+copy, privacy checks, and a weekly metrics template. Vercel Analytics is
+installed site-wide, and the site emits privacy-safe product, download,
+release, support, documentation, and language events without form content or
+account data. Page views and custom-event reports are different metrics;
+custom-event reporting depends on the Vercel plan and project settings.
+An unavailable event report must not be interpreted as zero clicks.

@@ -26,13 +26,29 @@ npm run dev
 npm run build
 ```
 
-## 部署
-
-在当前目录执行：
+更新产品信息或部署前，核对官网标注版本与公开 Release/Tag：
 
 ```bash
-vercel --prod
+npm run check:versions
 ```
+
+离线时可用 `npm run check:versions -- --local` 核对中英文文案、SEO 数据与两份 README 是否一致。在线检查只报告差异，不自动修改产品文案；功能说明和素材仍需单独核实。
+
+## 部署
+
+在当前目录执行，并等待部署状态变为 Ready：
+
+```bash
+vercel --prod --scope ready-suite
+```
+
+确认 `readysuite.vercel.app` 已配置为本项目的生产域名，并指向本次 Ready 部署。如果部署时跳过了域名分配，再提升该部署：
+
+```bash
+vercel promote <READY_DEPLOYMENT_URL> --scope ready-suite
+```
+
+打开正式域名，核对目标版本以及 `/`、`/en` 页面。部署地址可访问不等于正式域名已更新。
 
 产品下载链接指向各项目最新的 GitHub Release 或仓库。
 
@@ -41,5 +57,6 @@ vercel --prod
 ## 推广执行
 
 [推广执行包](docs/launch/README.md)包含渠道跟踪链接、可直接发布的文案、隐私检查和
-每周指标模板。Vercel Analytics 仅记录产品入口、下载、发布、支持、文档和语言切换
-事件，不采集表单内容或账号数据。
+每周指标模板。全站已安装 Vercel Analytics；网站发送产品入口、下载、发布、支持、
+文档和语言切换等不含表单内容或账号数据的事件。页面访问量与自定义事件是不同指标；
+能否查看自定义事件报表取决于 Vercel 套餐和项目设置。报表不可用不代表点击量为零。

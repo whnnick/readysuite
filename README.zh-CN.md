@@ -37,6 +37,8 @@ npm run check:versions
 
 ## 部署
 
+现有 Vercel 项目已连接本仓库的 `main` 分支，推送经过验证的提交会触发生产构建。`readysuite.vercel.app` 已配置为生产域名，每次发布后仍需实际验收。
+
 在当前目录执行，并等待部署状态变为 Ready：
 
 ```bash

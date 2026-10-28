@@ -27,3 +27,9 @@ Checked on 2026-10-28. Development source and downloadable releases are reviewed
 ReadyCheck uses public 0.5.1 native screenshots retained in 0.5.4, with project-provided synthetic data and language-specific assets. ReadyType retains sanitized real app media with demonstration text. ReadyDownloader uses a real Web screenshot. CrossFit retains its privacy-safe synthetic athlete with a sample-data caption.
 
 Costs depend on usage and provider pricing; an unconditional daily-cost promise is not used. Web download availability depends on the URL and source restrictions. Requirements explain the 500 MB limit and 24-hour retention.
+
+## Deployment record
+
+Feature commit `ce9ce5b` was deployed through the existing Vercel GitHub connection to [readysuite.vercel.app](https://readysuite.vercel.app/). The canonical hostname is now attached to the project's production environment so future releases update it automatically.
+
+The prior production deployment is `ready-suite-site-p1voo4osk-ready-suite.vercel.app`. If rollback is needed, verify the target using the root README's acceptance flow and use Vercel's rollback operation. An actual rollback was not performed in this run.

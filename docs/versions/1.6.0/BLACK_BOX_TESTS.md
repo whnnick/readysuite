@@ -15,13 +15,13 @@ Checked on 2026-10-28. Scope is the website, excluding installation or real busi
 | SEO | Complete | Read rendered titles, canonicals, zh-CN/en/x-default alternates and JSON-LD versions; robots names the production domain and sitemap. |
 | Build and runtime | Complete | Production build generates 27 static pages. Browser checks show no console warnings or errors. |
 | Reduced motion | Partial | Existing global reduced-motion fallback remains. The user's system setting was not changed for manual acceptance. |
-| Production domain | Pending deployment | Confirm the Chinese and English production pages and product versions correspond to this deployment. |
+| Production domain | Complete | The production build for `ce9ce5b` is Ready and the canonical domain maps to it. Live home, English product versions, Widget switching and language routes pass with no console warnings or errors. |
 
 ## Limits and remaining checks
 
 - Confirmed that the Web downloader entry loads; did not download third-party media or reinstall products in this run.
 - ReadyType input is an illustrative sequence. CrossFit uses a synthetic athlete and sample metrics, not a real interaction recording or live biometric feed.
 - Comprehensive VoiceOver, physical touchscreen and every external source-platform check are outside this run.
-- No known code blocker remains; domain assignment and production smoke checks remain release conditions.
+- No known release blocker remains. The canonical hostname is now a verified production domain of this project rather than a standalone alias, so it follows future production deployments.
 
 Screenshots and structured browser results are retained in the locally ignored `output/site-refresh-2026-10-28/`, excluded from deployment files.

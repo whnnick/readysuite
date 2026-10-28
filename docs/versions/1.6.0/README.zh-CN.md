@@ -27,3 +27,9 @@
 ReadyCheck 使用公开仓库中保留至 0.5.4 的 0.5.1 原生截图，数据为项目明确提供的合成演示。中英文分别使用对应截图。ReadyType 复用已处理的真实界面，输入内容为演示；ReadyDownloader 使用网页版真实截图；CrossFit 保留隐私安全的合成人像并标注示例数据。
 
 费用由实际使用量与供应商价格决定，官网不将缺少用量条件的每日费用作为保证。网页版视频下载是否可用取决于具体链接和平台限制；500 MB 上限与 24 小时保留规则在使用条件中说明。
+
+## 发布记录
+
+功能提交 `ce9ce5b` 已通过 GitHub 连接在现有 Vercel 项目发布，正式站点为 [readysuite.vercel.app](https://readysuite.vercel.app/)。正式域名现已绑定到项目的生产环境，避免后续只更新默认部署地址。
+
+如需回滚，本次更新之前的生产部署为 `ready-suite-site-p1voo4osk-ready-suite.vercel.app`。按根 README 的部署验收流程确认目标后，使用 Vercel 的回滚操作；本轮没有执行实际回滚。

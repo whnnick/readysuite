@@ -37,6 +37,8 @@ Use `npm run check:versions -- --local` when offline to check consistency betwee
 
 ## Deployment
 
+The existing Vercel project is connected to this repository's `main` branch. Pushing a verified commit triggers a production build. `readysuite.vercel.app` is configured as a production domain; still verify it after each release.
+
 Deploy from this folder and wait for the deployment to become Ready:
 
 ```bash

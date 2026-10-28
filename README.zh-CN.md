@@ -4,12 +4,13 @@
 
 ReadySuite 产品的中英文官方网站：
 
-- ReadyType 1.5.0：中文优先的 macOS 语音输入应用。
-- ReadyCheck 0.1.83：适用于 macOS 与 Windows 的 Codex 用量和重置提醒工具。
-- ReadyDownloader 0.2.0：免安装网页版视频下载工具，并提供 macOS 客户端。
+- ReadyType 1.5.1：中文优先的 macOS 语音输入应用。
+- ReadyCheck 0.5.4：原生 Mac Codex 额度工具，提供自适应 Widget 与独立 Windows 预览版。
+- ReadyDownloader 0.2.2：免费的网页版视频下载工具，并提供 Apple Silicon macOS 客户端。
 - CrossFit WHOOP Video 1.0.11：竖屏 4K 运动视频制作工作流。
 
 长期页面结构和产品更新边界见[官网架构](docs/ARCHITECTURE.zh-CN.md)。
+本次产品依据与设计取舍见 [1.6.0 概览](docs/versions/1.6.0/README.zh-CN.md)和[黑盒验收](docs/versions/1.6.0/BLACK_BOX_TESTS.zh-CN.md)。
 
 ## 本地预览
 

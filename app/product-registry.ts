@@ -23,7 +23,7 @@ export const links = {
   readydownloaderReleases: "https://github.com/whnnick/readydownloader/releases",
   readydownloaderIssues: "https://github.com/whnnick/readydownloader/issues",
   crossfit: "https://github.com/whnnick/crossfit-whoop-video",
-  crossfitDocs: "https://github.com/whnnick/crossfit-whoop-video#readme",
+  crossfitDocs: "https://github.com/whnnick/crossfit-whoop-video/blob/main/docs/CODEX_USAGE.md",
   crossfitIssues: "https://github.com/whnnick/crossfit-whoop-video/issues",
 } as const;
 
@@ -57,8 +57,8 @@ export const productLinks: Record<
     repository: links.readydownloader,
   },
   crossfit: {
-    primary: links.crossfit,
-    secondary: links.crossfitDocs,
+    primary: links.crossfitDocs,
+    secondary: links.crossfit,
     tertiary: links.crossfitDocs,
     repository: links.crossfit,
   },

@@ -56,13 +56,13 @@ const copy = {
       crossfit: "CrossFit WHOOP Video",
     },
     home: {
-      eyebrow: "ReadySuite AI 工具箱",
-      title: "让常用工作，一步到位。",
-      body: "输入、用量、下载和内容制作。选择一个工具，直接解决眼前的问题。",
+      eyebrow: "让常用工作，少几步。",
+      title: "ReadySuite",
+      body: "开口输入，看清 Codex 额度，保存需要的视频。找到适合你的工具，接着把事情做好。",
       primary: "探索产品",
       secondary: "查看下载",
       productsLabel: "选择产品",
-      productsTitle: "每个工具，都把一件事做好。",
+      productsTitle: "从你要做的事开始。",
       openSourceTitle: "开源、透明，并持续更新。",
       openSourceBody: "版本、下载、更新记录和反馈入口均由对应的 GitHub 项目维护。",
       openSourceAction: "访问 GitHub",
@@ -70,13 +70,13 @@ const copy = {
     products: {
       readytype: {
         name: "ReadyType",
-        version: "1.5.0",
+        version: "1.5.1",
         platform: "macOS 14+",
         eyebrow: "语音输入",
-        title: "开口说，直接得到可用文字。",
+        title: "说出想法，\n直接成文。",
         body: "双击 Option 开始说话，再次双击完成输出。直接转文字、整理成文、翻译成英文或写给 AI，无需离开当前输入框。",
         homeTitle: "双击 Option，说出想法。",
-        homeBody: "将语音自动整理成清晰文字，并根据场景选择输出方式。DeepSeek V4 Flash，日常使用一天不到 1 毛钱。",
+        homeBody: "口述一段想法，直接转成文字、整理成文或翻译成英文，回到你正在使用的输入框。",
         homeAction: "了解 ReadyType",
         primary: "下载 ReadyType",
         secondary: "查看源码",
@@ -87,12 +87,12 @@ const copy = {
           ["双击 Option", "在任意输入框中开始和结束语音输入，按 Esc 随时取消。"],
           ["四种输出", "直接转文字、整理成文、翻译成英文，以及整理成适合发给 AI 的任务说明。"],
           ["自动选择", "短句优先速度，高精度语音包准备好时自动提升识别准确率。"],
-          ["成本可控", "AI 输出默认调用 DeepSeek V4 Flash，日常轻量使用通常一天不到 1 毛钱。"],
+          ["长段口述也顺畅", "较长输入并行准备快速与高精度识别结果，在有限等待内选择完整候选。"],
         ],
-        spotlight: "调用 DeepSeek V4 Flash",
-        spotlightValue: "日常使用，一天不到 1 毛钱",
-        spotlightBody: "直接转文字不调用 DeepSeek；整理、翻译和写给 AI 才会使用你配置的密钥。",
-        notesTitle: "ReadyType 1.5.0",
+        spotlight: "按自己的节奏使用",
+        spotlightValue: "直接转写，或交给 AI 整理。",
+        spotlightBody: "AI 输出默认使用 DeepSeek V4 Flash 与你自己的密钥，费用按实际用量和服务商价格计算。直接转文字无需调用 DeepSeek。",
+        notesTitle: "ReadyType 1.5.1",
         notes: [
           "支持 macOS 14 及以上版本。",
           "DeepSeek 密钥安全存储在 macOS 钥匙串。",
@@ -104,47 +104,47 @@ const copy = {
       },
       readycheck: {
         name: "ReadyCheck",
-        version: "0.1.83",
-        platform: "macOS · Windows",
+        version: "0.5.4",
+        platform: "macOS 14+ · Windows 预览版",
         eyebrow: "Codex 用量",
-        title: "随时看清 Codex 剩余额度。",
-        body: "在主窗口、菜单栏、桌面 Widget 或 Mac 刘海下方查看 Codex 额度状态。刷新只读取用量数据，不发送模型推理请求。",
+        title: "看清额度，\n安排下一步。",
+        body: "5 小时与 7 天额度、重置时间和下一件需要关注的事，放在同一个原生界面里。通过菜单栏、可置顶 Widget 或刘海，工作时也能一眼确认。",
         homeTitle: "Codex 额度，随时可见。",
-        homeBody: "在主窗口、菜单栏、桌面 Widget 和 Mac 刘海查看额度；主动重置即将到期时及时提醒。",
+        homeBody: "一眼看清双额度与下一事件。把 Widget 留在桌面，让重置时间和最近消耗随时可见。",
         homeAction: "了解 ReadyCheck",
         primary: "下载 ReadyCheck",
         secondary: "查看源码",
-        highlights: ["macOS 与 Windows", "Token 用量看板", "重置到期提醒"],
+        highlights: ["5 小时 / 7 天额度", "可置顶 Widget", "额度与到期提醒"],
         sectionLabel: "始终可见",
         sectionTitle: "把额度状态放在需要它的地方。",
         features: [
-          ["菜单栏摘要", "无需切换页面，直接查看当前 Codex 额度窗口。"],
-          ["桌面 Widget", "可拖拽并置顶，让剩余额度和刷新状态持续可见。"],
-          ["刘海状态条", "在支持的 Mac 内置刘海屏下方显示紧凑额度状态。"],
-          ["用量与提醒", "显示 7/30/90 天 Token 用量，并在主动重置到期前 72、48、24 和 12 小时提醒。"],
+          ["下一件事，一处看清", "概览、菜单栏与 Widget 共享下一事件，显示预计重置、符合条件的重置卡使用窗口或需要处理的问题。"],
+          ["Widget 随桌面调整", "拖到屏幕边缘变成窄条，移回桌面变成气泡；信息卡可拖拽并保持展开，带最近一小时消耗图。"],
+          ["区分额度与 Token", "查看本机记录的 24 小时、7 天和 30 天额度消耗；账户 Token 数据可用时单独展示，两者各有含义。"],
+          ["提醒由你决定", "低额度、恢复和重置卡到期分别设置；可查看通知记录，自动使用到期卡需要当前账户单独授权。"],
         ],
-        spotlight: "同一个发布页",
-        spotlightValue: "macOS DMG + Windows 便携版",
-        spotlightBody: "0.1.83 同时提供 macOS 与 Windows 10/11 预览包，并保持主要行为一致。",
-        notesTitle: "ReadyCheck 0.1.83",
+        spotlight: "少一次来回检查",
+        spotlightValue: "状态常驻，提醒有据。",
+        spotlightBody: "额度刷新只读取已授权数据，不发送模型生成请求。提醒记录和重置卡结果各自保留，方便需要时核对。",
+        notesTitle: "ReadyCheck 0.5.4",
         notes: [
-          "支持 Codex OAuth 订阅方式登录。",
-          "OAuth 凭据通过系统安全存储保存。",
-          "通知历史会记录投递状态、尝试时间和重试次数。",
-          "通过 GitHub Releases 获取最新版本。",
+          "macOS 14+ Apple Silicon 原生应用；Windows x64 提供保留原界面的便携预览版。",
+          "通过 ChatGPT 账户 OAuth 授权，Mac 凭据保存在系统钥匙串。",
+          "可独立设置低额度、恢复及 72/48/24/12 小时重置卡到期提醒。",
+          "发布页提供自签名预览包与安装指南，首次启动可能需要手动确认。",
         ],
         finalTitle: "专注构建，不再反复检查额度。",
         finalBody: "下载 ReadyCheck，让 Codex 使用状态保持可见。",
       },
       readydownloader: {
         name: "ReadyDownloader",
-        version: "0.2.0",
-        platform: "Web · macOS 13+ · Windows",
+        version: "0.2.2",
+        platform: "Web · macOS 13+ Apple Silicon",
         eyebrow: "免安装 Web 版",
-        title: "粘贴链接，直接在浏览器下载。",
-        body: "打开网页版，粘贴你有权保存的公开视频链接，即可解析并下载 YouTube、Instagram、Bilibili、TikTok 等平台视频。无需安装，也能选择最高画质、iPhone 兼容或指定格式。",
-        homeTitle: "常用平台视频，打开网页就能下载。",
-        homeBody: "无需安装。粘贴 YouTube、Instagram、Bilibili、TikTok 等公开视频链接，选择画质后直接下载。",
+        title: "粘贴链接，\n保存需要的视频。",
+        body: "免费保存你有权下载的 YouTube、Instagram、Bilibili、TikTok 等平台视频。先用免安装网页版解析公开链接，再选择画质或 iPhone 兼容格式；具体链接的可用性取决于来源平台。",
+        homeTitle: "多平台视频，免费保存。",
+        homeBody: "粘贴 YouTube、Instagram 等公开视频链接，先用网页版下载；需要本机网络环境时，选用 Mac 客户端。",
         homeAction: "了解 ReadyDownloader",
         primary: "立即使用网页版",
         secondary: "下载 macOS 客户端",
@@ -154,17 +154,17 @@ const copy = {
         features: [
           ["无需安装", "打开网页即可使用，粘贴受支持的公开视频链接后查看可用画质与格式。"],
           ["三种下载方式", "选择最高画质、iPhone 兼容或指定格式；服务端按需完成音视频合并与兼容转换。"],
-          ["临时私有存储", "成品进入私有 Blob，通过限时签名链接下载，并按 24 小时保留规则清理。"],
-          ["明确安全边界", "仅接受允许的公共来源，提供 SSRF 防护、限速、取消和 500 MB 单视频上限。"],
+          ["保存到手边", "下载完成后通过限时链接保存文件，临时文件私有存储，并按 24 小时保留规则清理。"],
+          ["网页与 Mac 各有所长", "网页适合免安装保存公开内容；Mac 客户端使用本机网络，可配置代理与自行导入的 Cookie。"],
         ],
         spotlight: "立即在线使用",
-        spotlightValue: "打开网页，粘贴链接",
-        spotlightBody: "支持 YouTube、Instagram、Bilibili、TikTok 等公共页面；实际可用性取决于具体链接、地区和来源站点变化。",
-        notesTitle: "ReadyDownloader 0.2.0",
+        spotlightValue: "先试网页版，随时选择 Mac。",
+        spotlightBody: "YouTube 可能对云端请求进行机器人验证。网页版会提供明确提示，可改用本机客户端；具体链接、地区与来源站点变化会影响可用性。",
+        notesTitle: "ReadyDownloader 0.2.2",
         notes: [
           "Web 版已在 readydownloader.vercel.app 正式上线，并提供中英文界面。",
           "macOS 13+ Apple Silicon 客户端继续通过 GitHub Releases 提供。",
-          "Web 版不接收 Cookie，也不处理私密、登录或 DRM 内容。",
+          "网页版适用于受支持的公开视频；仅保存自己拥有或获得许可的内容。",
           "Web 版限制单个成品不超过 500 MB，并按 24 小时规则清理临时文件。",
         ],
         finalTitle: "不安装，也能直接下载。",
@@ -175,13 +175,13 @@ const copy = {
         version: "1.0.11",
         platform: "HyperFrames · Codex · OpenClaw",
         eyebrow: "运动短片工作流",
-        title: "把训练素材做成电影感数据短片。",
+        title: "把训练片段，\n做成数据短片。",
         body: "用可复用的 9:16 4K 模板、Codex Skill 和 WHOOP 风格动态 HUD，把训练素材制作成适合 Shorts、Reels 与 TikTok 的运动短片。",
-        homeTitle: "快速制作 4K 竖屏训练视频。",
+        homeTitle: "让训练片段，带上表现数据。",
         homeBody: "用 HyperFrames、Codex 和 OpenClaw 复用完整制作流程，把训练片段转成带 WHOOP HUD 的运动短片。",
         homeAction: "了解制作流程",
-        primary: "打开项目",
-        secondary: "阅读文档",
+        primary: "查看制作指南",
+        secondary: "查看源码",
         highlights: ["9:16 4K", "10 套 HUD", "Codex / OpenClaw"],
         sectionLabel: "完整工作流",
         sectionTitle: "从素材检查，到电影感运动成片。",
@@ -240,13 +240,13 @@ const copy = {
       crossfit: "CrossFit WHOOP Video",
     },
     home: {
-      eyebrow: "ReadySuite AI Toolkit",
-      title: "Finish everyday work in fewer steps.",
-      body: "Input, usage, downloads, and content production. Pick one tool and solve the task in front of you.",
+      eyebrow: "Useful tools. Fewer steps.",
+      title: "ReadySuite",
+      body: "Speak your thoughts, check Codex quota, and save the videos you need. Find your tool and get back to work.",
       primary: "Explore products",
       secondary: "View downloads",
       productsLabel: "Choose a product",
-      productsTitle: "Each tool does one job well.",
+      productsTitle: "Start with what you want to do.",
       openSourceTitle: "Open, transparent, and continuously updated.",
       openSourceBody: "Versions, downloads, changelogs, and feedback are maintained in each product's GitHub repository.",
       openSourceAction: "Visit GitHub",
@@ -254,13 +254,13 @@ const copy = {
     products: {
       readytype: {
         name: "ReadyType",
-        version: "1.5.0",
+        version: "1.5.1",
         platform: "macOS 14+",
         eyebrow: "Voice input",
         title: "Speak naturally. Get usable text.",
         body: "Double-press Option to start and finish. Dictate, polish writing, translate into English, or create an AI-ready task without leaving the current text field.",
         homeTitle: "Double-press Option. Speak your mind.",
-        homeBody: "Turn speech into clear text with the right output for each context. Light daily use with DeepSeek V4 Flash typically costs under RMB 0.10.",
+        homeBody: "Dictate, polish, or translate a thought into English, then send the result straight to the text field you are using.",
         homeAction: "Explore ReadyType",
         primary: "Download ReadyType",
         secondary: "View source",
@@ -271,12 +271,12 @@ const copy = {
           ["Double-press Option", "Start and finish voice input in any text field, and press Esc to cancel."],
           ["Four outputs", "Direct dictation, polished writing, English translation, and clear AI-ready instructions."],
           ["Automatic selection", "Short phrases prioritize speed; the high-accuracy model is selected when it is ready and useful."],
-          ["Controlled cost", "AI modes use DeepSeek V4 Flash, typically costing less than RMB 0.10 per day for light daily use."],
+          ["Longer thoughts, less waiting", "Longer input prepares fast and high-accuracy recognition in parallel, choosing complete candidates within a bounded wait."],
         ],
-        spotlight: "Powered by DeepSeek V4 Flash",
-        spotlightValue: "Typical daily use under RMB 0.10",
-        spotlightBody: "Direct dictation does not call DeepSeek. Only polish, translation, and AI-task modes use your configured key.",
-        notesTitle: "ReadyType 1.5.0",
+        spotlight: "Work at your own pace",
+        spotlightValue: "Dictate directly. Or let AI polish it.",
+        spotlightBody: "AI outputs use DeepSeek V4 Flash and your own key. Cost depends on actual usage and provider pricing; direct dictation requires no DeepSeek call.",
+        notesTitle: "ReadyType 1.5.1",
         notes: [
           "Supports macOS 14 and later.",
           "Stores the DeepSeek key securely in macOS Keychain.",
@@ -288,47 +288,47 @@ const copy = {
       },
       readycheck: {
         name: "ReadyCheck",
-        version: "0.1.83",
-        platform: "macOS · Windows",
+        version: "0.5.4",
+        platform: "macOS 14+ · Windows preview",
         eyebrow: "Codex usage",
-        title: "Keep Codex quota in sight.",
-        body: "View Codex usage in the main window, menu bar, desktop widget, or below a supported Mac notch. Refreshing reads usage data without sending inference requests.",
+        title: "See your quota. Know what comes next.",
+        body: "Both 5-hour and 7-day quotas, reset times, and your next event in one native interface. Keep a menu-bar summary, pinned Widget, or notch view within reach as you work.",
         homeTitle: "Codex quota, always in sight.",
-        homeBody: "See quota in the main window, menu bar, desktop widget, or Mac notch, and get timely reminders before manual resets expire.",
+        homeBody: "See both quotas and the next event at a glance. Keep a Widget on your desktop for reset times and recent consumption.",
         homeAction: "Explore ReadyCheck",
         primary: "Download ReadyCheck",
         secondary: "View source",
-        highlights: ["macOS and Windows", "Token usage dashboard", "Reset-expiry reminders"],
+        highlights: ["5-hour / 7-day quotas", "Pinned Widget", "Quota and expiry alerts"],
         sectionLabel: "Always visible",
         sectionTitle: "Put usage status where you need it.",
         features: [
-          ["Menu-bar summary", "View the current Codex usage window without switching pages."],
-          ["Desktop widget", "Drag and pin the widget so remaining quota and refresh status stay visible."],
-          ["Notch status", "Show a compact usage strip below the built-in notch on supported Macs."],
-          ["Usage and reminders", "Show 7/30/90-day Token usage and remind you 72, 48, 24, and 12 hours before a manual reset expires."],
+          ["One shared next event", "Overview, menu, and Widget share the expected reset, a conditional card-use window, or an issue needing attention."],
+          ["A Widget that adapts", "Drag to an edge for a slim strip or inward for a bubble. Move and pin details, including the last-hour consumption chart."],
+          ["Quota and Tokens, clearly separated", "Review locally recorded quota consumption over 24 hours, 7 days, or 30 days. Account Token data appears separately when available."],
+          ["Reminders you control", "Set low-quota, recovery, and expiry alerts independently. Inspect notification records; automatic card use needs account-specific consent."],
         ],
-        spotlight: "One release page",
-        spotlightValue: "macOS DMG + Windows portable build",
-        spotlightBody: "Version 0.1.83 includes macOS and Windows 10/11 previews with aligned core behavior.",
-        notesTitle: "ReadyCheck 0.1.83",
+        spotlight: "One less interruption",
+        spotlightValue: "Visible status. Traceable reminders.",
+        spotlightBody: "Quota refresh reads authorized data without model-generation requests. Notification records and reset-card outcomes remain separate and available to inspect.",
+        notesTitle: "ReadyCheck 0.5.4",
         notes: [
-          "Supports Codex OAuth subscription sign-in.",
-          "Stores OAuth credentials in secure system storage.",
-          "Notification history records delivery state, attempt time, and retry count.",
-          "The latest builds are available through GitHub Releases.",
+          "Native Mac app for macOS 14+ Apple Silicon; Windows x64 offers a portable preview with its previous interface.",
+          "Authorize your ChatGPT account with OAuth; Mac credentials stay in Keychain.",
+          "Control low-quota, recovery, and 72/48/24/12-hour reset-card expiry reminders independently.",
+          "Self-signed preview packages and installation guidance are available in Releases; first launch may need manual approval.",
         ],
         finalTitle: "Stay focused on building.",
         finalBody: "Download ReadyCheck and keep Codex usage visible.",
       },
       readydownloader: {
         name: "ReadyDownloader",
-        version: "0.2.0",
-        platform: "Web · macOS 13+ · Windows",
+        version: "0.2.2",
+        platform: "Web · macOS 13+ Apple Silicon",
         eyebrow: "No-install Web app",
-        title: "Paste a link. Download in your browser.",
-        body: "Open the Web app and paste a public media URL you are authorized to save. Download from YouTube, Instagram, Bilibili, TikTok, and more without installing anything, with Best Quality, iPhone Compatible, and Selected Format modes.",
-        homeTitle: "Download popular videos right from the Web.",
-        homeBody: "No installation required. Paste a public YouTube, Instagram, Bilibili, or TikTok link, choose quality, and download.",
+        title: "Paste a link. Keep the video.",
+        body: "Save authorized videos from YouTube, Instagram, Bilibili, TikTok, and more for free. Start with the no-install Web app, then choose quality or an iPhone-compatible format. Availability depends on the source URL.",
+        homeTitle: "Videos from your platforms. Saved for free.",
+        homeBody: "Start with a public YouTube or Instagram link in the Web app. Choose the Mac client when you need your local network environment.",
         homeAction: "Explore ReadyDownloader",
         primary: "Use the Web app",
         secondary: "Download the macOS app",
@@ -338,17 +338,17 @@ const copy = {
         features: [
           ["No installation", "Open the Web app, paste a supported public media URL, and inspect the available quality and format options."],
           ["Three download modes", "Choose Best Quality, iPhone Compatible, or Selected Format, with server-side merge and conversion when needed."],
-          ["Private temporary storage", "Outputs use private Blob storage and expiring signed links, with cleanup scheduled under a 24-hour retention rule."],
-          ["Clear security boundaries", "Allowlisted public sources, SSRF protection, rate limits, cancellation, and a 500 MB single-video cap are built in."],
+          ["Save it where you need it", "Save the finished file through an expiring link. Temporary files stay private and follow a 24-hour cleanup rule."],
+          ["Web and Mac, by task", "Use the Web for no-install public downloads. The Mac client uses your local network and supports proxy settings and your own cookie import."],
         ],
         spotlight: "Use it online",
-        spotlightValue: "Open the app. Paste a link.",
-        spotlightBody: "Supports public pages from YouTube, Instagram, Bilibili, TikTok, and more. Availability varies by URL, region, and source-site changes.",
-        notesTitle: "ReadyDownloader 0.2.0",
+        spotlightValue: "Start on the Web. Choose Mac when needed.",
+        spotlightBody: "YouTube may challenge cloud requests with bot checks. The Web app explains the issue and points to the local client. Availability varies by URL, region, and source changes.",
+        notesTitle: "ReadyDownloader 0.2.2",
         notes: [
           "The bilingual Web app is live in production at readydownloader.vercel.app.",
           "The macOS 13+ Apple Silicon client remains available through GitHub Releases.",
-          "The Web app does not accept cookies or process private, login-only, or DRM media.",
+          "The Web app handles supported public media; save only content you own or are authorized to download.",
           "Web outputs are capped at 500 MB and follow a 24-hour temporary-file cleanup rule.",
         ],
         finalTitle: "Download without installing an app.",
@@ -361,11 +361,11 @@ const copy = {
         eyebrow: "Sports video workflow",
         title: "Turn training footage into data-rich films.",
         body: "Use reusable 9:16 4K templates, a Codex Skill, and animated WHOOP-style HUDs to produce training edits for Shorts, Reels, and TikTok.",
-        homeTitle: "Produce vertical 4K training videos faster.",
+        homeTitle: "Put performance data in the picture.",
         homeBody: "Reuse a complete HyperFrames, Codex, and OpenClaw workflow to turn training footage into WHOOP-style sports edits.",
         homeAction: "Explore the workflow",
-        primary: "Open project",
-        secondary: "Read docs",
+        primary: "Read the production guide",
+        secondary: "View source",
         highlights: ["9:16 4K", "10 HUD presets", "Codex / OpenClaw"],
         sectionLabel: "Complete workflow",
         sectionTitle: "From footage review to a cinematic sports edit.",
@@ -526,7 +526,7 @@ function PromotionAnalytics() {
         track("releases_click", eventProperties(baseProperties));
       } else if (destination.pathname.endsWith("/issues")) {
         track("support_click", eventProperties(baseProperties));
-      } else if (destination.hash === "#readme") {
+      } else if (destination.hash === "#readme" || destination.pathname.includes("/docs/")) {
         track("docs_click", eventProperties(baseProperties));
       } else {
         track("github_click", eventProperties(baseProperties));
@@ -759,15 +759,17 @@ function Shell({
 function ReadyTypeVisual({
   compact = false,
   priority = false,
+  lang,
 }: {
   compact?: boolean;
   priority?: boolean;
+  lang: Lang;
 }) {
   return (
     <div className={`product-visual readytype-visual ${compact ? "is-compact" : ""}`}>
       <div className="app-window-frame app-window-light readytype-window-stage">
         <Image
-          alt="ReadyType app window"
+          alt={lang === "zh" ? "ReadyType 真实应用界面" : "ReadyType app shown with its Chinese interface"}
           className="app-window-image"
           height={680}
           loading={priority ? "eager" : "lazy"}
@@ -778,16 +780,16 @@ function ReadyTypeVisual({
         />
         <div aria-hidden="true" className="readytype-input-demo">
           <div className="readytype-demo-status">
-            <span className="is-listening">正在聆听</span>
-            <span className="is-processing">正在整理</span>
-            <span className="is-complete">已输入</span>
+            <span className="is-listening">{lang === "zh" ? "正在聆听" : "Listening"}</span>
+            <span className="is-processing">{lang === "zh" ? "正在整理" : "Polishing"}</span>
+            <span className="is-complete">{lang === "zh" ? "已输入" : "Inserted"}</span>
           </div>
           <div className="readytype-demo-field">
             <span className="readytype-demo-raw">
-              帮我整理：周五完成界面验收，下周邀请测试用户。
+              {lang === "zh" ? "帮我整理：周五完成界面验收，下周邀请测试用户。" : "Finish the review Friday, then invite testers next week."}
             </span>
             <span className="readytype-demo-final">
-              周五完成界面验收，下周邀请首批测试用户。
+              {lang === "zh" ? "周五完成界面验收，下周邀请首批测试用户。" : "Complete the review by Friday. Invite testers next week."}
             </span>
           </div>
         </div>
@@ -828,6 +830,7 @@ function ReadyTypeVisual({
           />
         </div>
       </div>
+      <p className="visual-caption">{lang === "zh" ? "真实应用界面 · 输入过程为演示" : "Real app interface · illustrative input sequence"}</p>
     </div>
   );
 }
@@ -835,31 +838,32 @@ function ReadyTypeVisual({
 function ReadyCheckVisual({
   compact = false,
   priority = false,
+  lang,
 }: {
   compact?: boolean;
   priority?: boolean;
+  lang: Lang;
 }) {
+  const [view, setView] = useState<"overview" | "widget">(compact ? "widget" : "overview");
+  const label = view === "overview" ? (lang === "zh" ? "概览节选" : "Overview excerpt") : "Widget";
   return (
     <div className={`product-visual readycheck-visual ${compact ? "is-compact" : ""}`}>
-      <div
-        aria-label="ReadyCheck 0.1.83 product preview showing quota views and reminders"
-        className="readycheck-stage"
-        role="img"
-      >
-        <div className="app-window-frame app-window-light readycheck-window">
-          <video
-            autoPlay
-            data-motion-video
-            loop
-            muted
-            playsInline
-            poster="/readycheck-main-latest.png"
-            preload={priority ? "auto" : "metadata"}
-          >
-            <source src="/readycheck-preview-0.1.83.webm" type="video/webm" />
-          </video>
-        </div>
+      <div className="preview-switcher" role="group" aria-label={lang === "zh" ? "ReadyCheck 界面预览" : "ReadyCheck interface preview"}>
+        <button aria-pressed={view === "overview"} onClick={() => setView("overview")} type="button"><PanelTop size={14} />{lang === "zh" ? "概览" : "Overview"}</button>
+        <button aria-pressed={view === "widget"} onClick={() => setView("widget")} type="button"><Monitor size={14} />Widget</button>
       </div>
+      <div className={`readycheck-native-preview is-${view}`}>
+        <Image
+          alt={lang === "zh" ? `ReadyCheck ${label}，展示双额度、下一事件与消耗记录，使用合成演示数据` : `ReadyCheck ${label} with both quotas, next event and consumption, using synthetic data`}
+          key={view}
+          width={view === "overview" ? 1800 : 760}
+          height={view === "overview" ? 1960 : 688}
+          priority={priority}
+          sizes="(max-width: 820px) 90vw, 640px"
+          src={`/readycheck-${view}-${lang}.png`}
+        />
+      </div>
+      <p className="visual-caption">{label} · {lang === "zh" ? "原生界面 · 合成演示数据" : "native interface · synthetic demo data"}</p>
     </div>
   );
 }
@@ -867,13 +871,14 @@ function ReadyCheckVisual({
 function ReadyDownloaderVisual({
   compact = false,
   priority = false,
+  lang,
 }: {
   compact?: boolean;
   priority?: boolean;
+  lang: Lang;
 }) {
-  if (!compact) {
-    return (
-      <div className="product-visual downloader-visual">
+  return (
+      <div className={`product-visual downloader-visual ${compact ? "is-compact" : ""}`}>
         <div className="readydownloader-web-frame">
           <div className="readydownloader-web-bar" aria-hidden="true">
             <span />
@@ -883,7 +888,7 @@ function ReadyDownloaderVisual({
             <em>Web</em>
           </div>
           <Image
-            alt="ReadyDownloader Web app with public media URL analysis and three download modes"
+            alt={lang === "zh" ? "ReadyDownloader 网页版真实界面，提供链接解析与三种下载方式" : "ReadyDownloader Web interface with URL analysis and three download modes; Chinese interface shown"}
             className="readydownloader-web-image"
             height={1000}
             priority={priority}
@@ -892,66 +897,19 @@ function ReadyDownloaderVisual({
             width={1440}
           />
         </div>
+        <p className="visual-caption">{lang === "zh" ? "网页版真实界面 · 无需安装" : "Real Web interface · no installation"}</p>
       </div>
-    );
-  }
-
-  return (
-    <div className="product-visual downloader-visual is-compact">
-      <div className="downloader-window" role="img" aria-label="ReadyDownloader link parsing and download progress preview">
-        <div className="downloader-titlebar">
-          <Image alt="" height={40} src="/readydownloader-icon.png" width={40} />
-          <div>
-            <strong>ReadyDownloader</strong>
-            <span>0.2.0 · Web</span>
-          </div>
-          <span className="downloader-ready">READY</span>
-        </div>
-        <div className="downloader-url-panel">
-          <span className="downloader-label">视频链接</span>
-          <div className="downloader-url-row">
-            <Link2 size={15} />
-            <span className="downloader-url-text">https://video.example/watch/demo</span>
-            <button type="button" tabIndex={-1}>解析链接</button>
-          </div>
-        </div>
-        <div className="downloader-mode" aria-hidden="true">
-          <span className="is-active">最高画质</span>
-          <span>iPhone 兼容</span>
-          <span>指定格式</span>
-        </div>
-        <div className="downloader-formats" aria-hidden="true">
-          <div className="downloader-format-head">
-            <span>分辨率</span><span>编码</span><span>帧率</span><span>大小</span>
-          </div>
-          <div className="downloader-format-row is-selected">
-            <strong>2160p</strong><span>AV1</span><span>60</span><span>1.8 GB</span>
-          </div>
-          <div className="downloader-format-row">
-            <strong>1440p</strong><span>VP9</span><span>60</span><span>982 MB</span>
-          </div>
-          <div className="downloader-format-row">
-            <strong>1080p</strong><span>H.264</span><span>30</span><span>426 MB</span>
-          </div>
-        </div>
-        <div className="downloader-status" aria-hidden="true">
-          <div>
-            <span><Download size={14} /> 浏览器正在准备最高画质</span>
-            <strong>68%</strong>
-          </div>
-          <div className="downloader-progress"><i /></div>
-        </div>
-      </div>
-    </div>
   );
 }
 
 function CrossfitVisual({
   compact = false,
   priority = false,
+  lang,
 }: {
   compact?: boolean;
   priority?: boolean;
+  lang: Lang;
 }) {
   return (
     <div className={`product-visual crossfit-visual ${compact ? "is-compact" : ""}`}>
@@ -968,7 +926,7 @@ function CrossfitVisual({
         <div className="crossfit-scan" />
         <div className="crossfit-hud">
           <div className="crossfit-hud-top">
-            <span>WHOOP LIVE</span>
+            <span>WORKOUT DATA</span>
             <span>00:18</span>
           </div>
           <div className="crossfit-metrics">
@@ -995,7 +953,7 @@ function CrossfitVisual({
       </div>
       <div className="crossfit-caption">
         <Film size={18} />
-        <span>HyperFrames · 10 HUD presets · Privacy-safe preview</span>
+        <span>{lang === "zh" ? "HyperFrames · 合成人像与示例数据" : "HyperFrames · synthetic athlete and sample data"}</span>
       </div>
     </div>
   );
@@ -1005,21 +963,23 @@ function ProductVisual({
   compact,
   priority,
   product,
+  lang,
 }: {
   compact?: boolean;
   priority?: boolean;
   product: ProductKey;
+  lang: Lang;
 }) {
   if (product === "readytype") {
-    return <ReadyTypeVisual compact={compact} priority={priority} />;
+    return <ReadyTypeVisual compact={compact} priority={priority} lang={lang} />;
   }
   if (product === "readycheck") {
-    return <ReadyCheckVisual compact={compact} priority={priority} />;
+    return <ReadyCheckVisual compact={compact} priority={priority} lang={lang} />;
   }
   if (product === "readydownloader") {
-    return <ReadyDownloaderVisual compact={compact} priority={priority} />;
+    return <ReadyDownloaderVisual compact={compact} priority={priority} lang={lang} />;
   }
-  return <CrossfitVisual compact={compact} priority={priority} />;
+  return <CrossfitVisual compact={compact} priority={priority} lang={lang} />;
 }
 
 const guideRoutes: Partial<Record<ProductKey, string>> = {
@@ -1080,11 +1040,23 @@ export function HomePage({ lang = "zh" }: { lang?: Lang }) {
                   aria-controls="selected-product-panel"
                   aria-selected={active}
                   className={active ? "is-active" : ""}
+                  id={`product-tab-${product}`}
                   key={product}
                   onClick={() => setSelectedProduct(product)}
-                  onFocus={() => setSelectedProduct(product)}
-                  onMouseEnter={() => setSelectedProduct(product)}
+                  onKeyDown={(event) => {
+                    const index = productOrder.indexOf(product);
+                    const next = event.key === "ArrowRight" || event.key === "ArrowDown"
+                      ? (index + 1) % productOrder.length
+                      : event.key === "ArrowLeft" || event.key === "ArrowUp"
+                        ? (index + productOrder.length - 1) % productOrder.length
+                        : event.key === "Home" ? 0 : event.key === "End" ? productOrder.length - 1 : null;
+                    if (next === null) return;
+                    event.preventDefault();
+                    setSelectedProduct(productOrder[next]);
+                    document.getElementById(`product-tab-${productOrder[next]}`)?.focus();
+                  }}
                   role="tab"
+                  tabIndex={active ? 0 : -1}
                   type="button"
                 >
                   <span>{item.name}</span>
@@ -1094,26 +1066,26 @@ export function HomePage({ lang = "zh" }: { lang?: Lang }) {
             })}
           </div>
         </div>
-        <div className={`product-showcase-stage product-${selectedProduct}`} id="selected-product-panel" role="tabpanel">
+        <div aria-labelledby={`product-tab-${selectedProduct}`} className={`product-showcase-stage product-${selectedProduct}`} id="selected-product-panel" role="tabpanel">
           <div className="product-showcase-copy" key={`${lang}-${selectedProduct}-copy`}>
             <div className="product-meta">
               <span>{selected.name}</span>
-              <span>{selected.version}</span>
               <span>{selected.platform}</span>
             </div>
             <h3>{selected.homeTitle}</h3>
             <p>{selected.homeBody}</p>
-            <div className="highlight-list">
-              {selected.highlights.map((highlight) => (
-                <span key={highlight}><Check size={14} />{highlight}</span>
-              ))}
+            <div className="showcase-actions">
+              <Button href={productLinks[selectedProduct].primary}>
+                {selectedProduct === "readydownloader" ? <Globe2 size={16} /> : selectedProduct === "crossfit" ? <Film size={16} /> : <ArrowDownToLine size={16} />}
+                {selected.primary}
+              </Button>
+              <a className="text-link" href={localizedHref(routes[selectedProduct], lang)}>
+                {selected.homeAction}<ArrowRight size={16} />
+              </a>
             </div>
-            <a className="text-link" href={localizedHref(routes[selectedProduct], lang)}>
-              {selected.homeAction}<ArrowRight size={16} />
-            </a>
           </div>
           <div className="product-showcase-visual" key={`${selectedProduct}-visual`}>
-            <ProductVisual compact priority product={selectedProduct} />
+            <ProductVisual compact priority product={selectedProduct} lang={lang} />
           </div>
         </div>
       </section>
@@ -1171,7 +1143,7 @@ export function ProductPage({ product, lang = "zh" }: { product: ProductKey; lan
           </div>
         </div>
         <div data-reveal>
-          <ProductVisual priority product={product} />
+          <ProductVisual priority product={product} lang={lang} />
         </div>
       </section>
 
@@ -1328,8 +1300,8 @@ function getResourceRows(page: ResourceKey, lang: Lang) {
       name: "ReadyCheck",
       meta: lang === "zh" ? "只读用量检查" : "Read-only usage checks",
       body: lang === "zh"
-        ? "额度刷新读取已授权的用量数据，不通过发送 Prompt 或调用模型推理来估算额度。"
-        : "Usage refresh reads authorized usage data and does not estimate quota by sending prompts or inference requests.",
+        ? "额度刷新只读取已授权数据；可选的自动重置卡使用需要当前账户单独授权。Mac 凭据保存在钥匙串，历史记录按账户隔离。"
+        : "Quota refresh reads authorized data. Optional automatic reset-card use needs account-specific consent. Mac credentials stay in Keychain and history is account-scoped.",
       action: lang === "zh" ? "查看产品" : "View product",
       href: localizedHref("/readycheck", lang),
     },
@@ -1404,7 +1376,7 @@ export function GuidePage({ guide, lang = "zh" }: { guide: GuideKey; lang?: Lang
               ))}
             </div>
           </div>
-          <ProductVisual compact priority product={content.product} />
+          <ProductVisual compact priority product={content.product} lang={lang} />
         </header>
 
         <div className="guide-body" data-reveal>

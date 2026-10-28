@@ -23,12 +23,12 @@ const productSeo: Record<ProductKey, Record<Lang, SeoEntry & { image: string }>>
     en: { title: "ReadyType: AI Voice Dictation for macOS | ReadySuite", description: "Double-press Option to dictate in any Mac text field, turn speech into polished writing, translate into English, or create clear AI tasks.", keywords: ["Mac voice dictation", "AI voice input for macOS", "speech to text Mac", "ReadyType"], image: "/readytype-window-clean.png" },
   },
   readycheck: {
-    zh: { title: "ReadyCheck：Codex 额度、Token 用量与重置提醒｜ReadySuite", description: "在 macOS 与 Windows 查看 Codex 额度、Token 用量和重置时间，通过菜单栏、桌面 Widget、Mac 刘海与本地通知保持状态可见。", keywords: ["Codex 额度", "Codex Token 用量", "Codex 用量监控", "ReadyCheck"], image: "/readycheck-preview-0.1.83.jpg" },
-    en: { title: "ReadyCheck: Codex Usage, Token Limits and Reset Alerts", description: "Track Codex usage limits, token consumption, reset times, and expiry reminders from macOS or Windows.", keywords: ["Codex usage monitor", "Codex token usage", "Codex limit tracker", "ReadyCheck"], image: "/readycheck-preview-0.1.83.jpg" },
+    zh: { title: "ReadyCheck：Codex 额度、桌面 Widget 与提醒｜ReadySuite", description: "在 Mac 原生界面、菜单栏与可置顶 Widget 中查看 Codex 双额度、下一事件和本机消耗记录，自主设置额度与重置卡提醒，并提供 Windows 便携预览。", keywords: ["Codex 额度", "Codex Widget", "Codex 用量监控", "ReadyCheck"], image: "/readycheck-widget-zh.png" },
+    en: { title: "ReadyCheck: Codex Quota, Desktop Widget and Reminders", description: "Track both Codex quotas, the next event and local consumption in a native Mac app, menu bar or pinned Widget. Includes configurable alerts and a separate Windows preview.", keywords: ["Codex usage monitor", "Codex desktop widget", "Codex limit tracker", "ReadyCheck"], image: "/readycheck-widget-en.png" },
   },
   readydownloader: {
-    zh: { title: "ReadyDownloader 在线视频下载｜YouTube、Instagram 等平台", description: "免安装使用 ReadyDownloader 网页版，解析并下载有权保存的 YouTube、Instagram、Bilibili、TikTok 等公开视频，支持最高画质、iPhone 兼容和指定格式。", keywords: ["在线视频下载", "YouTube 视频下载", "Instagram 视频下载", "ReadyDownloader 网页版"], image: "/readydownloader-web-0.2.0.png" },
-    en: { title: "ReadyDownloader Online Video Downloader for YouTube and Instagram", description: "Use ReadyDownloader online without installation to analyze and save authorized public videos from YouTube, Instagram, Bilibili, TikTok, and more.", keywords: ["online video downloader", "YouTube video downloader", "Instagram video downloader", "ReadyDownloader Web app"], image: "/readydownloader-web-0.2.0.png" },
+    zh: { title: "ReadyDownloader 免费在线视频下载｜YouTube、Instagram", description: "免费保存有权下载的 YouTube、Instagram、Bilibili、TikTok 等公开视频。优先使用免安装网页版，也提供 Mac 客户端，支持画质选择与 iPhone 兼容输出；具体可用性取决于链接与平台限制。", keywords: ["免费在线视频下载", "YouTube 视频下载", "Instagram 视频下载", "ReadyDownloader 网页版"], image: "/readydownloader-web-0.2.0.png" },
+    en: { title: "ReadyDownloader: Free Web and Mac Video Downloader", description: "Save authorized public videos from YouTube, Instagram, Bilibili and TikTok for free. Start online or use the Mac client, with quality and iPhone-compatible output options. Availability varies by source.", keywords: ["free online video downloader", "YouTube video downloader", "Instagram video downloader", "ReadyDownloader Web app"], image: "/readydownloader-web-0.2.0.png" },
   },
   crossfit: {
     zh: { title: "CrossFit WHOOP Video：4K 竖屏运动视频工作流", description: "使用 HyperFrames 模板、Codex Skill 和 WHOOP 风格动态 HUD 制作适合 Shorts、Reels 与 TikTok 的 9:16 竖屏 4K 运动短片。", keywords: ["CrossFit 视频制作", "WHOOP HUD", "4K 竖屏运动视频", "HyperFrames"], image: "/crossfit-digital-athlete.jpg" },
@@ -42,7 +42,7 @@ const guideSeo: Record<GuideKey, Record<Lang, SeoEntry>> = {
     en: { title: "Chinese Voice Input on Mac: A Practical Guide", description: "Learn how to dictate Chinese in any Mac text field and turn speech into polished writing, translations, or AI tasks.", keywords: ["Chinese voice input Mac", "Mac speech to text", "AI dictation macOS", "voice typing Mac"] },
   },
   "codex-usage-limit": {
-    zh: { title: "Codex 额度怎么看：Token 用量与重置时间指南", description: "理解 Codex 额度窗口、Token 用量和主动重置时间，并通过菜单栏、Widget 与提醒持续查看。", keywords: ["Codex 额度怎么看", "Codex Token 用量", "Codex 重置时间", "Codex 用量限制"] },
+    zh: { title: "Codex 额度怎么看：消耗记录、Token 与重置时间", description: "理解 Codex 双额度、本机消耗记录、Token 用量和重置时间，通过菜单栏、Widget 与提醒掌握下一事件。", keywords: ["Codex 额度怎么看", "Codex Token 用量", "Codex 重置时间", "Codex 用量限制"] },
     en: { title: "How to Track Codex Limits, Token Usage, and Resets", description: "Understand Codex usage windows, longer-term token consumption, reset times, and practical monitoring options.", keywords: ["Codex usage limits", "Codex token usage", "Codex reset time", "Codex usage tracker"] },
   },
   "download-youtube-instagram-mac": {
@@ -143,9 +143,9 @@ export function HomeStructuredData({ lang }: { lang: Lang }) {
 }
 
 const productSchema = {
-  readytype: { name: "ReadyType", version: "1.5.0", operatingSystem: "macOS 14+", category: "ProductivityApplication" },
-  readycheck: { name: "ReadyCheck", version: "0.1.83", operatingSystem: "macOS, Windows", category: "DeveloperApplication" },
-  readydownloader: { name: "ReadyDownloader", version: "0.2.0", operatingSystem: "Web browser, macOS 13+, Windows", category: "MultimediaApplication" },
+  readytype: { name: "ReadyType", version: "1.5.1", operatingSystem: "macOS 14+", category: "ProductivityApplication" },
+  readycheck: { name: "ReadyCheck", version: "0.5.4", operatingSystem: "macOS 14+, Windows", category: "DeveloperApplication" },
+  readydownloader: { name: "ReadyDownloader", version: "0.2.2", operatingSystem: "Web browser, macOS 13+", category: "MultimediaApplication" },
   crossfit: { name: "CrossFit WHOOP Video", version: "1.0.11", operatingSystem: "macOS, Windows, Linux", category: "MultimediaApplication" },
 } as const;
 
@@ -168,7 +168,7 @@ export function GuideStructuredData({ guide, lang }: { guide: GuideKey; lang: La
   const path = guidePaths[guide];
   const url = `${baseUrl}${localizedPath(path, lang)}`;
   return <JsonLd value={[
-    { "@context": "https://schema.org", "@type": "Article", headline: seo.title, description: seo.description, keywords: seo.keywords.join(", "), datePublished: "2026-08-11", dateModified: "2026-08-15", inLanguage: lang === "zh" ? "zh-CN" : "en", mainEntityOfPage: url, author: { "@type": "Organization", name: "ReadySuite AI", url: baseUrl }, publisher: { "@type": "Organization", name: "ReadySuite AI", url: baseUrl } },
+    { "@context": "https://schema.org", "@type": "Article", headline: seo.title, description: seo.description, keywords: seo.keywords.join(", "), datePublished: "2026-08-11", dateModified: "2026-10-28", inLanguage: lang === "zh" ? "zh-CN" : "en", mainEntityOfPage: url, author: { "@type": "Organization", name: "ReadySuite AI", url: baseUrl }, publisher: { "@type": "Organization", name: "ReadySuite AI", url: baseUrl } },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
       { "@type": "ListItem", position: 1, name: "ReadySuite AI", item: `${baseUrl}${localizedPath("/", lang)}` },
       { "@type": "ListItem", position: 2, name: seo.title, item: url },

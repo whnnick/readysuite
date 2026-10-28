@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.6.0 - 2026-10-28
+
+- Refreshed bilingual product positioning against ReadyType 1.5.1, ReadyCheck 0.5.4 and ReadyDownloader 0.2.2 public releases.
+- Brought the product showcase closer to the first viewport, added direct primary actions and keyboard selection, and retained click-selected content while the pointer moves.
+- Replaced the old ReadyCheck video with current native Overview/Widget screenshots using synthetic data; replaced the simulated downloader panel with its real Web interface.
+- Updated guides, metadata, product schema, platform boundaries and download destinations, with paired release evidence and black-box checks.
+
 ## 1.5.1 - 2026-09-28
 
 - Added a read-only check for public product versions against bilingual site copy, SEO data, and both READMEs, with an offline consistency mode.

@@ -23,8 +23,8 @@ const productSeo: Record<ProductKey, Record<Lang, SeoEntry & { image: string }>>
     en: { title: "ReadyType: AI Voice Dictation for macOS | ReadySuite", description: "Double-press Option to dictate in any Mac text field, turn speech into polished writing, translate into English, or create clear AI tasks.", keywords: ["Mac voice dictation", "AI voice input for macOS", "speech to text Mac", "ReadyType"], image: "/readytype-window-clean.png" },
   },
   readycheck: {
-    zh: { title: "ReadyCheck：Codex 额度、桌面 Widget 与提醒｜ReadySuite", description: "在 Mac 原生界面、菜单栏与可置顶 Widget 中查看 Codex 双额度、下一事件和本机消耗记录，自主设置额度与重置卡提醒，并提供 Windows 便携预览。", keywords: ["Codex 额度", "Codex Widget", "Codex 用量监控", "ReadyCheck"], image: "/readycheck-widget-zh.png" },
-    en: { title: "ReadyCheck: Codex Quota, Desktop Widget and Reminders", description: "Track both Codex quotas, the next event and local consumption in a native Mac app, menu bar or pinned Widget. Includes configurable alerts and a separate Windows preview.", keywords: ["Codex usage monitor", "Codex desktop widget", "Codex limit tracker", "ReadyCheck"], image: "/readycheck-widget-en.png" },
+    zh: { title: "ReadyCheck：Codex 额度、桌面 Widget 与通知记录｜ReadySuite", description: "在 Mac 原生界面、菜单栏与可置顶 Widget 中查看 Codex 双额度、下一事件和本机消耗记录；通知记录可按类型筛选、按本地日期分组，点击系统通知直达记录，并提供 Windows 便携预览。", keywords: ["Codex 额度", "Codex Widget", "Codex 用量监控", "Codex 通知记录", "ReadyCheck"], image: "/readycheck-history-zh.png" },
+    en: { title: "ReadyCheck: Codex Quota, Desktop Widget and Notification History", description: "Track both Codex quotas, the next event and local consumption in a native Mac app, menu bar or pinned Widget. Notification history filters by type and local date, and reminders open their records. A separate Windows preview is included.", keywords: ["Codex usage monitor", "Codex desktop widget", "Codex limit tracker", "Codex notification history", "ReadyCheck"], image: "/readycheck-history-en.png" },
   },
   readydownloader: {
     zh: { title: "ReadyDownloader 免费在线视频下载｜YouTube、Instagram", description: "免费保存有权下载的 YouTube、Instagram、Bilibili、TikTok 等公开视频。优先使用免安装网页版，也提供 Mac 客户端，支持画质选择与 iPhone 兼容输出；具体可用性取决于链接与平台限制。", keywords: ["免费在线视频下载", "YouTube 视频下载", "Instagram 视频下载", "ReadyDownloader 网页版"], image: "/readydownloader-web-0.2.0.png" },
@@ -144,7 +144,7 @@ export function HomeStructuredData({ lang }: { lang: Lang }) {
 
 const productSchema = {
   readytype: { name: "ReadyType", version: "1.5.1", operatingSystem: "macOS 14+", category: "ProductivityApplication" },
-  readycheck: { name: "ReadyCheck", version: "0.5.4", operatingSystem: "macOS 14+, Windows", category: "DeveloperApplication" },
+  readycheck: { name: "ReadyCheck", version: "0.6.1", operatingSystem: "macOS 14+, Windows", category: "DeveloperApplication" },
   readydownloader: { name: "ReadyDownloader", version: "0.2.2", operatingSystem: "Web browser, macOS 13+", category: "MultimediaApplication" },
   crossfit: { name: "CrossFit WHOOP Video", version: "1.0.11", operatingSystem: "macOS, Windows, Linux", category: "MultimediaApplication" },
 } as const;
@@ -168,7 +168,7 @@ export function GuideStructuredData({ guide, lang }: { guide: GuideKey; lang: La
   const path = guidePaths[guide];
   const url = `${baseUrl}${localizedPath(path, lang)}`;
   return <JsonLd value={[
-    { "@context": "https://schema.org", "@type": "Article", headline: seo.title, description: seo.description, keywords: seo.keywords.join(", "), datePublished: "2026-08-11", dateModified: "2026-10-28", inLanguage: lang === "zh" ? "zh-CN" : "en", mainEntityOfPage: url, author: { "@type": "Organization", name: "ReadySuite AI", url: baseUrl }, publisher: { "@type": "Organization", name: "ReadySuite AI", url: baseUrl } },
+    { "@context": "https://schema.org", "@type": "Article", headline: seo.title, description: seo.description, keywords: seo.keywords.join(", "), datePublished: "2026-08-11", dateModified: "2026-11-01", inLanguage: lang === "zh" ? "zh-CN" : "en", mainEntityOfPage: url, author: { "@type": "Organization", name: "ReadySuite AI", url: baseUrl }, publisher: { "@type": "Organization", name: "ReadySuite AI", url: baseUrl } },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
       { "@type": "ListItem", position: 1, name: "ReadySuite AI", item: `${baseUrl}${localizedPath("/", lang)}` },
       { "@type": "ListItem", position: 2, name: seo.title, item: url },

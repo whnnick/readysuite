@@ -1323,6 +1323,83 @@ img {
   line-height: 1.7;
 }
 
+.update-section {
+  display: grid;
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 0 0 96px;
+  grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
+  align-items: center;
+  gap: 80px;
+}
+
+.update-copy h2 {
+  margin: 16px 0 0;
+  font-size: 40px;
+  line-height: 1.14;
+  white-space: pre-line;
+  text-wrap: balance;
+}
+
+.update-steps {
+  margin: 36px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: update-step;
+}
+
+.update-steps li {
+  position: relative;
+  padding: 18px 0 18px 40px;
+  border-top: 1px solid var(--line);
+  counter-increment: update-step;
+}
+
+.update-steps li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.update-steps li::before {
+  position: absolute;
+  top: 19px;
+  left: 0;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 760;
+  letter-spacing: 0.04em;
+  content: "0" counter(update-step);
+}
+
+.update-steps h3 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.update-steps p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.update-visual {
+  margin: 0;
+}
+
+.update-frame {
+  overflow: hidden;
+  border: 1px solid rgba(29, 29, 31, 0.12);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 22px 56px rgba(20, 22, 28, 0.13);
+}
+
+.update-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .spotlight-band {
   width: min(1180px, calc(100% - 48px));
   margin: 0 auto;
@@ -1954,8 +2031,14 @@ img {
   }
 
   .product-hero,
+  .update-section,
   .release-section {
     grid-template-columns: 1fr;
+  }
+
+  .update-section {
+    padding: 0 0 72px;
+    gap: 40px;
   }
 
   .home-hero {
@@ -2069,6 +2152,7 @@ img {
   .product-hero,
   .product-showcase,
   .feature-section,
+  .update-section,
   .spotlight-band,
   .release-section,
   .open-source-band,
@@ -2247,6 +2331,10 @@ img {
 
   .release-heading h2 {
     font-size: 34px;
+  }
+
+  .update-copy h2 {
+    font-size: 32px;
   }
 
   .resource-hero {

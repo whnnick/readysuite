@@ -5,12 +5,12 @@
 The official bilingual website for ReadySuite products:
 
 - ReadyType 1.5.1: a Chinese-first macOS voice input app.
-- ReadyCheck 0.5.4: a native Mac Codex quota monitor with an adaptive Widget and a separate Windows preview.
+- ReadyCheck 0.6.1: a native Mac Codex quota monitor with an adaptive Widget, notification history that opens from its own alerts, and a separate Windows preview.
 - ReadyDownloader 0.2.2: a free Web video downloader with an Apple Silicon macOS client.
 - CrossFit WHOOP Video 1.0.11: a vertical 4K sports video workflow.
 
 The long-term page and product update boundaries are documented in the [site architecture](docs/ARCHITECTURE.md).
-Current content evidence and design decisions: [1.6.0 overview](docs/versions/1.6.0/README.md) and [black-box checks](docs/versions/1.6.0/BLACK_BOX_TESTS.md).
+Current content evidence and design decisions: [1.7.0 overview](docs/versions/1.7.0/README.md) and [black-box checks](docs/versions/1.7.0/BLACK_BOX_TESTS.md).
 
 ## Local preview
 

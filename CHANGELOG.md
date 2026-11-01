@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.7.0 - 2026-11-01
+
+- Updated ReadyCheck from 0.5.4 to the public 0.6.1 release, covering notification history that filters by type and groups by local date, full record times, and alerts that open their own records.
+- Added a "notifications and records" section to the ReadyCheck page with a synthetic render of the 0.6.x history view, rendered from the `v0.6.1` source rather than the newer local development build.
+- Added the history view to the ReadyCheck preview switcher and refreshed bilingual copy, guides, metadata and product schema.
+- Preserved the stated boundaries: Windows keeps its previous interface, macOS remains a self-signed preview that is not notarized, and no real account data or reset-card redemption is shown.
+
 ## 1.6.0 - 2026-10-28
 
 - Refreshed bilingual product positioning against ReadyType 1.5.1, ReadyCheck 0.5.4 and ReadyDownloader 0.2.2 public releases.

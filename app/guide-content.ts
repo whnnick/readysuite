@@ -46,8 +46,8 @@ export const guideContent: Record<Lang, Record<GuideKey, GuideContent>> = {
       product: "readycheck",
       eyebrow: "Codex 用量指南",
       title: "看清 Codex 额度、Token 用量和重置时间",
-      intro: "ReadyCheck 在 Mac 原生概览、菜单栏和可置顶 Widget 中展示 5 小时与 7 天额度、下一事件和最近消耗，并提供独立的额度与重置卡提醒设置。",
-      summary: ["双额度与下一事件", "本机额度消耗记录", "独立提醒与通知记录"],
+      intro: "ReadyCheck 在 Mac 原生概览、菜单栏和可置顶 Widget 中展示 5 小时与 7 天额度、下一事件和最近消耗，并提供独立的额度与重置卡提醒设置。提醒发出后，点击系统通知即可回到通知记录核对。",
+      summary: ["双额度与下一事件", "本机额度消耗记录", "通知直达记录可追查"],
       sections: [
         {
           title: "额度窗口和 Token 用量分别看什么",
@@ -56,7 +56,7 @@ export const guideContent: Record<Lang, Record<GuideKey, GuideContent>> = {
         {
           title: "把状态放在最顺手的位置",
           body: "概览适合查看完整状态；菜单栏适合快速确认；Widget 可在屏幕边缘窄条与气泡之间切换，信息卡可拖拽并置顶。支持刘海屏的 Mac 可点击展开状态。Windows 提供保留原界面的独立便携预览包。",
-          steps: ["通过浏览器授权 ChatGPT 账户。", "在显示设置中选择 Widget 或刘海，并按工作节奏设置刷新。", "在提醒设置中分别调整低额度、恢复与重置卡到期提醒。", "需要核对时打开通知记录；投递状态与重置卡兑换结果分开查看。"],
+          steps: ["通过浏览器授权 ChatGPT 账户。", "在显示设置中选择 Widget 或刘海，并按工作节奏设置刷新。", "在提醒设置中分别调整低额度、恢复与重置卡到期提醒。", "收到提醒后点击通知回到记录，按类型和本地日期核对投递状态；重置卡兑换结果仍单独查看。"],
         },
         {
           title: "如何理解重置卡与预计恢复时间",
@@ -111,11 +111,11 @@ export const guideContent: Record<Lang, Record<GuideKey, GuideContent>> = {
       product: "readycheck",
       eyebrow: "Codex usage guide",
       title: "Track Codex limits, token usage, and reset times",
-      intro: "ReadyCheck puts both 5-hour and 7-day quotas, the next event and recent consumption in a native Mac Overview, menu bar or pinned Widget, with separate quota and card-expiry controls.",
-      summary: ["Both quotas and the next event", "Local consumption history", "Independent alerts and records"],
+      intro: "ReadyCheck puts both 5-hour and 7-day quotas, the next event and recent consumption in a native Mac Overview, menu bar or pinned Widget, with separate quota and card-expiry controls. When a reminder fires, clicking the system notification returns to its record.",
+      summary: ["Both quotas and the next event", "Local consumption history", "Reminders that open their records"],
       sections: [
         { title: "Quota windows and Token usage answer different questions", body: "Quota windows show the remaining share of a cycle. Local refresh samples produce 24-hour, 7-day or 30-day consumption views; the Widget shows the last hour. A drop from 80% to 70% is 10 percentage points. This has no fixed conversion to account Token counts, which appear separately when available." },
-        { title: "Put status where it is easiest to scan", body: "Use Overview for details or the menu bar for quick checks. Drag the Widget between an edge strip and a bubble, move and pin its details, or click the notch on supported Macs. Windows offers a separate portable preview with its previous interface.", steps: ["Authorize your ChatGPT account in the browser.", "Choose Widget or notch visibility and a refresh rhythm.", "Set low-quota, recovery, and card-expiry reminders independently.", "Inspect notification records separately from card-redemption outcomes."] },
+        { title: "Put status where it is easiest to scan", body: "Use Overview for details or the menu bar for quick checks. Drag the Widget between an edge strip and a bubble, move and pin its details, or click the notch on supported Macs. Windows offers a separate portable preview with its previous interface.", steps: ["Authorize your ChatGPT account in the browser.", "Choose Widget or notch visibility and a refresh rhythm.", "Set low-quota, recovery, and card-expiry reminders independently.", "Click a reminder to open its record, then filter by type and local date; card-redemption outcomes stay separate."] },
         { title: "Understand cards and expected recovery", body: "Expiry alerts use independent 72/48/24/12-hour milestones. Optional automatic use needs account-specific consent and qualifying conditions. Expected reset times need fresh readings to confirm recovery; ReadyCheck does not stop or resume Codex tasks. Quota refresh reads authorized data without model-generation requests." },
       ],
       cta: "Explore ReadyCheck",

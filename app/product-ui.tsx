@@ -9,6 +9,7 @@ import {
   Activity,
   ArrowDownToLine,
   ArrowRight,
+  Bell,
   Check,
   ChevronDown,
   Download,
@@ -104,37 +105,37 @@ const copy = {
       },
       readycheck: {
         name: "ReadyCheck",
-        version: "0.5.4",
+        version: "0.6.1",
         platform: "macOS 14+ · Windows 预览版",
         eyebrow: "Codex 用量",
         title: "看清额度，\n安排下一步。",
-        body: "5 小时与 7 天额度、重置时间和下一件需要关注的事，放在同一个原生界面里。通过菜单栏、可置顶 Widget 或刘海，工作时也能一眼确认。",
+        body: "5 小时与 7 天额度、重置时间和下一件需要关注的事，收在同一个原生界面里。菜单栏、可置顶 Widget 或刘海随时确认；提醒发出后，点开通知就能回到记录逐条核对。",
         homeTitle: "Codex 额度，随时可见。",
-        homeBody: "一眼看清双额度与下一事件。把 Widget 留在桌面，让重置时间和最近消耗随时可见。",
+        homeBody: "一眼看清双额度与下一事件。提醒响过之后，点击通知即可回到通知记录。",
         homeAction: "了解 ReadyCheck",
         primary: "下载 ReadyCheck",
         secondary: "查看源码",
-        highlights: ["5 小时 / 7 天额度", "可置顶 Widget", "额度与到期提醒"],
+        highlights: ["5 小时 / 7 天额度", "可置顶 Widget", "通知直达记录"],
         sectionLabel: "始终可见",
         sectionTitle: "把额度状态放在需要它的地方。",
         features: [
           ["下一件事，一处看清", "概览、菜单栏与 Widget 共享下一事件，显示预计重置、符合条件的重置卡使用窗口或需要处理的问题。"],
           ["Widget 随桌面调整", "拖到屏幕边缘变成窄条，移回桌面变成气泡；信息卡可拖拽并保持展开，带最近一小时消耗图。"],
           ["区分额度与 Token", "查看本机记录的 24 小时、7 天和 30 天额度消耗；账户 Token 数据可用时单独展示，两者各有含义。"],
-          ["提醒由你决定", "低额度、恢复和重置卡到期分别设置；可查看通知记录，自动使用到期卡需要当前账户单独授权。"],
+          ["提醒发得出，也追得到", "低额度、恢复和重置卡到期分别设置；通知记录可按类型筛选、按本地日期分组，并同时保留相对时间与完整记录时间。"],
         ],
         spotlight: "少一次来回检查",
         spotlightValue: "状态常驻，提醒有据。",
-        spotlightBody: "额度刷新只读取已授权数据，不发送模型生成请求。提醒记录和重置卡结果各自保留，方便需要时核对。",
-        notesTitle: "ReadyCheck 0.5.4",
+        spotlightBody: "额度刷新只读取已授权数据，不发送模型生成请求。提醒记录与重置卡结果各自保留：用卡详情以只读时间线呈现已有证据，缺少历史结果时保持未确认。",
+        notesTitle: "ReadyCheck 0.6.1",
         notes: [
           "macOS 14+ Apple Silicon 原生应用；Windows x64 提供保留原界面的便携预览版。",
           "通过 ChatGPT 账户 OAuth 授权，Mac 凭据保存在系统钥匙串。",
-          "可独立设置低额度、恢复及 72/48/24/12 小时重置卡到期提醒。",
-          "发布页提供自签名预览包与安装指南，首次启动可能需要手动确认。",
+          "低额度、恢复及 72/48/24/12 小时重置卡到期提醒可独立设置；点击系统通知直接打开通知记录，自动使用到期卡需按账户单独授权。",
+          "发布页提供自签名预览包与安装指南，未经 Developer ID 签名或公证，首次启动可能需要手动确认。",
         ],
         finalTitle: "专注构建，不再反复检查额度。",
-        finalBody: "下载 ReadyCheck，让 Codex 使用状态保持可见。",
+        finalBody: "下载 ReadyCheck，让每次提醒都能回到记录里核对。",
       },
       readydownloader: {
         name: "ReadyDownloader",
@@ -288,37 +289,37 @@ const copy = {
       },
       readycheck: {
         name: "ReadyCheck",
-        version: "0.5.4",
+        version: "0.6.1",
         platform: "macOS 14+ · Windows preview",
         eyebrow: "Codex usage",
         title: "See your quota. Know what comes next.",
-        body: "Both 5-hour and 7-day quotas, reset times, and your next event in one native interface. Keep a menu-bar summary, pinned Widget, or notch view within reach as you work.",
+        body: "Both 5-hour and 7-day quotas, reset times, and your next event in one native window. Check them from the menu bar, a pinned Widget, or the notch — and when a reminder fires, click it to land back in the record.",
         homeTitle: "Codex quota, always in sight.",
-        homeBody: "See both quotas and the next event at a glance. Keep a Widget on your desktop for reset times and recent consumption.",
+        homeBody: "See both quotas and the next event at a glance. When a reminder fires, clicking it opens notification history.",
         homeAction: "Explore ReadyCheck",
         primary: "Download ReadyCheck",
         secondary: "View source",
-        highlights: ["5-hour / 7-day quotas", "Pinned Widget", "Quota and expiry alerts"],
+        highlights: ["5-hour / 7-day quotas", "Pinned Widget", "Notifications open records"],
         sectionLabel: "Always visible",
         sectionTitle: "Put usage status where you need it.",
         features: [
           ["One shared next event", "Overview, menu, and Widget share the expected reset, a conditional card-use window, or an issue needing attention."],
           ["A Widget that adapts", "Drag to an edge for a slim strip or inward for a bubble. Move and pin details, including the last-hour consumption chart."],
           ["Quota and Tokens, clearly separated", "Review locally recorded quota consumption over 24 hours, 7 days, or 30 days. Account Token data appears separately when available."],
-          ["Reminders you control", "Set low-quota, recovery, and expiry alerts independently. Inspect notification records; automatic card use needs account-specific consent."],
+          ["Reminders you can trace", "Set low-quota, recovery, and expiry alerts independently. History filters by type and groups by local date, keeping relative and full record times."],
         ],
         spotlight: "One less interruption",
         spotlightValue: "Visible status. Traceable reminders.",
-        spotlightBody: "Quota refresh reads authorized data without model-generation requests. Notification records and reset-card outcomes remain separate and available to inspect.",
-        notesTitle: "ReadyCheck 0.5.4",
+        spotlightBody: "Quota refresh reads authorized data without model-generation requests. Records and reset-card outcomes stay separate: card details show a read-only timeline of existing evidence and leave missing history unconfirmed.",
+        notesTitle: "ReadyCheck 0.6.1",
         notes: [
-          "Native Mac app for macOS 14+ Apple Silicon; Windows x64 offers a portable preview with its previous interface.",
-          "Authorize your ChatGPT account with OAuth; Mac credentials stay in Keychain.",
-          "Control low-quota, recovery, and 72/48/24/12-hour reset-card expiry reminders independently.",
-          "Self-signed preview packages and installation guidance are available in Releases; first launch may need manual approval.",
+          "Native app for macOS 14+ Apple Silicon; Windows x64 offers a portable preview with its previous interface.",
+          "Authorize your ChatGPT account with OAuth; Mac credentials stay in the Keychain.",
+          "Low-quota, recovery, and 72/48/24/12-hour reset-card expiry reminders are independent; clicking a system notification opens notification history, and automatic card use needs account-specific consent.",
+          "Releases ship a self-signed preview that is not Developer ID signed or notarized, so the first launch may need manual approval.",
         ],
         finalTitle: "Stay focused on building.",
-        finalBody: "Download ReadyCheck and keep Codex usage visible.",
+        finalBody: "Download ReadyCheck and trace every reminder back to its record.",
       },
       readydownloader: {
         name: "ReadyDownloader",
@@ -413,6 +414,48 @@ const copy = {
     },
   },
 } as const;
+
+type ProductUpdate = {
+  label: string;
+  title: string;
+  steps: ReadonlyArray<readonly [string, string]>;
+  src: string;
+  alt: string;
+  caption: string;
+};
+
+const productUpdates: Record<Lang, Partial<Record<ProductKey, ProductUpdate>>> = {
+  zh: {
+    readycheck: {
+      label: "通知与记录",
+      title: "提醒发出之后，\n还能回头核对。",
+      steps: [
+        ["收到提醒", "低额度、额度恢复或重置卡到期时发出系统通知，正文保留完整发送日期与时间。"],
+        ["点开就回到记录", "点击通知直接打开通知记录；应用未运行时也会启动并跳转，关闭通知则不会跳转。"],
+        ["按类型和日期查找", "记录可按全部或单一提醒类型筛选，并按本地日期分组，相对时间与完整时间同时保留。"],
+        ["用卡证据单独看", "重置卡详情以只读时间线呈现请求、结果与通知状态；缺少历史结果时保持未确认。"],
+      ],
+      src: "/readycheck-history-zh.png",
+      alt: "ReadyCheck 通知记录界面：按提醒类型筛选、按本地日期分组，显示投递状态与完整时间，使用合成演示数据",
+      caption: "通知记录 · 原生界面 · 合成演示数据",
+    },
+  },
+  en: {
+    readycheck: {
+      label: "Notifications and records",
+      title: "A reminder you can\ntrace back.",
+      steps: [
+        ["The reminder arrives", "A system notification fires for low quota, recovery, or card expiry, keeping the full send date and time in its body."],
+        ["Click straight into the record", "Clicking the notification opens notification history, starting the app and navigating even when it was not running. Dismissing does not navigate."],
+        ["Filter by type and day", "History filters by all or a single reminder type and groups by local date, keeping relative and full times together."],
+        ["Card evidence stays separate", "Reset-card details show a read-only timeline of the request, result, and notification status; missing history stays unconfirmed."],
+      ],
+      src: "/readycheck-history-en.png",
+      alt: "ReadyCheck notification history: filtered by reminder type, grouped by local date, with delivery status and full times, using synthetic demo data",
+      caption: "Notification history · native interface · synthetic demo data",
+    },
+  },
+};
 
 const featureIcons: Record<ProductKey, readonly LucideIcon[]> = {
   readytype: [Keyboard, Languages, Sparkles, WandSparkles],
@@ -844,26 +887,40 @@ function ReadyCheckVisual({
   priority?: boolean;
   lang: Lang;
 }) {
-  const [view, setView] = useState<"overview" | "widget">(compact ? "widget" : "overview");
-  const label = view === "overview" ? (lang === "zh" ? "概览节选" : "Overview excerpt") : "Widget";
+  const [view, setView] = useState<"overview" | "widget" | "history">(compact ? "widget" : "overview");
+  const views = [
+    { key: "overview", label: lang === "zh" ? "概览" : "Overview", icon: PanelTop, width: 1800, height: 1960, caption: lang === "zh" ? "概览节选" : "Overview excerpt" },
+    { key: "widget", label: "Widget", icon: Monitor, width: 760, height: 688, caption: "Widget" },
+    { key: "history", label: lang === "zh" ? "通知记录" : "History", icon: Bell, width: 1040, height: 930, caption: lang === "zh" ? "通知记录" : "Notification history" },
+  ] as const;
+  const active = views.find((item) => item.key === view) ?? views[0];
+  const alt = {
+    overview: lang === "zh" ? "ReadyCheck 概览节选，展示双额度、下一事件与消耗记录，使用合成演示数据" : "ReadyCheck overview excerpt with both quotas, next event and consumption, using synthetic data",
+    widget: lang === "zh" ? "ReadyCheck Widget，展示双额度、下一事件与最近一小时消耗，使用合成演示数据" : "ReadyCheck Widget with both quotas, next event and last-hour consumption, using synthetic data",
+    history: lang === "zh" ? "ReadyCheck 通知记录，按提醒类型筛选并按本地日期分组，使用合成演示数据" : "ReadyCheck notification history filtered by reminder type and grouped by local date, using synthetic data",
+  };
   return (
     <div className={`product-visual readycheck-visual ${compact ? "is-compact" : ""}`}>
       <div className="preview-switcher" role="group" aria-label={lang === "zh" ? "ReadyCheck 界面预览" : "ReadyCheck interface preview"}>
-        <button aria-pressed={view === "overview"} onClick={() => setView("overview")} type="button"><PanelTop size={14} />{lang === "zh" ? "概览" : "Overview"}</button>
-        <button aria-pressed={view === "widget"} onClick={() => setView("widget")} type="button"><Monitor size={14} />Widget</button>
+        {views.map((item) => {
+          const Icon = item.icon;
+          return (
+            <button aria-pressed={view === item.key} key={item.key} onClick={() => setView(item.key)} type="button"><Icon size={14} />{item.label}</button>
+          );
+        })}
       </div>
       <div className={`readycheck-native-preview is-${view}`}>
         <Image
-          alt={lang === "zh" ? `ReadyCheck ${label}，展示双额度、下一事件与消耗记录，使用合成演示数据` : `ReadyCheck ${label} with both quotas, next event and consumption, using synthetic data`}
+          alt={alt[view]}
           key={view}
-          width={view === "overview" ? 1800 : 760}
-          height={view === "overview" ? 1960 : 688}
+          width={active.width}
+          height={active.height}
           priority={priority}
           sizes="(max-width: 820px) 90vw, 640px"
           src={`/readycheck-${view}-${lang}.png`}
         />
       </div>
-      <p className="visual-caption">{label} · {lang === "zh" ? "原生界面 · 合成演示数据" : "native interface · synthetic demo data"}</p>
+      <p className="visual-caption">{active.caption} · {lang === "zh" ? "原生界面 · 合成演示数据" : "native interface · synthetic demo data"}</p>
     </div>
   );
 }
@@ -1107,6 +1164,7 @@ export function HomePage({ lang = "zh" }: { lang?: Lang }) {
 
 export function ProductPage({ product, lang = "zh" }: { product: ProductKey; lang?: Lang }) {
   const t = copy[lang].products[product];
+  const update = productUpdates[lang][product];
   const icons = featureIcons[product];
   const repositoryFirst = product === "crossfit";
   const webFirst = product === "readydownloader";
@@ -1165,6 +1223,36 @@ export function ProductPage({ product, lang = "zh" }: { product: ProductKey; lan
           })}
         </div>
       </section>
+
+      {update ? (
+        <section className="update-section" data-reveal>
+          <div className="update-copy">
+            <p className="eyebrow">{update.label}</p>
+            <h2>{update.title}</h2>
+            <ol className="update-steps">
+              {update.steps.map(([title, body]) => (
+                <li key={title}>
+                  <h3>{title}</h3>
+                  <p>{body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <figure className="update-visual">
+            <div className="update-frame">
+              <Image
+                alt={update.alt}
+                height={930}
+                loading="lazy"
+                sizes="(max-width: 820px) 92vw, 520px"
+                src={update.src}
+                width={1040}
+              />
+            </div>
+            <figcaption className="visual-caption">{update.caption}</figcaption>
+          </figure>
+        </section>
+      ) : null}
 
       <section className={`spotlight-band product-${product}`} data-reveal>
         <p>{t.spotlight}</p>

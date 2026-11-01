@@ -14,7 +14,7 @@
 | 布局 | 完成 | 1440 与 390 宽度下 `scrollWidth === innerWidth`，无横向溢出；说明由 4 条增至 5 条后仍按列表正常堆叠，未挤压相邻板块。 |
 | SEO | 完成 | `ReadyDownloader` 的 description 与 keywords 已更新（新增 TikTok 关键词）；`softwareVersion`、canonical、hreflang 与 1.7.0 保持一致。 |
 | 构建 | 完成 | 生产构建 27 个静态页面，TypeScript 通过。 |
-| 正式域名 | 待部署 | 部署后补充。 |
+| 正式域名 | 完成 | 提交 `706daaf` 触发生产构建，2026-11-01 10:21（+08）起线上返回新内容；三个产品页的说明条目与正文、英文页表述、移动端无溢出均按上表逐项复核。 |
 
 ## 验收限制
 

@@ -44,4 +44,6 @@
 
 ## 发布记录
 
-（待部署后补充。）
+功能提交 `706daaf` 经 GitHub 连接触发 Vercel 生产构建，2026-11-01 10:21（+08）起正式域名返回新内容。
+
+线上验收：`/readytype`、`/readydownloader`、`/crossfit-whoop-video` 的说明条目与正文与本地构建一致（分别为 4、5、5 条），`/en/readydownloader` 英文表述对应；390 宽度下无横向溢出。四个 `softwareVersion` 仍分别为 1.5.1、0.6.1、0.2.2、1.0.11，与 GitHub 最新发布一致。

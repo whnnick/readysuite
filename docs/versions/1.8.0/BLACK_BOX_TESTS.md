@@ -14,7 +14,7 @@ Checked 2026-11-01. Scope is the website; it does not include installing or runn
 | Layout | Complete | At 1440 and 390 wide, `scrollWidth === innerWidth` with no horizontal overflow; growing from four to five notes still stacks as a list without squeezing adjacent sections. |
 | SEO | Complete | The ReadyDownloader description and keywords are updated (TikTok keyword added); `softwareVersion`, canonical and hreflang match 1.7.0. |
 | Build | Complete | Production build generated 27 static pages with TypeScript passing. |
-| Production domain | Pending | Recorded after deployment. |
+| Production domain | Complete | Commit `706daaf` triggered the production build and the live site served the new content from 10:21 (+08) on 2026-11-01; the three product pages' notes and body copy, the English page and the mobile overflow check were all re-verified live. |
 
 ## Limits
 

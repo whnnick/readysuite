@@ -44,4 +44,6 @@ Verified 2026-11-01. Each tag list was checked and no newer stable version exist
 
 ## Release record
 
-(Filled in after deployment.)
+Feature commit `706daaf` triggered a Vercel production build through the GitHub connection, and the production domain started serving the new content at 10:21 (+08) on 2026-11-01.
+
+Live checks: the notes and body copy on `/readytype`, `/readydownloader` and `/crossfit-whoop-video` match the local build (four, five and five notes respectively), `/en/readydownloader` matches in English, and there is no horizontal overflow at 390 wide. The four `softwareVersion` values remain 1.5.1, 0.6.1, 0.2.2 and 1.0.11, matching the newest GitHub releases.

@@ -10,7 +10,7 @@ ReadySuite 产品的中英文官方网站：
 - CrossFit WHOOP Video 1.0.11：竖屏 4K 运动视频制作工作流。
 
 长期页面结构和产品更新边界见[官网架构](docs/ARCHITECTURE.zh-CN.md)。
-本次产品依据与设计取舍见 [1.7.0 概览](docs/versions/1.7.0/README.zh-CN.md)和[黑盒验收](docs/versions/1.7.0/BLACK_BOX_TESTS.zh-CN.md)。
+本次产品依据与设计取舍见 [1.8.0 概览](docs/versions/1.8.0/README.zh-CN.md)和[黑盒验收](docs/versions/1.8.0/BLACK_BOX_TESTS.zh-CN.md)。
 
 ## 本地预览
 

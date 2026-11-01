@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.8.0 - 2026-11-01
+
+- Re-checked all four products against their newest GitHub releases (ReadyType 1.5.1, ReadyCheck 0.6.1, ReadyDownloader 0.2.2, CrossFit WHOOP Video 1.0.11) and filled in installation and privacy facts the site was missing. The versions were already current, so this round only aligns content.
+- ReadyType: added the microphone, speech-recognition and accessibility permission requirements; documented that the current DMG is unsigned and not notarized with the right-click → Open step; corrected the analytics wording to note that official builds send anonymous feature events without voice, text or clipboard content.
+- ReadyDownloader: documented the ad-hoc signed, non-notarized installer and its Control-click workaround; broadened the supported-platform wording and added a TikTok search keyword.
+- CrossFit WHOOP Video: noted that the WHOOP API returns processed workout summaries and that on-screen figures are animated rather than a continuous live heart-rate stream.
+- Guides updated in both languages for permissions, signing and platform boundaries.
+
 ## 1.7.0 - 2026-11-01
 
 - Updated ReadyCheck from 0.5.4 to the public 0.6.1 release, covering notification history that filters by type and groups by local date, full record times, and alerts that open their own records.

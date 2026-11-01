@@ -37,7 +37,7 @@ export const guideContent: Record<Lang, Record<GuideKey, GuideContent>> = {
         },
         {
           title: "准确率、成本与隐私边界",
-          body: "短句优先快速识别；较长口述会并行准备识别候选，减少串行重试的等待。直接转文字不调用 DeepSeek；整理、翻译和写给 AI 使用你配置的密钥，费用取决于用量与服务商价格。密钥存储在 macOS 钥匙串；自动粘贴不可用时结果会复制到剪贴板。",
+          body: "短句优先快速识别；较长口述会并行准备识别候选，减少串行重试的等待。直接转文字不调用 DeepSeek；整理、翻译和写给 AI 使用你配置的密钥，费用取决于用量与服务商价格。密钥存储在 macOS 钥匙串；自动粘贴不可用时结果会复制到剪贴板。首次使用需授权麦克风、语音识别与辅助功能；当前安装包未签名、未公证，首次打开需在“应用程序”中右键选择“打开”。",
         },
       ],
       cta: "查看 ReadyType",
@@ -87,7 +87,7 @@ export const guideContent: Record<Lang, Record<GuideKey, GuideContent>> = {
         },
         {
           title: "临时文件与使用边界",
-          body: "网页版只处理受支持的公共来源，不接收 Cookie，也不处理私密、登录或 DRM 内容。成品上限 500 MB，使用私有临时存储和限时下载链接，按 24 小时规则清理。需要 Cookie、代理或本地目录选择时可使用 Mac 客户端；请仅下载你拥有或获准保存的内容。",
+          body: "网页版只处理受支持的公共来源，不接收 Cookie，也不处理私密、登录或 DRM 内容。成品上限 500 MB，使用私有临时存储和限时下载链接，按 24 小时规则清理。需要 Cookie、代理或本地目录选择时可使用 Mac 客户端；其安装包为 ad-hoc 签名且未经公证，首次启动被拦截时按住 Control 点击并选择“打开”。请仅下载你拥有或获准保存的内容。",
         },
       ],
       cta: "查看 ReadyDownloader",
@@ -103,7 +103,7 @@ export const guideContent: Record<Lang, Record<GuideKey, GuideContent>> = {
       sections: [
         { title: "Choose the output that matches the task", body: "Use direct dictation for short replies, polished writing for longer thoughts, English translation for cross-language work, and AI-task mode for structured instructions." },
         { title: "Complete an input with Option", body: "Keep the cursor in the target field instead of moving to another editor.", steps: ["Double-press Option to start listening.", "Speak naturally and finish the whole thought.", "Double-press Option again to return text to the field.", "Press Esc to cancel."] },
-        { title: "Accuracy, cost, and privacy", body: "Longer input prepares recognition candidates in parallel to reduce serial retries. Direct dictation does not call DeepSeek. AI modes use your key, stored in macOS Keychain; cost depends on usage and provider pricing. If automatic paste is unavailable, the result is copied to the clipboard." },
+        { title: "Accuracy, cost, and privacy", body: "Longer input prepares recognition candidates in parallel to reduce serial retries. Direct dictation does not call DeepSeek. AI modes use your key, stored in macOS Keychain; cost depends on usage and provider pricing. If automatic paste is unavailable, the result is copied to the clipboard. The first launch asks for microphone, speech recognition and accessibility permissions; the current build is unsigned and not notarized, so open it with right-click → Open in Applications." },
       ],
       cta: "Explore ReadyType",
     },
@@ -130,7 +130,7 @@ export const guideContent: Record<Lang, Record<GuideKey, GuideContent>> = {
         { title: "From a page URL to a local file", body: "Open ReadyDownloader in your browser, paste a supported public media URL, and choose a download mode after the format list appears.", steps: ["Open the ReadyDownloader Web app.", "Paste a public media URL you are authorized to save.", "Review resolution, codec, frame rate, and estimated size.", "Choose Best Quality, iPhone Compatible, or Selected Format and download."] },
         { title: "When to use iPhone compatibility", body: "The best-quality stream may use AV1, VP9, or separate audio and video. Compatibility mode converts only when needed to H.264, AAC, and yuv420p." },
         { title: "When YouTube asks for bot verification", body: "YouTube can challenge cloud requests even for public videos. The Web app makes bounded alternate attempts and explains the result; try the Mac client with your local network when needed. A public URL does not guarantee availability." },
-        { title: "Temporary files and usage boundaries", body: "The Web app accepts supported public sources, with no cookie import or private, login-only or DRM media. Outputs are capped at 500 MB, stored privately and linked temporarily under a 24-hour retention rule. Use the Mac client for local folders, proxy settings or your own cookies. Save only media you own or are authorized to download." },
+        { title: "Temporary files and usage boundaries", body: "The Web app accepts supported public sources, with no cookie import or private, login-only or DRM media. Outputs are capped at 500 MB, stored privately and linked temporarily under a 24-hour retention rule. Use the Mac client for local folders, proxy settings or your own cookies. The Mac installer is ad-hoc signed and not Apple-notarized, so Control-click it and choose Open if macOS blocks the first launch. Save only media you own or are authorized to download." },
       ],
       cta: "Explore ReadyDownloader",
     },

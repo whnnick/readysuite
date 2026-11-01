@@ -10,7 +10,7 @@ The official bilingual website for ReadySuite products:
 - CrossFit WHOOP Video 1.0.11: a vertical 4K sports video workflow.
 
 The long-term page and product update boundaries are documented in the [site architecture](docs/ARCHITECTURE.md).
-Current content evidence and design decisions: [1.7.0 overview](docs/versions/1.7.0/README.md) and [black-box checks](docs/versions/1.7.0/BLACK_BOX_TESTS.md).
+Current content evidence and design decisions: [1.8.0 overview](docs/versions/1.8.0/README.md) and [black-box checks](docs/versions/1.8.0/BLACK_BOX_TESTS.md).
 
 ## Local preview
 

@@ -44,4 +44,8 @@
 
 ## 发布记录
 
-（待生产部署完成后补充：提交号、部署 ID、正式域名验收结果。）
+功能提交 `54b5bdc` 经 GitHub 连接触发 Vercel 生产构建，正式域名 [readysuite.vercel.app](https://readysuite.vercel.app/) 于 2026-11-01 10:12（+08）开始返回新内容。
+
+线上验收：`/readycheck` 与 `/en/readycheck` 的标题、`canonical`、`hreflang` 与 JSON-LD `softwareVersion: 0.6.1` 均正确，新板块各出现 1 次；`/readycheck-history-zh.png` 与 `/readycheck-history-en.png` 返回 200；`sitemap.xml` 的 `lastmod` 为 2026-11-01；双语页面由生产产物截图复核，无图片加载失败。
+
+本次更新之前的生产部署对应提交 `496c0ed`。如需回滚，按根 README 的验收流程在 Vercel 中确认目标后执行；本轮没有执行实际回滚。

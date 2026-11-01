@@ -44,4 +44,8 @@ The installed `/Applications/ReadyCheck.app` on this machine is `0.7.0-dev.16`, 
 
 ## Release record
 
-(Pending production deployment: commit, deployment id, and production-domain verification.)
+Feature commit `54b5bdc` triggered a Vercel production build through the GitHub connection, and the production domain [readysuite.vercel.app](https://readysuite.vercel.app/) started serving the new content at 10:12 (+08) on 2026-11-01.
+
+Live checks: `/readycheck` and `/en/readycheck` return the expected title, `canonical`, `hreflang` and JSON-LD `softwareVersion: 0.6.1`, with the new section present once on each page; `/readycheck-history-zh.png` and `/readycheck-history-en.png` return 200; `sitemap.xml` reports `lastmod` 2026-11-01; both language pages were re-captured from the production build with no failed images.
+
+The production deployment preceding this update corresponds to commit `496c0ed`. To roll back, confirm the target in Vercel using the root README's verification steps; no rollback was performed in this round.

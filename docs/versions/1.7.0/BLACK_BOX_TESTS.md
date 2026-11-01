@@ -15,7 +15,7 @@ Checked 2026-11-01. Scope is the website; it does not include installing or runn
 | SEO | Complete | Verified `title`, `canonical`, `hreflang` (zh-CN / en / x-default) and JSON-LD `softwareVersion: 0.6.1`; `og:image` points at the new asset; `sitemap.xml` `lastmod` is 2026-11-01; `robots.txt` names the production host and sitemap. |
 | Build and runtime | Complete | The production build generated 27 static pages with TypeScript passing; every page above was checked against those build artifacts with no console errors. |
 | Reduced motion | Partial | Captures used CDP media emulation of `prefers-reduced-motion: reduce`, showing all content with no leftover animation; the OS-level setting was not toggled for a manual pass. |
-| Production domain | Pending | Commit, deployment URL and live checks are recorded after deployment. |
+| Production domain | Complete | Commit `54b5bdc` triggered the production build, and `readysuite.vercel.app` served the new title from 10:12 (+08) on 2026-11-01; both language pages re-checked live for structured data, the new section, both images and the sitemap, then captured from the production build. |
 
 ## Limits and unfinished checks
 

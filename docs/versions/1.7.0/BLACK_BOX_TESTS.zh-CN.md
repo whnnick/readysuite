@@ -15,7 +15,7 @@
 | SEO | 完成 | 读取 `title`、`canonical`、`hreflang`（zh-CN / en / x-default）、JSON-LD `softwareVersion: 0.6.1`；`og:image` 指向新图；`sitemap.xml` 的 `lastmod` 为 2026-11-01；`robots.txt` 指向正式域名与 sitemap。 |
 | 构建与运行 | 完成 | 生产构建生成 27 个静态页面，TypeScript 通过；上述页面均由生产构建产物验证，无控制台错误。 |
 | 减少动态效果 | 部分完成 | 截图用 CDP 模拟 `prefers-reduced-motion: reduce` 抓取，内容全部可见、无动画残留；未切换用户系统的减少动态效果设置做人工验收。 |
-| 正式域名上线 | 待部署 | 部署完成后补充提交号、部署地址与线上验收结果。 |
+| 正式域名上线 | 完成 | 提交 `54b5bdc` 触发生产构建，2026-11-01 10:12（+08）起 `readysuite.vercel.app` 返回新标题；线上两语页面按上表复核结构化数据、新板块、两张图片与 sitemap，并由生产产物截图确认。 |
 
 ## 验收限制与未完成项
 
